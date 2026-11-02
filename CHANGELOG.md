@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+- In-game text in every language the game supports: German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese and Russian, besides English and Chinese.
+
 ## 1.0.0 (pre-release)
 
 First public release.

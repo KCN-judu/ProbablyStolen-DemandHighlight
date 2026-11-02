@@ -1,0 +1,31 @@
+# Demand Highlight - Français (fr)
+opt_thickness,Épaisseur du contour
+opt_thickness_tip,Largeur du trait en pixels d’interface.
+opt_corner,Arrondi des coins
+opt_corner_tip,Rayon des coins extérieurs arrondis. 0 = carrés.
+opt_fill,Teinter les objets voulus
+opt_fill_tip,Ajoute un léger remplissage dans le contour des objets voulus.
+opt_goods,Marquer les objets du client
+opt_goods_tip,Quand un client vend : marque ses objets volés et sa contrebande.
+opt_key,Activer ou désactiver la surbrillance
+opt_key_tip,Affiche ou masque les contours.
+opt_panel_key,Ouvrir le filtre d’objets
+opt_panel_key_tip,Ouvre la fenêtre qui marque les objets par type ou comme volés ou de contrebande.
+window_title,Filtre d’objets
+panel_status,Statut
+panel_types,Types
+filter_stolen,Volé
+filter_contraband,Contrebande
+button_clear,Effacer
+no_items,Aucun objet dans la boutique.
+fam_goods,MARCHANDISES
+fam_supplies,FOURNITURES
+fam_gear,ÉQUIPEMENT
+fam_machines,MACHINES
+fam_grade,QUALITÉ
+fam_legal,RÉGLEMENTÉ
+fam_other,AUTRES
+tip_stolen,Marque en ambre tous les objets volés de la boutique. La surbrillance du client est en pause tant qu’un filtre est actif.
+tip_contraband,Marque en rouge toute la contrebande de la boutique. La surbrillance du client est en pause tant qu’un filtre est actif.
+tip_clear,Tout décocher et revenir à la surbrillance du client.
+tip_type,Marque en cyan tous les objets de type # de la boutique. Les conteneurs qui en contiennent un reçoivent des crochets d’angle.

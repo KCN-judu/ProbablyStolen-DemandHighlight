@@ -1,0 +1,31 @@
+# Demand Highlight - Polski (pl)
+opt_thickness,Grubość obrysu
+opt_thickness_tip,Szerokość linii w pikselach interfejsu.
+opt_corner,Zaokrąglenie rogów
+opt_corner_tip,Promień zaokrąglonych narożników. 0 = proste.
+opt_fill,Podbarwiaj poszukiwane przedmioty
+opt_fill_tip,Dodaje lekkie wypełnienie w obrysie poszukiwanych przedmiotów.
+opt_goods,Oznaczaj towary klienta
+opt_goods_tip,Gdy klient sprzedaje: oznacza jego kradzione towary i kontrabandę.
+opt_key,Przełącz podświetlanie
+opt_key_tip,Włącza i wyłącza obrysy.
+opt_panel_key,Otwórz filtr przedmiotów
+opt_panel_key_tip,Otwiera okno oznaczające przedmioty według typu albo jako kradzione lub kontrabandę.
+window_title,Filtr przedmiotów
+panel_status,Status
+panel_types,Typy
+filter_stolen,Kradzione
+filter_contraband,Kontrabanda
+button_clear,Wyczyść
+no_items,Brak przedmiotów w sklepie.
+fam_goods,TOWARY
+fam_supplies,ZAOPATRZENIE
+fam_gear,SPRZĘT
+fam_machines,MASZYNY
+fam_grade,JAKOŚĆ
+fam_legal,OGRANICZONE
+fam_other,INNE
+tip_stolen,Oznacza na bursztynowo wszystkie kradzione przedmioty w sklepie. Podświetlanie klienta jest wstrzymane, gdy filtr jest włączony.
+tip_contraband,Oznacza na czerwono całą kontrabandę w sklepie. Podświetlanie klienta jest wstrzymane, gdy filtr jest włączony.
+tip_clear,Odznacz wszystko i wróć do podświetlania klienta.
+tip_type,Oznacza na cyjanowo wszystkie przedmioty typu # w sklepie. Pojemniki z nimi dostają narożne nawiasy.

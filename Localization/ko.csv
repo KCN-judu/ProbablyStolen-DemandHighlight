@@ -1,0 +1,31 @@
+# Demand Highlight - 한국어 (ko)
+opt_thickness,테두리 두께
+opt_thickness_tip,선 두께(UI 픽셀 단위).
+opt_corner,모서리 둥글기
+opt_corner_tip,바깥 모서리의 둥근 반지름. 0이면 직각.
+opt_fill,원하는 물건에 색 입히기
+opt_fill_tip,원하는 물건의 테두리 안을 옅게 채웁니다.
+opt_goods,손님이 가져온 물건 표시
+opt_goods_tip,손님이 물건을 팔 때 장물과 밀수품을 표시합니다.
+opt_key,수요 강조 켜기/끄기
+opt_key_tip,테두리를 켜고 끕니다.
+opt_panel_key,아이템 필터 열기
+opt_panel_key_tip,종류별 또는 장물·밀수품으로 물건을 표시하는 창을 엽니다.
+window_title,아이템 필터
+panel_status,상태
+panel_types,종류
+filter_stolen,장물
+filter_contraband,밀수품
+button_clear,지우기
+no_items,가게에 물건이 없습니다.
+fam_goods,상품
+fam_supplies,자재
+fam_gear,장비
+fam_machines,기계
+fam_grade,등급
+fam_legal,규제품
+fam_other,기타
+tip_stolen,가게의 장물을 모두 호박색으로 표시합니다. 필터를 켜는 동안 손님 강조는 멈춥니다.
+tip_contraband,가게의 밀수품을 모두 빨간색으로 표시합니다. 필터를 켜는 동안 손님 강조는 멈춥니다.
+tip_clear,모두 해제하고 손님 강조로 돌아갑니다.
+tip_type,가게의 # 종류 물건을 모두 청록색으로 표시합니다. 이를 담은 용기에는 모서리 괄호가 붙습니다.

@@ -1,0 +1,31 @@
+# Demand Highlight - Português do Brasil (ptBR)
+opt_thickness,Espessura do contorno
+opt_thickness_tip,Largura da linha em pixels da interface.
+opt_corner,Arredondamento dos cantos
+opt_corner_tip,Raio dos cantos externos arredondados. 0 = retos.
+opt_fill,Tingir os itens desejados
+opt_fill_tip,Adiciona um preenchimento leve dentro do contorno dos itens desejados.
+opt_goods,Marcar os itens do cliente
+opt_goods_tip,Quando um cliente vende: marca os itens roubados e o contrabando dele.
+opt_key,Ligar ou desligar o destaque
+opt_key_tip,Liga e desliga os contornos.
+opt_panel_key,Abrir o filtro de itens
+opt_panel_key_tip,Abre a janela que marca itens por tipo ou como roubados ou contrabando.
+window_title,Filtro de itens
+panel_status,Status
+panel_types,Tipos
+filter_stolen,Roubado
+filter_contraband,Contrabando
+button_clear,Limpar
+no_items,Nenhum item na loja.
+fam_goods,MERCADORIAS
+fam_supplies,SUPRIMENTOS
+fam_gear,EQUIPAMENTO
+fam_machines,MÁQUINAS
+fam_grade,QUALIDADE
+fam_legal,RESTRITO
+fam_other,OUTROS
+tip_stolen,Marca em âmbar todos os itens roubados da loja. O destaque do cliente pausa enquanto um filtro estiver ativo.
+tip_contraband,Marca em vermelho todo o contrabando da loja. O destaque do cliente pausa enquanto um filtro estiver ativo.
+tip_clear,Desmarca tudo e volta ao destaque do cliente.
+tip_type,Marca em ciano todos os itens do tipo # na loja. Contêineres que guardam um recebem colchetes nos cantos.

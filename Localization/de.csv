@@ -1,0 +1,31 @@
+# Demand Highlight - Deutsch (de)
+opt_thickness,Umrissstärke
+opt_thickness_tip,Linienbreite in UI-Pixeln.
+opt_corner,Eckenrundung
+opt_corner_tip,Radius der abgerundeten Außenecken. 0 = eckig.
+opt_fill,Gesuchte Gegenstände tönen
+opt_fill_tip,Füllt den Umriss gesuchter Gegenstände leicht aus.
+opt_goods,Waren des Kunden markieren
+opt_goods_tip,Wenn ein Kunde verkauft: markiert seine gestohlene Ware und Schmuggelware.
+opt_key,Bedarfshervorhebung umschalten
+opt_key_tip,Schaltet die Umrisse ein und aus.
+opt_panel_key,Gegenstandsfilter öffnen
+opt_panel_key_tip,Öffnet das Fenster, das Gegenstände nach Typ oder als gestohlen oder Schmuggelware markiert.
+window_title,Gegenstandsfilter
+panel_status,Status
+panel_types,Typen
+filter_stolen,Gestohlen
+filter_contraband,Schmuggelware
+button_clear,Leeren
+no_items,Keine Gegenstände im Laden.
+fam_goods,WAREN
+fam_supplies,VORRÄTE
+fam_gear,AUSRÜSTUNG
+fam_machines,MASCHINEN
+fam_grade,QUALITÄT
+fam_legal,EINGESCHRÄNKT
+fam_other,SONSTIGES
+tip_stolen,Markiert alle gestohlenen Gegenstände im Laden in Bernstein. Die Kundenhervorhebung pausiert, solange ein Filter aktiv ist.
+tip_contraband,Markiert alle Schmuggelware im Laden in Rot. Die Kundenhervorhebung pausiert, solange ein Filter aktiv ist.
+tip_clear,Alles abwählen und zur Kundenhervorhebung zurückkehren.
+tip_type,Markiert alle Gegenstände vom Typ # im Laden in Cyan. Behälter mit einem davon erhalten Eckklammern.

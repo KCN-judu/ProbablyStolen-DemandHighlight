@@ -1,0 +1,31 @@
+# Demand Highlight - Español (es)
+opt_thickness,Grosor del contorno
+opt_thickness_tip,Ancho de línea en píxeles de interfaz.
+opt_corner,Redondeo de esquinas
+opt_corner_tip,Radio de las esquinas exteriores redondeadas. 0 = rectas.
+opt_fill,Teñir los objetos deseados
+opt_fill_tip,Añade un relleno tenue dentro del contorno de los objetos deseados.
+opt_goods,Marcar los objetos del cliente
+opt_goods_tip,Cuando un cliente vende: marca sus objetos robados y su contrabando.
+opt_key,Activar o desactivar el resaltado
+opt_key_tip,Activa y desactiva los contornos.
+opt_panel_key,Abrir el filtro de objetos
+opt_panel_key_tip,Abre la ventana que marca objetos por tipo o como robados o de contrabando.
+window_title,Filtro de objetos
+panel_status,Estado
+panel_types,Tipos
+filter_stolen,Robado
+filter_contraband,Contrabando
+button_clear,Borrar
+no_items,No hay objetos en la tienda.
+fam_goods,BIENES
+fam_supplies,SUMINISTROS
+fam_gear,EQUIPO
+fam_machines,MÁQUINAS
+fam_grade,CALIDAD
+fam_legal,RESTRINGIDO
+fam_other,OTROS
+tip_stolen,Marca en ámbar todos los objetos robados de la tienda. El resaltado del cliente se pausa mientras haya un filtro activo.
+tip_contraband,Marca en rojo todo el contrabando de la tienda. El resaltado del cliente se pausa mientras haya un filtro activo.
+tip_clear,Desmarca todo y vuelve al resaltado del cliente.
+tip_type,Marca en cian todos los objetos de tipo # de la tienda. Los contenedores que guardan uno reciben corchetes en las esquinas.
