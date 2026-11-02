@@ -25,3 +25,11 @@ Bind [b]Toggle demand highlight[/b] and [b]Open item filter[/b] in the game's op
 If you use another demand-highlight mod, turn it off, or both will draw outlines.
 
 Needs no special permissions. Built for game version 0.46D.
+
+[h2]Source and documentation[/h2]
+[list]
+[*][url=https://kcn-judu.github.io/ProbablyStolen-Mods/en/demand-highlight/]Documentation[/url] (English and Chinese)
+[*][url=https://github.com/KCN-judu/ProbablyStolen-DemandHighlight]Source code on GitHub[/url], Apache License 2.0
+[*][url=https://github.com/KCN-judu/ProbablyStolen-Mods]All mods by KCN-judu[/url]
+[/list]
+Bug reports and suggestions are welcome on GitHub or in the comments.
