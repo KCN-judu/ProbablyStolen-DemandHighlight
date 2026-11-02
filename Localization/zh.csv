@@ -1,0 +1,31 @@
+# Demand Highlight - 简体中文 (zh)
+opt_thickness,框线粗细
+opt_thickness_tip,线宽，单位为界面像素。
+opt_corner,圆角
+opt_corner_tip,外角圆角半径，0 为直角。
+opt_fill,给想要的物品加底色
+opt_fill_tip,在想要的物品框内加一层淡色。
+opt_goods,标记顾客自带的物品
+opt_goods_tip,顾客卖货时，标出其中的赃物和违禁品。
+opt_key,开关需求高亮
+opt_key_tip,显示或隐藏框线。
+opt_panel_key,打开物品筛选
+opt_panel_key_tip,打开按类型、赃物或违禁品标记物品的窗口。
+window_title,物品筛选
+panel_status,状态
+panel_types,类型
+filter_stolen,赃物
+filter_contraband,违禁品
+button_clear,清除
+no_items,店里没有物品。
+fam_goods,日常商品
+fam_supplies,物资原料
+fam_gear,装备武器
+fam_machines,机器模组
+fam_grade,品级
+fam_legal,管制
+fam_other,其他
+tip_stolen,用琥珀色标出店里所有赃物。开启筛选时顾客需求高亮暂停。
+tip_contraband,用红色标出店里所有违禁品。开启筛选时顾客需求高亮暂停。
+tip_clear,取消全部勾选，恢复顾客需求高亮。
+tip_type,用青色标出店里所有「#」类物品。装着这类物品的容器显示四角标。

@@ -1,0 +1,27 @@
+[h1]Demand Highlight[/h1]
+See at a glance what the customer at the counter wants, and find anything in your stock by type.
+
+[h2]Outlines[/h2]
+[list]
+[*][b]Green line[/b]: wanted.
+[*][b]Amber caution tape[/b]: wanted, and stolen.
+[*][b]Red double line[/b]: wanted, and contraband.
+[*][b]Corner brackets[/b]: not wanted itself, but something wanted is inside.
+[/list]
+Outlines follow each item's grid shape, and machine storage tabs are marked too. During a sheriff's inspection only stolen goods and contraband are shown. Locked containers and items behind a lock are skipped, just as the customer would see it.
+
+[h2]Item Filter[/h2]
+Open the [b]Item Filter[/b] window, built in the game's own machine-panel style, and tick any item type (Food, Tool, Luxury Item...), Stolen or Contraband. Everything matching is marked in the shop, so you can sort your stock by category. Clear the filter to return to the customer highlight.
+
+[h2]Light on your CPU[/h2]
+[list]
+[*]Nothing runs until something changes: the customer, an item, or a container opening or closing.
+[*]Only what is on screen is walked. Closed containers answer from a small index.
+[*]Outlines are redrawn only when they actually change.
+[/list]
+
+[h2]Setup[/h2]
+Bind [b]Toggle demand highlight[/b] and [b]Open item filter[/b] in the game's options menu. There are no default keys.
+If you use another demand-highlight mod, turn it off, or both will draw outlines.
+
+Needs no special permissions. Built for game version 0.46D.

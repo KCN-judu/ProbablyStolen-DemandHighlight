@@ -1,0 +1,354 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Probably Stolen Mods documentation\n"
+"Report-Msgid-Bugs-To: https://github.com/KCN-judu/ProbablyStolen-Mods/issues\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: conf.json:summary
+msgid "Outlines what the customer at the counter wants, and marks your stock by type with the Item Filter."
+msgstr ""
+
+#: manual/building.md:1
+msgid "Building"
+msgstr ""
+
+#: manual/building.md:4
+msgid "Requirements"
+msgstr ""
+
+#: manual/building.md:6
+msgid "*Probably Stolen*, game version 0.46D. The build compiles against the game's own assemblies in `Probably Stolen_Data/Managed`."
+msgstr ""
+
+#: manual/building.md:7
+msgid "Git Bash or another POSIX shell on Windows."
+msgstr ""
+
+#: manual/building.md:8
+msgid "The Roslyn C# compiler from Visual Studio Build Tools. The C# 5 compiler that ships with Windows cannot read some of the game's types."
+msgstr ""
+
+#: manual/building.md:10
+msgid "Build"
+msgstr ""
+
+#: manual/building.md:17
+msgid "Two environment variables override the defaults:"
+msgstr ""
+
+#: manual/building.md:19
+msgid "Variable"
+msgstr ""
+
+#: manual/building.md:19
+#: manual/index.md:28
+msgid "Default"
+msgstr ""
+
+#: manual/building.md:22
+msgid "the Roslyn `csc.exe` of Visual Studio 18 Build Tools"
+msgstr ""
+
+#: manual/building.md:24
+msgid "Install by hand"
+msgstr ""
+
+#: manual/building.md:26
+msgid "Copy the folder `out/demand_highlight` into the game's `Mods` folder, start the game, and enable the mod in the Mods menu. Mods load when the game starts, so restart after enabling or updating one."
+msgstr ""
+
+#: manual/building.md:28
+msgid "The mod declares no capabilities, so the game enables it without a permission prompt."
+msgstr ""
+
+#: manual/index.md:1
+msgid "Demand Highlight"
+msgstr ""
+
+#: manual/index.md:3
+msgid "See at a glance what the customer at the counter wants, in the shop inventories, in open containers and on machine storage tabs."
+msgstr ""
+
+#: manual/index.md:5
+msgid "![Demand Highlight cover](../attachments/cover.png)"
+msgstr ""
+
+#: manual/index.md:7
+msgid "Outlines"
+msgstr ""
+
+#: manual/index.md:9
+msgid "Look"
+msgstr ""
+
+#: manual/index.md:9
+msgid "Meaning"
+msgstr ""
+
+#: manual/index.md:11
+msgid "Green line with a faint fill"
+msgstr ""
+
+#: manual/index.md:11
+msgid "Wanted"
+msgstr ""
+
+#: manual/index.md:12
+msgid "Amber diagonal \"caution tape\""
+msgstr ""
+
+#: manual/index.md:12
+msgid "Wanted, and stolen"
+msgstr ""
+
+#: manual/index.md:13
+msgid "Red heavy line with a thin inner line"
+msgstr ""
+
+#: manual/index.md:13
+msgid "Wanted, and contraband"
+msgstr ""
+
+#: manual/index.md:14
+msgid "Corner brackets in one of those colours"
+msgstr ""
+
+#: manual/index.md:14
+msgid "Not wanted itself, but something wanted is inside"
+msgstr ""
+
+#: manual/index.md:16
+msgid "Outlines follow each item's grid cells, so an L-shaped item gets an L-shaped outline. Patterns as well as colours tell the styles apart."
+msgstr ""
+
+#: manual/index.md:18
+msgid "![The four outline styles](../attachments/outline-styles.png)"
+msgstr ""
+
+#: manual/index.md:20
+msgid "Rules"
+msgstr ""
+
+#: manual/index.md:22
+msgid "Locked containers, items behind a lock and immovable items are skipped, as the customer would see them."
+msgstr ""
+
+#: manual/index.md:23
+msgid "During a sheriff's inspection, only stolen goods and contraband are marked, and containers that block a search are skipped."
+msgstr ""
+
+#: manual/index.md:24
+msgid "When a customer is selling, their own stolen goods and contraband are marked only if the option is on. It is off by default."
+msgstr ""
+
+#: manual/index.md:26
+msgid "Options"
+msgstr ""
+
+#: manual/index.md:28
+msgid "Option"
+msgstr ""
+
+#: manual/index.md:28
+msgid "What it does"
+msgstr ""
+
+#: manual/index.md:30
+msgid "Outline thickness"
+msgstr ""
+
+#: manual/index.md:30
+msgid "Line width in UI pixels, from 1 to 6."
+msgstr ""
+
+#: manual/index.md:31
+msgid "Corner rounding"
+msgstr ""
+
+#: manual/index.md:31
+msgid "Radius of the rounded outer corners, from 0 to 8."
+msgstr ""
+
+#: manual/index.md:32
+msgid "Tint wanted items"
+msgstr ""
+
+#: manual/index.md:32
+msgid "on"
+msgstr ""
+
+#: manual/index.md:32
+msgid "A faint fill inside the outline of wanted items."
+msgstr ""
+
+#: manual/index.md:33
+msgid "Mark the customer's own goods"
+msgstr ""
+
+#: manual/index.md:33
+msgid "off"
+msgstr ""
+
+#: manual/index.md:33
+msgid "When a customer is selling, mark their stolen goods and contraband."
+msgstr ""
+
+#: manual/index.md:34
+msgid "Toggle demand highlight"
+msgstr ""
+
+#: manual/index.md:34
+#: manual/index.md:35
+msgid "unbound"
+msgstr ""
+
+#: manual/index.md:34
+msgid "A key that turns the outlines on and off."
+msgstr ""
+
+#: manual/index.md:35
+msgid "Open item filter"
+msgstr ""
+
+#: manual/index.md:35
+msgid "A key that opens the [Item Filter](item-filter.md) window."
+msgstr ""
+
+#: manual/index.md:37
+msgid "Neither key has a default. Bind them in the game's options menu."
+msgstr ""
+
+#: manual/index.md:39
+msgid "If you use another demand-highlight mod, turn it off, or both will draw outlines."
+msgstr ""
+
+#: manual/item-filter.md:1
+msgid "Item Filter"
+msgstr ""
+
+#: manual/item-filter.md:3
+msgid "The Item Filter marks your own stock by type, stolen or contraband, whoever is at the counter. Use it to sort the shop by category."
+msgstr ""
+
+#: manual/item-filter.md:5
+msgid "Opening it"
+msgstr ""
+
+#: manual/item-filter.md:7
+msgid "Press the key bound to **Open item filter** in the game's options menu. The window is built from the game's own machine-panel widgets, so it looks like a machine window."
+msgstr ""
+
+#: manual/item-filter.md:9
+msgid "The window"
+msgstr ""
+
+#: manual/item-filter.md:11
+msgid "**Status** is one line with Stolen and Contraband, each with its count, and Clear."
+msgstr ""
+
+#: manual/item-filter.md:12
+msgid "**Types** has one toggle per item type found in the shop, with counts. These are the game's own categories, the ones customers ask for, such as Food, Medical, Tool or Luxury Item."
+msgstr ""
+
+#: manual/item-filter.md:14
+msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, the most common first within each group, and the groups are packed into balanced columns. Hover a toggle to see what it does."
+msgstr ""
+
+#: manual/item-filter.md:16
+msgid "The window is rebuilt only when the stock or the filter changed since it was last opened."
+msgstr ""
+
+#: manual/item-filter.md:18
+msgid "Marking"
+msgstr ""
+
+#: manual/item-filter.md:20
+msgid "Tick anything and every matching item in the shop is marked until you clear the filter."
+msgstr ""
+
+#: manual/item-filter.md:21
+msgid "Several ticks combine as \"any of these\"."
+msgstr ""
+
+#: manual/item-filter.md:22
+msgid "Type matches are drawn in cyan with the solid style. Stolen goods and contraband keep their amber and red styles."
+msgstr ""
+
+#: manual/item-filter.md:23
+msgid "Containers holding matches get corner brackets."
+msgstr ""
+
+#: manual/item-filter.md:24
+msgid "Locks are ignored, because the filter is for sorting your own stock."
+msgstr ""
+
+#: manual/item-filter.md:26
+msgid "Turning the filter on pauses the customer highlight, and clearing it brings the highlight back."
+msgstr ""
+
+#: manual/performance.md:1
+msgid "Performance"
+msgstr ""
+
+#: manual/performance.md:3
+msgid "Demand Highlight is built to stay out of the frame budget, even in a store with thousands of items."
+msgstr ""
+
+#: manual/performance.md:5
+msgid "Work only on change"
+msgstr ""
+
+#: manual/performance.md:7
+msgid "Nothing runs while nothing changes. The mod reacts to the customer or their intent changing, an item being validated or having a tag changed, an item entering or leaving an inventory, and a container window opening or closing. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s, and there is no periodic refresh."
+msgstr ""
+
+#: manual/performance.md:9
+msgid "One question per item"
+msgstr ""
+
+#: manual/performance.md:11
+msgid "The game's own \"would this customer buy it\" check, run on a container, lists every item inside and checks each one again, recursively, which is quadratic in a deep store. The mod asks the game only about the item itself and rebuilds the same rule bottom-up: a container is bought when it is acceptable itself and, unless it is locked, has no window or is an advanced gun, everything inside it is bought. Each item is checked once per customer."
+msgstr ""
+
+#: manual/performance.md:13
+msgid "A record per item"
+msgstr ""
+
+#: manual/performance.md:15
+msgid "Each item keeps its verdict, its lock, ownership and contraband flags, and a summary of what is inside it. A change clears the changed item's record and marks only the summaries of the containers above it as stale."
+msgstr ""
+
+#: manual/performance.md:17
+msgid "Only what is on screen"
+msgstr ""
+
+#: manual/performance.md:19
+msgid "A walk visits the shop inventories and open containers. Closed containers answer from their record."
+msgstr ""
+
+#: manual/performance.md:21
+msgid "Big jobs over several frames"
+msgstr ""
+
+#: manual/performance.md:23
+msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store never causes one long frame. Outlines appear over a few frames instead."
+msgstr ""
+
+#: manual/performance.md:25
+msgid "Cheap drawing"
+msgstr ""
+
+#: manual/performance.md:27
+msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size costs nothing to draw. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed."
+msgstr ""
+
+#: manual/performance.md:29
+msgid "Logging"
+msgstr ""
+
+#: manual/performance.md:31
+msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so a stutter can be traced to this mod or ruled out."
+msgstr ""

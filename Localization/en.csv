@@ -1,0 +1,31 @@
+# Demand Highlight - English (en)
+opt_thickness,Outline thickness
+opt_thickness_tip,Line width in UI pixels.
+opt_corner,Corner rounding
+opt_corner_tip,Radius of the rounded outer corners. 0 = square.
+opt_fill,Tint wanted items
+opt_fill_tip,Adds a faint fill inside the outline of wanted items.
+opt_goods,Mark the customer's own goods
+opt_goods_tip,When a customer is selling: mark their stolen goods and contraband.
+opt_key,Toggle demand highlight
+opt_key_tip,Turns the outlines on and off.
+opt_panel_key,Open item filter
+opt_panel_key_tip,Opens the window that marks items by type or as stolen or contraband.
+window_title,Item Filter
+panel_status,Status
+panel_types,Types
+filter_stolen,Stolen
+filter_contraband,Contraband
+button_clear,Clear
+no_items,No items in the shop.
+fam_goods,GOODS
+fam_supplies,SUPPLIES
+fam_gear,GEAR
+fam_machines,MACHINES
+fam_grade,GRADE
+fam_legal,RESTRICTED
+fam_other,OTHER
+tip_stolen,Mark every stolen item in the shop in amber. The customer highlight pauses while a filter is on.
+tip_contraband,Mark every contraband item in the shop in red. The customer highlight pauses while a filter is on.
+tip_clear,Untick everything and return to the customer highlight.
+tip_type,Mark every # item in the shop in cyan. Containers holding one get corner brackets.

@@ -1,0 +1,354 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Probably Stolen Mods documentation\n"
+"Report-Msgid-Bugs-To: https://github.com/KCN-judu/ProbablyStolen-Mods/issues\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: conf.json:summary
+msgid "Outlines what the customer at the counter wants, and marks your stock by type with the Item Filter."
+msgstr "给柜台前顾客想要的东西加框，并可用物品筛选按类型标出你的库存。"
+
+#: manual/building.md:1
+msgid "Building"
+msgstr "构建"
+
+#: manual/building.md:4
+msgid "Requirements"
+msgstr "需求"
+
+#: manual/building.md:6
+msgid "*Probably Stolen*, game version 0.46D. The build compiles against the game's own assemblies in `Probably Stolen_Data/Managed`."
+msgstr "《深空当铺：可能是偷的》（*Probably Stolen*）游戏版本 0.46D。构建时会引用 `Probably Stolen_Data/Managed` 中的游戏程序集。"
+
+#: manual/building.md:7
+msgid "Git Bash or another POSIX shell on Windows."
+msgstr "Windows 上的 Git Bash 或其他 POSIX shell。"
+
+#: manual/building.md:8
+msgid "The Roslyn C# compiler from Visual Studio Build Tools. The C# 5 compiler that ships with Windows cannot read some of the game's types."
+msgstr "Visual Studio Build Tools 中的 Roslyn C# 编译器。Windows 自带的 C# 5 编译器无法读取游戏的部分类型。"
+
+#: manual/building.md:10
+msgid "Build"
+msgstr "构建"
+
+#: manual/building.md:17
+msgid "Two environment variables override the defaults:"
+msgstr "可以用两个环境变量覆盖默认值："
+
+#: manual/building.md:19
+msgid "Variable"
+msgstr "变量"
+
+#: manual/building.md:19
+#: manual/index.md:28
+msgid "Default"
+msgstr "默认值"
+
+#: manual/building.md:22
+msgid "the Roslyn `csc.exe` of Visual Studio 18 Build Tools"
+msgstr "Visual Studio 18 Build Tools 中的 Roslyn `csc.exe`"
+
+#: manual/building.md:24
+msgid "Install by hand"
+msgstr "手动安装"
+
+#: manual/building.md:26
+msgid "Copy the folder `out/demand_highlight` into the game's `Mods` folder, start the game, and enable the mod in the Mods menu. Mods load when the game starts, so restart after enabling or updating one."
+msgstr "把 `out/demand_highlight` 文件夹复制到游戏的 `Mods` 文件夹，启动游戏，在模组菜单中启用它。模组在游戏启动时加载，所以启用或更新后要重启游戏。"
+
+#: manual/building.md:28
+msgid "The mod declares no capabilities, so the game enables it without a permission prompt."
+msgstr "这个模组不声明任何权限，游戏启用它时不会弹出权限确认。"
+
+#: manual/index.md:1
+msgid "Demand Highlight"
+msgstr "需求高亮"
+
+#: manual/index.md:3
+msgid "See at a glance what the customer at the counter wants, in the shop inventories, in open containers and on machine storage tabs."
+msgstr "一眼看出柜台前的顾客想要什么，覆盖店铺库存、打开的容器和机器的储物标签页。"
+
+#: manual/index.md:5
+msgid "![Demand Highlight cover](../attachments/cover.png)"
+msgstr "![需求高亮封面](../attachments/cover.png)"
+
+#: manual/index.md:7
+msgid "Outlines"
+msgstr "框线"
+
+#: manual/index.md:9
+msgid "Look"
+msgstr "外观"
+
+#: manual/index.md:9
+msgid "Meaning"
+msgstr "含义"
+
+#: manual/index.md:11
+msgid "Green line with a faint fill"
+msgstr "绿色实线加淡色底"
+
+#: manual/index.md:11
+msgid "Wanted"
+msgstr "顾客想要"
+
+#: manual/index.md:12
+msgid "Amber diagonal \"caution tape\""
+msgstr "琥珀色斜纹“警戒带”"
+
+#: manual/index.md:12
+msgid "Wanted, and stolen"
+msgstr "顾客想要，且是赃物"
+
+#: manual/index.md:13
+msgid "Red heavy line with a thin inner line"
+msgstr "红色粗线加一条内细线"
+
+#: manual/index.md:13
+msgid "Wanted, and contraband"
+msgstr "顾客想要，且是违禁品"
+
+#: manual/index.md:14
+msgid "Corner brackets in one of those colours"
+msgstr "上述颜色之一的四角标"
+
+#: manual/index.md:14
+msgid "Not wanted itself, but something wanted is inside"
+msgstr "本身不要，但里面有顾客想要的东西"
+
+#: manual/index.md:16
+msgid "Outlines follow each item's grid cells, so an L-shaped item gets an L-shaped outline. Patterns as well as colours tell the styles apart."
+msgstr "框线沿着物品实际占用的格子画，L 形物品就是 L 形的框。不同样式靠线型区分，不只靠颜色。"
+
+#: manual/index.md:18
+msgid "![The four outline styles](../attachments/outline-styles.png)"
+msgstr "![四种框线样式](../attachments/outline-styles.png)"
+
+#: manual/index.md:20
+msgid "Rules"
+msgstr "规则"
+
+#: manual/index.md:22
+msgid "Locked containers, items behind a lock and immovable items are skipped, as the customer would see them."
+msgstr "上锁的容器、锁后面的物品和不可移动的物品都会跳过，和顾客看到的一致。"
+
+#: manual/index.md:23
+msgid "During a sheriff's inspection, only stolen goods and contraband are marked, and containers that block a search are skipped."
+msgstr "治安官盘查时只标出赃物和违禁品，能阻挡搜查的容器会被跳过。"
+
+#: manual/index.md:24
+msgid "When a customer is selling, their own stolen goods and contraband are marked only if the option is on. It is off by default."
+msgstr "顾客卖货时，只有打开相应选项，才会标出他们自带的赃物和违禁品。该选项默认关闭。"
+
+#: manual/index.md:26
+msgid "Options"
+msgstr "选项"
+
+#: manual/index.md:28
+msgid "Option"
+msgstr "选项"
+
+#: manual/index.md:28
+msgid "What it does"
+msgstr "作用"
+
+#: manual/index.md:30
+msgid "Outline thickness"
+msgstr "框线粗细"
+
+#: manual/index.md:30
+msgid "Line width in UI pixels, from 1 to 6."
+msgstr "线宽，单位为界面像素，范围 1 到 6。"
+
+#: manual/index.md:31
+msgid "Corner rounding"
+msgstr "圆角"
+
+#: manual/index.md:31
+msgid "Radius of the rounded outer corners, from 0 to 8."
+msgstr "外角圆角半径，范围 0 到 8。"
+
+#: manual/index.md:32
+msgid "Tint wanted items"
+msgstr "给想要的物品加底色"
+
+#: manual/index.md:32
+msgid "on"
+msgstr "开"
+
+#: manual/index.md:32
+msgid "A faint fill inside the outline of wanted items."
+msgstr "在想要的物品框内加一层淡色。"
+
+#: manual/index.md:33
+msgid "Mark the customer's own goods"
+msgstr "标记顾客自带的物品"
+
+#: manual/index.md:33
+msgid "off"
+msgstr "关"
+
+#: manual/index.md:33
+msgid "When a customer is selling, mark their stolen goods and contraband."
+msgstr "顾客卖货时，标出其中的赃物和违禁品。"
+
+#: manual/index.md:34
+msgid "Toggle demand highlight"
+msgstr "开关需求高亮"
+
+#: manual/index.md:34
+#: manual/index.md:35
+msgid "unbound"
+msgstr "未绑定"
+
+#: manual/index.md:34
+msgid "A key that turns the outlines on and off."
+msgstr "显示或隐藏框线的按键。"
+
+#: manual/index.md:35
+msgid "Open item filter"
+msgstr "打开物品筛选"
+
+#: manual/index.md:35
+msgid "A key that opens the [Item Filter](item-filter.md) window."
+msgstr "打开[物品筛选](item-filter.md)窗口的按键。"
+
+#: manual/index.md:37
+msgid "Neither key has a default. Bind them in the game's options menu."
+msgstr "两个按键都没有默认值，请在游戏的设置菜单中绑定。"
+
+#: manual/index.md:39
+msgid "If you use another demand-highlight mod, turn it off, or both will draw outlines."
+msgstr "如果你还装了其他需求高亮类的模组，请先停用它，否则会画出两层框。"
+
+#: manual/item-filter.md:1
+msgid "Item Filter"
+msgstr "物品筛选"
+
+#: manual/item-filter.md:3
+msgid "The Item Filter marks your own stock by type, stolen or contraband, whoever is at the counter. Use it to sort the shop by category."
+msgstr "物品筛选按类型、赃物或违禁品标出你自己的库存，不管柜台前是谁。可以用它按类别整理店铺。"
+
+#: manual/item-filter.md:5
+msgid "Opening it"
+msgstr "打开方式"
+
+#: manual/item-filter.md:7
+msgid "Press the key bound to **Open item filter** in the game's options menu. The window is built from the game's own machine-panel widgets, so it looks like a machine window."
+msgstr "按下在游戏设置菜单中为 **打开物品筛选** 绑定的键。窗口用游戏自己的机器面板组件搭建，所以看起来和机器窗口一样。"
+
+#: manual/item-filter.md:9
+msgid "The window"
+msgstr "窗口"
+
+#: manual/item-filter.md:11
+msgid "**Status** is one line with Stolen and Contraband, each with its count, and Clear."
+msgstr "**状态** 一栏是一行：赃物和违禁品（各带数量），以及清除按钮。"
+
+#: manual/item-filter.md:12
+msgid "**Types** has one toggle per item type found in the shop, with counts. These are the game's own categories, the ones customers ask for, such as Food, Medical, Tool or Luxury Item."
+msgstr "**类型** 一栏为店里出现的每种物品类型提供一个开关，并显示数量。这些是游戏自己的分类，也就是顾客要货时用的分类，比如食物、医疗品、工具和奢侈品。"
+
+#: manual/item-filter.md:14
+msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, the most common first within each group, and the groups are packed into balanced columns. Hover a toggle to see what it does."
+msgstr "类型分为日常商品、物资原料、装备武器、机器模组、品级和管制六组，组内按数量从多到少排列，各组再平衡排成几列。鼠标悬停在开关上可以看到它的作用。"
+
+#: manual/item-filter.md:16
+msgid "The window is rebuilt only when the stock or the filter changed since it was last opened."
+msgstr "只有库存或筛选条件自上次打开后发生变化，窗口才会重建。"
+
+#: manual/item-filter.md:18
+msgid "Marking"
+msgstr "标记"
+
+#: manual/item-filter.md:20
+msgid "Tick anything and every matching item in the shop is marked until you clear the filter."
+msgstr "勾选任意一项，店里所有符合的物品都会被标出，直到你清除筛选。"
+
+#: manual/item-filter.md:21
+msgid "Several ticks combine as \"any of these\"."
+msgstr "勾选多项时，满足其中任意一项即可。"
+
+#: manual/item-filter.md:22
+msgid "Type matches are drawn in cyan with the solid style. Stolen goods and contraband keep their amber and red styles."
+msgstr "按类型匹配的物品用青色实线标出。赃物和违禁品保持各自的琥珀色和红色样式。"
+
+#: manual/item-filter.md:23
+msgid "Containers holding matches get corner brackets."
+msgstr "装着匹配物品的容器显示四角标。"
+
+#: manual/item-filter.md:24
+msgid "Locks are ignored, because the filter is for sorting your own stock."
+msgstr "筛选时不考虑上锁，因为它是用来整理你自己的库存的。"
+
+#: manual/item-filter.md:26
+msgid "Turning the filter on pauses the customer highlight, and clearing it brings the highlight back."
+msgstr "开启筛选时顾客需求高亮暂停，清除筛选后恢复。"
+
+#: manual/performance.md:1
+msgid "Performance"
+msgstr "性能"
+
+#: manual/performance.md:3
+msgid "Demand Highlight is built to stay out of the frame budget, even in a store with thousands of items."
+msgstr "需求高亮的设计目标是不占用帧时间，即使店里有成千上万件物品。"
+
+#: manual/performance.md:5
+msgid "Work only on change"
+msgstr "只在变化时工作"
+
+#: manual/performance.md:7
+msgid "Nothing runs while nothing changes. The mod reacts to the customer or their intent changing, an item being validated or having a tag changed, an item entering or leaving an inventory, and a container window opening or closing. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s, and there is no periodic refresh."
+msgstr "没有变化时什么都不运行。模组只响应这些事件：顾客或其意图变化、物品被校验或标签改变、物品进出库存、容器窗口打开或关闭。提示框等其他窗口会被忽略。变化会合并处理，最多每 0.15 秒遍历一次，没有定时刷新。"
+
+#: manual/performance.md:9
+msgid "One question per item"
+msgstr "每件物品只问一次"
+
+#: manual/performance.md:11
+msgid "The game's own \"would this customer buy it\" check, run on a container, lists every item inside and checks each one again, recursively, which is quadratic in a deep store. The mod asks the game only about the item itself and rebuilds the same rule bottom-up: a container is bought when it is acceptable itself and, unless it is locked, has no window or is an advanced gun, everything inside it is bought. Each item is checked once per customer."
+msgstr "游戏自己的“顾客会不会收”判定在容器上运行时，会列出里面的每件物品并逐个递归检查，在嵌套很深的店里接近平方复杂度。模组只向游戏询问物品本身，再自底向上重建同样的规则：容器本身可接受，并且（除非上锁、没有窗口或是高级枪械）里面的东西全都会被收，这个容器才会被收。每个顾客对每件物品只检查一次。"
+
+#: manual/performance.md:13
+msgid "A record per item"
+msgstr "每件物品一份记录"
+
+#: manual/performance.md:15
+msgid "Each item keeps its verdict, its lock, ownership and contraband flags, and a summary of what is inside it. A change clears the changed item's record and marks only the summaries of the containers above it as stale."
+msgstr "每件物品保存它的判定结果、锁定状态、归属和违禁标记，以及内部物品的汇总。某件物品变化时，只清除它自己的记录，并把它上层容器的汇总标记为过期。"
+
+#: manual/performance.md:17
+msgid "Only what is on screen"
+msgstr "只遍历屏幕上的内容"
+
+#: manual/performance.md:19
+msgid "A walk visits the shop inventories and open containers. Closed containers answer from their record."
+msgstr "每次遍历只访问店铺库存和打开的容器。关着的容器直接用记录回答。"
+
+#: manual/performance.md:21
+msgid "Big jobs over several frames"
+msgstr "大任务分摊到多帧"
+
+#: manual/performance.md:23
+msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store never causes one long frame. Outlines appear over a few frames instead."
+msgstr "每次遍历最多运行 2.5 毫秒，剩下的留到下一帧继续，所以大型店铺来了新顾客也不会卡住一帧。框线会在几帧内陆续出现。"
+
+#: manual/performance.md:25
+msgid "Cheap drawing"
+msgstr "低开销绘制"
+
+#: manual/performance.md:27
+msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size costs nothing to draw. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed."
+msgstr "矩形物品每种样式共用一张很小的九宫格贴图，任意尺寸的框线都几乎不花时间绘制。其他形状按实际格子单独生成贴图，并按形状和尺寸缓存。只有样式、形状或尺寸变化时才重画框线。"
+
+#: manual/performance.md:29
+msgid "Logging"
+msgstr "日志"
+
+#: manual/performance.md:31
+msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so a stutter can be traced to this mod or ruled out."
+msgstr "任何超过 8 毫秒的刷新都会以 `[DemandHighlight] slow refresh: ...` 写入游戏的 `Player.log`，并分别记录遍历和绘制的耗时，方便确认卡顿是否来自这个模组。"

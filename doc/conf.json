@@ -1,0 +1,13 @@
+{
+  "title": "Demand Highlight",
+  "summary": "Outlines what the customer at the counter wants, and marks your stock by type with the Item Filter.",
+  "locales": [
+    "zh_CN"
+  ],
+  "order": [
+    "index.md",
+    "item-filter.md",
+    "performance.md",
+    "building.md"
+  ]
+}
