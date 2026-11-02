@@ -3,6 +3,7 @@
 ## 1.1.1
 
 - Starting the mod is all or nothing: if the game no longer has a method the mod hooks (after a game update, for example), everything it already set up is taken down again, one line is written to Player.log and the mod stays off, instead of running half enabled.
+- The highlight no longer changes items by looking at them. Reading a lock or asking whether a customer buys an item used to add missing tags (such as a lock status on every supply crate) to the item, and they were saved; tags are now read without being added, and any the game's buying check adds are removed again.
 - The outline decisions and geometry are separated from the game code and covered by tests that run outside the game. Nothing changes in play.
 
 ## 1.1.0

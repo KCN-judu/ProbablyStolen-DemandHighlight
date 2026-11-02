@@ -77,6 +77,8 @@ namespace DemandHighlight
         public static readonly List<TabsHit> Tabs = new List<TabsHit>();
         static readonly List<TabsHit> tabsPool = new List<TabsHit>();
         static readonly HashSet<object> nodesSeen = new HashSet<object>();
+        static readonly HashSet<string> keysBefore = new HashSet<string>();
+        static readonly List<string> keysAdded = new List<string>();
 
         // Statistics of the last walk, for the timing log.
         public static int Visited, Computed;
@@ -292,8 +294,8 @@ namespace DemandHighlight
             f.Owned = GeneralHelper.IsItemOwned(item);
             if (kind.Buying)
             {
-                f.SelfOk = client.IsClientBuyingThisItem(item, true);
-                f.ContentsChecked = !LockHelper.IsCurrentlyLocked(item) && item.contentWindow != null &&
+                f.SelfOk = BuyingThis(item);
+                f.ContentsChecked = !CurrentlyLocked(item) && item.contentWindow != null &&
                     !item.IsTag("ADV_GUN_TAG");
             }
             e.F = f;
@@ -380,10 +382,48 @@ namespace DemandHighlight
             return window != null && window.isLocked;
         }
 
+        // Reading a tag must not change the item. GameItem.GetTagReadonly (and the game helpers built on it) adds a
+        // missing tag to the item, which is then saved, so tags are looked up in the item's dictionary instead.
+        static TagState PeekTag(GameItem item, string key)
+        {
+            var state = item.modifiedState;
+            var dict = state != null ? state.dict : null;
+            TagState tag;
+            return dict != null && dict.TryGetValue(key, out tag) ? tag : null;
+        }
+
+        // A missing LOCK_STATUS means not locked.
         static bool LockStatus(GameItem item)
         {
-            var tag = item.GetTagReadonly("LOCK_STATUS");
+            var tag = PeekTag(item, "LOCK_STATUS");
             return tag != null && tag.GetBool();
+        }
+
+        // LockHelper.IsCurrentlyLocked, without its GetTagReadonly.
+        static bool CurrentlyLocked(GameItem item)
+        {
+            return LockHelper.IsLockedContainer(item) && LockStatus(item);
+        }
+
+        // The game's own buying check reads tags through GetTagReadonly in its refusal checks (water, locks), which
+        // adds missing tags to the item. With contents ignored it reads only the item itself, so any tag key the
+        // call added to that item is removed again afterwards, leaving the item as it was.
+        static bool BuyingThis(GameItem item)
+        {
+            var state = item.modifiedState;
+            var dict = state != null ? state.dict : null;
+            if (dict == null) return client.IsClientBuyingThisItem(item, true);
+            keysBefore.Clear();
+            foreach (var key in dict.Keys) keysBefore.Add(key);
+            int count = dict.Count;
+            bool buying = client.IsClientBuyingThisItem(item, true);
+            if (dict.Count != count)
+            {
+                keysAdded.Clear();
+                foreach (var key in dict.Keys) if (!keysBefore.Contains(key)) keysAdded.Add(key);
+                for (int i = 0; i < keysAdded.Count; i++) dict.Remove(keysAdded[i]);
+            }
+            return buying;
         }
 
         static bool IsImmovable(GameItem item)
