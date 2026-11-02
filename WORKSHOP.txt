@@ -33,3 +33,41 @@ Needs no special permissions. Built for game version 0.46D.
 [*][url=https://github.com/KCN-judu/ProbablyStolen-Mods]All mods by KCN-judu[/url]
 [/list]
 Bug reports and suggestions are welcome on GitHub or in the comments.
+
+[hr][/hr]
+
+[h1]需求高亮[/h1]
+一眼看出柜台前的顾客想要什么，还能按类型找到库存里的任何东西。
+
+[h2]框线[/h2]
+[list]
+[*][b]绿色线[/b]：想要的物品。
+[*][b]琥珀色警戒带[/b]：想要，而且是赃物。
+[*][b]红色双线[/b]：想要，而且是违禁品。
+[*][b]角括号[/b]：本身不是想要的，但里面装着想要的东西。
+[/list]
+框线贴合每件物品的网格形状，机器的存储标签页也会被标出。治安官检查时只显示赃物和违禁品。上锁的容器和锁后面的物品会被跳过，和顾客看到的一样。
+
+[h2]物品筛选[/h2]
+打开用游戏机器面板风格搭建的 [b]物品筛选[/b] 窗口，勾选任意物品类型（食物、工具、奢侈品……）、赃物或违禁品，店里所有符合的东西都会被标出，方便按类别整理库存。清除筛选即恢复顾客需求高亮。
+
+[h2]几乎不占 CPU[/h2]
+[list]
+[*]没有变化时什么都不做：只在顾客、物品变化或容器开关时才更新。
+[*]只遍历屏幕上可见的部分，关闭的容器由一个小索引直接回答。
+[*]框线只在真正变化时才重绘。
+[/list]
+
+[h2]设置[/h2]
+在游戏设置菜单中绑定 [b]开关需求高亮[/b] 和 [b]打开物品筛选[/b] 两个按键，默认没有绑定。
+如果你在用别的需求高亮模组，请把它关掉，否则两边都会画框。
+
+不需要任何特殊权限。适用于游戏版本 0.46D。
+
+[h2]源码与文档[/h2]
+[list]
+[*][url=https://kcn-judu.github.io/ProbablyStolen-Mods/zh-cn/demand-highlight/]中文文档[/url]
+[*][url=https://github.com/KCN-judu/ProbablyStolen-DemandHighlight]GitHub 源码[/url]，Apache License 2.0
+[*][url=https://github.com/KCN-judu/ProbablyStolen-Mods]KCN-judu 的全部模组[/url]
+[/list]
+欢迎在 GitHub 或评论区反馈问题和建议。
