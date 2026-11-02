@@ -43,16 +43,10 @@ namespace DemandHighlight
         // filter colour).
         public static Mark Match(GameItem item)
         {
-            if (contraband && ContrabandHelper.IsContraband(item)) return Mark.Contraband;
-            if (stolen && StolenHelper.IsStolenItem(item)) return Mark.Stolen;
-            if (types.Count > 0)
-            {
-                var list = item.itemTypes;
-                if (list != null)
-                    for (int i = 0; i < list.Count; i++)
-                        if (list[i] != null && types.Contains(list[i])) return Mark.Normal;
-            }
-            return Mark.None;
+            // The game is asked only about what the filter wants.
+            bool isContraband = contraband && ContrabandHelper.IsContraband(item);
+            bool isStolen = stolen && !isContraband && StolenHelper.IsStolenItem(item);
+            return FilterRule.Match(contraband, isContraband, stolen, isStolen, types, types.Count > 0 ? item.itemTypes : null);
         }
 
         public sealed class Counts

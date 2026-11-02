@@ -23,11 +23,6 @@ namespace DemandHighlight
         const int MaxDepth = 16;
         const double Budget = 2.5;
 
-        struct Kind { public bool Buying, Selling, Inspector; }
-
-        // What an item adds to the containers above it.
-        struct Agg { public Mark Buyer, Illegal; }
-
         // What an item reports to its container.
         struct Up
         {
@@ -40,9 +35,7 @@ namespace DemandHighlight
         sealed class Entry
         {
             public int Epoch = -1;          // self part valid while equal to Rules.epoch
-            public bool SelfOk;             // acceptable on its own (contents ignored)
-            public Mark Illegal, FilterMark;
-            public bool Locked, ContentsChecked, BehindLock, Immovable, BlocksSearch, Owned;
+            public Facts F;                 // what the game says about the item itself
 
             public int InsideEpoch = -1;    // inside part valid while equal to Rules.epoch
             public Agg Inside;
@@ -252,7 +245,7 @@ namespace DemandHighlight
                     inside = default(Agg);
                     allBought = true;
                     bool complete = true;
-                    Children(item.children, depth + 1, lockedAbove || e.Locked, blockedAbove || e.BlocksSearch, opened,
+                    Children(item.children, depth + 1, lockedAbove || e.F.Locked, blockedAbove || e.F.BlocksSearch, opened,
                         ref inside, ref allBought, ref complete);
                     insideOk = complete;
                     if (complete) { e.Inside = inside; e.InsideAllBought = allBought; e.InsideEpoch = epoch; }
@@ -260,22 +253,12 @@ namespace DemandHighlight
             }
             if (!insideOk) { up.Complete = false; e.Last = up; return up; }
 
-            var self = default(Agg);
-            if (filtering) self.Buyer = e.FilterMark;
-            else
-            {
-                if (kind.Buying)
-                {
-                    up.Bought = e.SelfOk && (!e.ContentsChecked || allBought);
-                    if (up.Bought) self.Buyer = e.Illegal != Mark.None ? e.Illegal : Mark.Normal;
-                }
-                if (kind.Inspector || (kind.Selling && clientGoods)) self.Illegal = e.Illegal;
-            }
+            var self = Decide.Self(kind, filtering, clientGoods, e.F, allBought, out up.Bought);
             up.AllBought = up.Bought && allBought;
 
             if (shown)
             {
-                var style = Display(e, self, inside, lockedAbove, blockedAbove);
+                var style = Decide.Display(kind, filtering, clientGoods, e.F, self, inside, lockedAbove, blockedAbove);
                 e.Style = style;
                 var element = item as GameItemElement;
                 if (style.Mark != Mark.None && element != null)
@@ -285,12 +268,7 @@ namespace DemandHighlight
 
             // What the containers above see: this item (unless it is behind a lock) and, unless it is locked
             // (or blocks a search during an inspection), what is inside it.
-            if (filtering || !e.BehindLock) up.Agg = self;
-            if (!e.Locked)
-            {
-                up.Agg.Buyer = Max(up.Agg.Buyer, inside.Buyer);
-                if (!e.BlocksSearch) up.Agg.Illegal = Max(up.Agg.Illegal, inside.Illegal);
-            }
+            up.Agg = Decide.Report(self, inside, e.F, filtering);
             e.Last = up;
             return up;
         }
@@ -299,24 +277,26 @@ namespace DemandHighlight
         {
             Computed++;
             e.Epoch = epoch;
+            var f = new Facts();
             if (filtering)
             {
-                e.FilterMark = Filter.Match(item);
-                e.Locked = e.BlocksSearch = e.BehindLock = e.Immovable = false;
+                f.FilterMark = Filter.Match(item);
+                e.F = f;
                 return;
             }
-            e.Illegal = Illegality(item);
-            e.Locked = IsLocked(item);
-            e.BehindLock = item.IsTag("ITEM_BEHIND_LOCK_TAG");
-            e.Immovable = IsImmovable(item);
-            e.BlocksSearch = kind.Inspector && ContrabandHelper.IsBlockSearchContainer(item);
-            e.Owned = GeneralHelper.IsItemOwned(item);
+            f.Illegal = Illegality(item);
+            f.Locked = IsLocked(item);
+            f.BehindLock = item.IsTag("ITEM_BEHIND_LOCK_TAG");
+            f.Immovable = IsImmovable(item);
+            f.BlocksSearch = kind.Inspector && ContrabandHelper.IsBlockSearchContainer(item);
+            f.Owned = GeneralHelper.IsItemOwned(item);
             if (kind.Buying)
             {
-                e.SelfOk = client.IsClientBuyingThisItem(item, true);
-                e.ContentsChecked = !LockHelper.IsCurrentlyLocked(item) && item.contentWindow != null &&
+                f.SelfOk = client.IsClientBuyingThisItem(item, true);
+                f.ContentsChecked = !LockHelper.IsCurrentlyLocked(item) && item.contentWindow != null &&
                     !item.IsTag("ADV_GUN_TAG");
             }
+            e.F = f;
         }
 
         static void Children(List<GraphNodeStorage> nodes, int depth, bool lockedAbove, bool blockedAbove, bool shown,
@@ -332,41 +312,13 @@ namespace DemandHighlight
                 {
                     var u = Item(item, depth, lockedAbove, blockedAbove, shown);
                     if (!u.Complete) { complete = false; continue; }
-                    inside.Buyer = Max(inside.Buyer, u.Agg.Buyer);
-                    inside.Illegal = Max(inside.Illegal, u.Agg.Illegal);
+                    inside.Buyer = Decide.Max(inside.Buyer, u.Agg.Buyer);
+                    inside.Illegal = Decide.Max(inside.Illegal, u.Agg.Illegal);
                     allBought &= u.AllBought;
                 }
                 else if (depth < MaxDepth && nodesSeen.Add(node))
                     Children(node.children, depth + 1, lockedAbove, blockedAbove, shown, ref inside, ref allBought, ref complete);
             }
-        }
-
-        static Style Display(Entry e, Agg self, Agg inside, bool lockedAbove, bool blockedAbove)
-        {
-            if (filtering)
-                return self.Buyer != Mark.None ? new Style(self.Buyer, false) : new Style(inside.Buyer, true);
-            if (lockedAbove || e.BehindLock || e.Immovable) return default(Style);
-            if (kind.Inspector)
-            {
-                if (blockedAbove) return default(Style);
-                if (self.Illegal != Mark.None) return new Style(self.Illegal, false);
-                if (e.Locked || e.BlocksSearch) return default(Style);
-                return new Style(inside.Illegal, true);
-            }
-            if (kind.Selling && !e.Owned)
-            {
-                if (!clientGoods) return default(Style);
-                if (self.Illegal != Mark.None) return new Style(self.Illegal, false);
-                if (e.Locked) return default(Style);
-                return new Style(inside.Illegal, true);
-            }
-            if (kind.Buying)
-            {
-                if (self.Buyer != Mark.None) return new Style(self.Buyer, false);
-                if (e.Locked) return default(Style);
-                return new Style(inside.Buyer, true);
-            }
-            return default(Style);
         }
 
         // An open machine with storage tabs: remember its pages so the tabs can be marked after the walk.
@@ -408,13 +360,10 @@ namespace DemandHighlight
             return page as GameInventory;
         }
 
-        static Mark Max(Mark a, Mark b) { return a > b ? a : b; }
-
         static Mark Illegality(GameItem item)
         {
-            if (ContrabandHelper.IsContraband(item)) return Mark.Contraband;
-            if (StolenHelper.IsStolenItem(item)) return Mark.Stolen;
-            return Mark.None;
+            bool contraband = ContrabandHelper.IsContraband(item);
+            return Decide.Illegality(contraband, !contraband && StolenHelper.IsStolenItem(item));
         }
 
         static bool IsOpened(GameItem item)

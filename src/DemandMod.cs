@@ -50,31 +50,59 @@ namespace DemandHighlight
             if (manifest != null && !string.IsNullOrEmpty(manifest.ID)) modId = manifest.ID;
         }
 
+        // Enabling is all or nothing: if a patch target is missing (after a game update, say) or any step fails,
+        // everything already installed is taken down again, one line goes to Player.log and the mod stays off.
+        // A half-enabled mod would react to some changes and not others.
         public void OnEnable()
         {
-            ReadConfig();
+            try
+            {
+                ReadConfig();
+                Install();
+                dirty = true;
+            }
+            catch (Exception e)
+            {
+                TearDown();
+                Debug.LogWarning(Tag + "could not start, left off: " + e.Message);
+            }
+        }
+
+        public void OnDisable()
+        {
+            TearDown();
+        }
+
+        static void Install()
+        {
             if (harmony == null)
             {
                 // Types are named at each call: the game's mod scanner asks for a permission when reflection
                 // goes through a Type it cannot see.
-                harmony = new Harmony(HarmonyId);
-                var mark = new HarmonyMethod(typeof(DemandMod).GetMethod("MarkDirty", AnyStatic));
-                var changed = new HarmonyMethod(typeof(DemandMod).GetMethod("ItemChanged", AnyStatic));
-                var moved = new HarmonyMethod(typeof(DemandMod).GetMethod("ItemMoved", AnyStatic));
-                var tagged = new HarmonyMethod(typeof(DemandMod).GetMethod("TagChanged", AnyStatic));
-                var window = new HarmonyMethod(typeof(DemandMod).GetMethod("WindowChanged", AnyStatic));
-                harmony.Patch(typeof(GameItemElement).GetMethod("Validate", AnyInstance, null, Type.EmptyTypes, null), null, changed);
-                harmony.Patch(typeof(GameItem).GetMethod("EnableTag", AnyInstance, null, new[] { typeof(string), typeof(bool) }, null), null, tagged);
-                harmony.Patch(typeof(GameItem).GetMethod("DisableTag", AnyInstance, null, new[] { typeof(string), typeof(bool) }, null), null, tagged);
-                harmony.Patch(typeof(GameItem).GetMethod("SetEnableDisableTag", AnyInstance, null, new[] { typeof(string), typeof(bool) }, null), null, tagged);
-                harmony.Patch(typeof(GameItem).GetMethod("ModifyTag", AnyInstance, null, new[] { typeof(string), typeof(Action<TagState>), typeof(bool) }, null), null, tagged);
-                harmony.Patch(typeof(GameItem).GetMethod("SetGameItemType", AnyInstance, null, new[] { typeof(string) }, null), null, tagged);
-                harmony.Patch(typeof(GameItemElement).GetMethod("RotCW", AnyInstance, null, Type.EmptyTypes, null), null, mark);
-                harmony.Patch(typeof(GameItemElement).GetMethod("RotCCW", AnyInstance, null, Type.EmptyTypes, null), null, mark);
-                harmony.Patch(typeof(GameItem).GetMethod("AddParent", AnyInstance, null, new[] { typeof(GraphNodeStorage) }, null), null, moved);
-                harmony.Patch(typeof(GameItem).GetMethod("RemoveParent", AnyInstance, null, new[] { typeof(GraphNodeStorage) }, null), null, moved);
+                var h = new Harmony(HarmonyId);
+                harmony = h;
+                var mark = Hook("MarkDirty");
+                var changed = Hook("ItemChanged");
+                var moved = Hook("ItemMoved");
+                var tagged = Hook("TagChanged");
+                var window = Hook("WindowChanged");
+                Patch(h, typeof(GameItemElement).GetMethod("Validate", AnyInstance, null, Type.EmptyTypes, null), "GameItemElement.Validate", changed);
+                Patch(h, typeof(GameItem).GetMethod("EnableTag", AnyInstance, null, new[] { typeof(string), typeof(bool) }, null), "GameItem.EnableTag", tagged);
+                Patch(h, typeof(GameItem).GetMethod("DisableTag", AnyInstance, null, new[] { typeof(string), typeof(bool) }, null), "GameItem.DisableTag", tagged);
+                Patch(h, typeof(GameItem).GetMethod("SetEnableDisableTag", AnyInstance, null, new[] { typeof(string), typeof(bool) }, null), "GameItem.SetEnableDisableTag", tagged);
+                Patch(h, typeof(GameItem).GetMethod("ModifyTag", AnyInstance, null, new[] { typeof(string), typeof(Action<TagState>), typeof(bool) }, null), "GameItem.ModifyTag", tagged);
+                Patch(h, typeof(GameItem).GetMethod("SetGameItemType", AnyInstance, null, new[] { typeof(string) }, null), "GameItem.SetGameItemType", tagged);
+                Patch(h, typeof(GameItemElement).GetMethod("RotCW", AnyInstance, null, Type.EmptyTypes, null), "GameItemElement.RotCW", mark);
+                Patch(h, typeof(GameItemElement).GetMethod("RotCCW", AnyInstance, null, Type.EmptyTypes, null), "GameItemElement.RotCCW", mark);
+                Patch(h, typeof(GameItem).GetMethod("AddParent", AnyInstance, null, new[] { typeof(GraphNodeStorage) }, null), "GameItem.AddParent", moved);
+                Patch(h, typeof(GameItem).GetMethod("RemoveParent", AnyInstance, null, new[] { typeof(GraphNodeStorage) }, null), "GameItem.RemoveParent", moved);
+                int shows = 0, hides = 0;
                 foreach (var m in typeof(PixelWindow).GetMethods(AnyInstance))
-                    if (m.Name == "Show" || m.Name == "Hide") harmony.Patch(m, null, window);
+                {
+                    if (m.Name == "Show") { h.Patch(m, null, window); shows++; }
+                    else if (m.Name == "Hide") { h.Patch(m, null, window); hides++; }
+                }
+                if (shows == 0 || hides == 0) throw new MissingMethodException("PixelWindow.Show/Hide not found");
             }
             if (ticker == null)
             {
@@ -83,16 +111,33 @@ namespace DemandHighlight
                 ticker.hideFlags = HideFlags.HideAndDontSave;
                 ticker.AddComponent<Ticker>();
             }
-            dirty = true;
         }
 
-        public void OnDisable()
+        static HarmonyMethod Hook(string name)
         {
-            if (harmony != null) { harmony.UnpatchAll(HarmonyId); harmony = null; }
+            var m = typeof(DemandMod).GetMethod(name, AnyStatic);
+            if (m == null) throw new MissingMethodException("DemandMod." + name + " not found");
+            return new HarmonyMethod(m);
+        }
+
+        static void Patch(Harmony h, MethodInfo target, string name, HarmonyMethod postfix)
+        {
+            if (target == null) throw new MissingMethodException(name + " not found");
+            h.Patch(target, null, postfix);
+        }
+
+        // Takes down everything the mod installed or created; safe to call at any point, also mid-install.
+        static void TearDown()
+        {
+            if (harmony != null)
+            {
+                try { harmony.UnpatchAll(HarmonyId); } catch (Exception e) { Debug.LogWarning(Tag + "unpatching failed: " + e.Message); }
+                harmony = null;
+            }
             if (ticker != null) { UnityEngine.Object.Destroy(ticker); ticker = null; }
-            Painter.DestroyAll();
-            Sprites.Clear();
-            Panel.Destroy();
+            try { Painter.DestroyAll(); } catch (Exception) { }
+            try { Sprites.Clear(); } catch (Exception) { }
+            try { Panel.Destroy(); } catch (Exception) { }
             drawn = false;
             lastClient = null;
         }
