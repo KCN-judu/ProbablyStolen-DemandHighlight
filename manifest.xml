@@ -3,7 +3,7 @@
   <ID>demand_highlight</ID>
   <Name>Demand Highlight</Name>
   <Author>KCN-judu</Author>
-  <ModVersion>1.1.1</ModVersion>
+  <ModVersion>1.1.2</ModVersion>
   <Description>Outlines what the customer at the counter wants: green line = wanted, amber caution tape = stolen, red double line = contraband, corner brackets = something wanted is inside. Machine storage tabs are marked too, and during inspections only stolen goods and contraband are shown. An Item Filter window marks your stock by type, stolen or contraband. It only recalculates when something changes. Bind its keys in the game's options menu.</Description>
   <GameVersions>
     <Version>0.46D</Version>

@@ -1,6 +1,11 @@
 [h1]Demand Highlight[/h1]
 See at a glance what the customer at the counter wants, and find anything in your stock by type.
 
+[h2]What's new in 1.1.2[/h2]
+[list]
+[*]Leaving the store (back to the main menu, say) no longer keeps it in memory, so later loads in the same session don't start with the old store still loaded. Nothing changes inside the store, and your filter choices are kept.
+[/list]
+
 [h2]Outlines[/h2]
 [list]
 [*][b]Green line[/b]: wanted.
@@ -38,6 +43,11 @@ Bug reports and suggestions are welcome on GitHub or in the comments.
 
 [h1]需求高亮[/h1]
 一眼看出柜台前的顾客想要什么，还能按类型找到库存里的任何东西。
+
+[h2]1.1.2 新内容[/h2]
+[list]
+[*]离开商店（例如回到主菜单）后不再把它留在内存里，同一局之后的读档不会带着旧商店开始。商店里的表现不变，筛选选项会保留。
+[/list]
 
 [h2]框线[/h2]
 [list]

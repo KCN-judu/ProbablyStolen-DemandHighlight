@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- Leaving the store (back to the main menu, for example) no longer keeps it in memory. The mod's item records, outlines, last customer and Item Filter window pointed at the store's items, and through them at the whole store; they are now dropped when another scene replaces the store. Nothing changes inside the store, and the filter's choices are kept.
+
 ## 1.1.1
 
 - Starting the mod is all or nothing: if the game no longer has a method the mod hooks (after a game update, for example), everything it already set up is taken down again, one line is written to Player.log and the mod stays off, instead of running half enabled.
