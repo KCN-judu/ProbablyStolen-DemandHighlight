@@ -117,6 +117,17 @@ namespace DemandHighlight
             if (entries.Count > 4 * Visited + 4096) entries.Clear();
         }
 
+        // Leaving the store: every record and every reference to its items, windows and customer goes.
+        public static void Release()
+        {
+            entries.Clear();
+            client = epochClient = null;
+            Hits.Clear();
+            Tabs.Clear();
+            for (int i = 0; i < tabsPool.Count; i++) { tabsPool[i].Tabs = null; tabsPool[i].Pages.Clear(); }
+            nodesSeen.Clear();
+        }
+
         public static StoreClient CurrentClient()
         {
             // PlayerStore.Instance creates the store when there is none, and outside the shop (main menu, loading)

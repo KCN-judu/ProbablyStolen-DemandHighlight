@@ -346,25 +346,33 @@ msgid "Rectangular items share one small nine-slice frame per look, so an outlin
 msgstr "矩形物品每种样式共用一张很小的九宫格贴图，任意尺寸的框线都几乎不花时间绘制。其他形状按实际格子单独生成贴图，并按形状和尺寸缓存。只有样式、形状或尺寸变化时才重画框线。"
 
 #: manual/performance.md:29
+msgid "Nothing kept after leaving the store"
+msgstr "离开店铺后不留任何东西"
+
+#: manual/performance.md:31
+msgid "A store's items, their UI, windows and customers all point at each other, so a single reference kept after leaving the store would keep the whole store in memory. When another scene replaces the store (`SceneManager.sceneLoaded` in single mode for any scene other than `InventoryScene`, such as the main menu), the mod drops its item records, outlines, last customer and Item Filter window. The next store builds them again. The filter's choices are kept."
+msgstr "店铺里的物品、物品界面、窗口和顾客都互相引用，所以离开店铺后只要留下一个引用，整个店铺就会一直留在内存里。当另一个场景替换掉店铺时（`SceneManager.sceneLoaded` 以单场景模式加载 `InventoryScene` 以外的场景，比如主菜单），模组会丢掉它的物品记录、框线、上一位顾客和物品筛选窗口。下一次进店时再重新建立。筛选的选择会保留。"
+
+#: manual/performance.md:33
 msgid "Logging"
 msgstr "日志"
 
-#: manual/performance.md:31
+#: manual/performance.md:35
 msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so a stutter can be traced to this mod or ruled out."
 msgstr "任何超过 8 毫秒的刷新都会以 `[DemandHighlight] slow refresh: ...` 写入游戏的 `Player.log`，并分别记录遍历和绘制的耗时，方便确认卡顿是否来自这个模组。"
 
-#: manual/performance.md:33
+#: manual/performance.md:37
 msgid "Tested logic"
 msgstr "经过测试的逻辑"
 
-#: manual/performance.md:35
-msgid "The decisions themselves need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`: `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it, and matches the Item Filter; `Outline.Pure.cs` computes the outline image of each look, for any cell shape; `Style.Pure.cs` combines marks."
-msgstr "判断本身既不需要 Unity 也不需要游戏，所以和读取游戏的代码分开，放在以 `.Pure.cs` 结尾的文件里：`Decide.Pure.cs` 决定每件物品的框线、它向上层容器传递什么，以及物品筛选的匹配；`Outline.Pure.cs` 为任意格子形状计算每种外观的框线图像；`Style.Pure.cs` 负责合并标记。"
-
-#: manual/performance.md:37
-msgid "Two tests run these files outside the game, with nothing but the C# compiler: `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter, and `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. Each prints ok or FAIL per case and exits with 1 if anything failed."
-msgstr "两个测试只用 C# 编译器就能在游戏外运行这些文件：`tests/DecideTest.cs` 覆盖买货、卖货、检查、上锁、禁止搜查和物品筛选，`tests/OutlineTest.cs` 覆盖形状、角落、圆角和四种外观。每个用例输出 ok 或 FAIL，有任何失败时以 1 退出。"
-
 #: manual/performance.md:39
+msgid "The decisions themselves need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`: `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it, and matches the Item Filter; `Outline.Pure.cs` computes the outline image of each look, for any cell shape; `Style.Pure.cs` combines marks; `StoreExit.Pure.cs` decides which scene loads leave the store."
+msgstr "判断本身既不需要 Unity 也不需要游戏，所以和读取游戏的代码分开，放在以 `.Pure.cs` 结尾的文件里：`Decide.Pure.cs` 决定每件物品的框线、它向上层容器传递什么，以及物品筛选的匹配；`Outline.Pure.cs` 为任意格子形状计算每种外观的框线图像；`Style.Pure.cs` 负责合并标记；`StoreExit.Pure.cs` 判断哪些场景加载意味着离开店铺。"
+
+#: manual/performance.md:41
+msgid "Three tests run these files outside the game, with nothing but the C# compiler: `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter, `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks, and `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed; `tests/run.sh` compiles and runs them all."
+msgstr "三个测试只用 C# 编译器就能在游戏外运行这些文件：`tests/DecideTest.cs` 覆盖买货、卖货、检查、上锁、禁止搜查和物品筛选，`tests/OutlineTest.cs` 覆盖形状、角落、圆角和四种外观，`tests/StoreExitTest.cs` 覆盖离开店铺。每个用例输出 ok 或 FAIL，有任何失败时以 1 退出；`tests/run.sh` 会编译并运行全部测试。"
+
+#: manual/performance.md:43
 msgid "Starting is all or nothing: if a method the mod hooks is missing, for example after a game update, everything already set up is taken down again, one line is written to `Player.log` and the mod stays off."
 msgstr "启动是全有或全无的：如果模组挂接的某个方法不存在（比如游戏更新后），已经装好的一切都会撤下，`Player.log` 里写入一行，模组保持关闭。"

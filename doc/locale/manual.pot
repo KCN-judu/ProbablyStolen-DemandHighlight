@@ -346,25 +346,33 @@ msgid "Rectangular items share one small nine-slice frame per look, so an outlin
 msgstr ""
 
 #: manual/performance.md:29
-msgid "Logging"
+msgid "Nothing kept after leaving the store"
 msgstr ""
 
 #: manual/performance.md:31
-msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so a stutter can be traced to this mod or ruled out."
+msgid "A store's items, their UI, windows and customers all point at each other, so a single reference kept after leaving the store would keep the whole store in memory. When another scene replaces the store (`SceneManager.sceneLoaded` in single mode for any scene other than `InventoryScene`, such as the main menu), the mod drops its item records, outlines, last customer and Item Filter window. The next store builds them again. The filter's choices are kept."
 msgstr ""
 
 #: manual/performance.md:33
-msgid "Tested logic"
+msgid "Logging"
 msgstr ""
 
 #: manual/performance.md:35
-msgid "The decisions themselves need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`: `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it, and matches the Item Filter; `Outline.Pure.cs` computes the outline image of each look, for any cell shape; `Style.Pure.cs` combines marks."
+msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so a stutter can be traced to this mod or ruled out."
 msgstr ""
 
 #: manual/performance.md:37
-msgid "Two tests run these files outside the game, with nothing but the C# compiler: `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter, and `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. Each prints ok or FAIL per case and exits with 1 if anything failed."
+msgid "Tested logic"
 msgstr ""
 
 #: manual/performance.md:39
+msgid "The decisions themselves need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`: `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it, and matches the Item Filter; `Outline.Pure.cs` computes the outline image of each look, for any cell shape; `Style.Pure.cs` combines marks; `StoreExit.Pure.cs` decides which scene loads leave the store."
+msgstr ""
+
+#: manual/performance.md:41
+msgid "Three tests run these files outside the game, with nothing but the C# compiler: `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter, `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks, and `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed; `tests/run.sh` compiles and runs them all."
+msgstr ""
+
+#: manual/performance.md:43
 msgid "Starting is all or nothing: if a method the mod hooks is missing, for example after a game update, everything already set up is taken down again, one line is written to `Player.log` and the mod stays off."
 msgstr ""

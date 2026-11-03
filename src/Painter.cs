@@ -63,6 +63,7 @@ namespace DemandHighlight
         {
             foreach (var f in frames.Values) if (f.Root != null) Object.Destroy(f.Root);
             frames.Clear();
+            plates.Clear();
         }
 
         public static Color ColorOf(Mark mark)

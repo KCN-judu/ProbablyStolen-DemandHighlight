@@ -65,6 +65,8 @@ namespace DemandHighlight
         {
             Close();
             window = null; row = null; statusPanel = typesPanel = null;
+            // A new window starts empty, so its lists are built again.
+            builtStock = builtFilter = -1;
         }
 
         static void Open()

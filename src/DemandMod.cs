@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DemandHighlight
 {
@@ -12,6 +13,8 @@ namespace DemandHighlight
     // tag changed), an item entering or leaving an inventory, or a container window opening or closing. Changes
     // are batched to one walk at most every 0.15 s. With no change, nothing runs. A walk covers what is on screen
     // and reuses every cached verdict (see Rules); a walk cut short by its time budget continues next frame.
+    //
+    // Leaving the store releases everything kept from it (see Release).
     public sealed class DemandMod : IMod
     {
         public const string ModId = "demand_highlight";
@@ -111,6 +114,8 @@ namespace DemandHighlight
                 ticker.hideFlags = HideFlags.HideAndDontSave;
                 ticker.AddComponent<Ticker>();
             }
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         static HarmonyMethod Hook(string name)
@@ -129,6 +134,7 @@ namespace DemandHighlight
         // Takes down everything the mod installed or created; safe to call at any point, also mid-install.
         static void TearDown()
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             if (harmony != null)
             {
                 try { harmony.UnpatchAll(HarmonyId); } catch (Exception e) { Debug.LogWarning(Tag + "unpatching failed: " + e.Message); }
@@ -140,6 +146,27 @@ namespace DemandHighlight
             try { Panel.Destroy(); } catch (Exception) { }
             drawn = false;
             lastClient = null;
+        }
+
+        static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            if (!StoreExit.Left(scene.name, mode == LoadSceneMode.Single)) return;
+            try { Release(); }
+            catch (Exception e) { Debug.LogWarning(Tag + "releasing the store failed: " + e.Message); }
+        }
+
+        // A store's items, their UI, windows and customers all point at each other, so one reference kept here would
+        // keep the whole store in memory after leaving it. Every record, outline and window of the mod that points
+        // into the store is dropped; the next store fills them again. The item filter's choices stay.
+        static void Release()
+        {
+            Rules.Release();
+            Painter.DestroyAll();
+            Panel.Destroy();
+            lastClient = null;
+            lastIntent = 0;
+            drawn = false;
+            dirty = true;
         }
 
         static void MarkDirty() { dirty = true; }
