@@ -6,9 +6,15 @@ namespace DemandHighlight
 {
     // Puts one outline image on each marked item (and storage tab) and keeps it there. An outline is only
     // touched when its look, the item's shape or its size changed; everything else is a few field compares.
+    //
+    // Reads the walk's result (Rules.Hits, Rules.Tabs) and adds one child Image under each marked GameItemElement's
+    // RectTransform, or under its rotator when the item is turned. Outlines are kept per item in a dictionary and hidden,
+    // not destroyed, when an item is not marked, so the next customer reuses them. DestroyAll drops them all, which the
+    // store-exit release needs: a Frame holds a UI object of the store.
     public static class Painter
     {
         const string NodeName = "DemandHighlight";
+        // Hidden outlines kept for reuse; above this many the hidden ones are destroyed.
         const int HiddenCap = 400;
 
         static readonly Color Green = new Color(0.36f, 0.92f, 0.42f, 0.95f);
@@ -19,6 +25,7 @@ namespace DemandHighlight
         // While the item filter is on, a plain match is drawn in cyan so it is not mistaken for a customer's wish.
         public static bool Filtering;
 
+        // One outline: its UI objects, and the state it was last drawn with, so Item can skip a redraw that would change nothing.
         sealed class Frame
         {
             public GameObject Root;
@@ -71,6 +78,8 @@ namespace DemandHighlight
             return mark == Mark.Contraband ? Red : mark == Mark.Stolen ? Amber : Filtering ? Cyan : Green;
         }
 
+        // Outlines one item. A turned item is drawn in its rotator whose rect is the item before turning, so the
+        // shape cells read from the game apply as they are; a mirrored item gets a mirrored texture.
         static void Item(GameItemElement element, Style style)
         {
             var shape = element.shape;
@@ -107,6 +116,8 @@ namespace DemandHighlight
             frame.Shape = shape; frame.Orientation = orientation; frame.Flipped = flipped; frame.W = w; frame.H = h;
         }
 
+        // Outlines the tab buttons of an open machine: a tab takes the strongest mark of the items on its page (marks are
+        // read back through Rules.StyleOf, so only items of this walk count).
         static void Tabs(Rules.TabsHit hit)
         {
             var plates = Plates(hit.Tabs, hit.Pages.Count);
@@ -191,6 +202,8 @@ namespace DemandHighlight
             frame.Drawn = true;
         }
 
+        // The outline of key (an item or a tab button), created on first use and moved when the item's anchor changed.
+        // The node ignores layout and raycasts so it never changes the game's UI behaviour.
         static Frame Ensure(object key, RectTransform anchor)
         {
             Frame frame;
@@ -232,6 +245,8 @@ namespace DemandHighlight
             frame.Visible = true;
         }
 
+        // Hides every outline the current pass did not touch. A hidden outline of an item that left the shop keeps its
+        // UI object alive until HiddenCap is passed.
         static void HideUnseen()
         {
             scratch.Clear();

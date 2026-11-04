@@ -1,3 +1,5 @@
+// Marks and styles of an outline, on plain data (System types only), shared by Decide.Pure.cs, Outline.Pure.cs and
+// the game-facing files; tests/DecideTest.cs and tests/OutlineTest.cs compile it.
 namespace DemandHighlight
 {
     // How much an item matters to the current customer. Higher wins when several items share a mark.

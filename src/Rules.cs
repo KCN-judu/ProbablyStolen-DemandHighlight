@@ -147,6 +147,8 @@ namespace DemandHighlight
 
         // Fills Hits (every shown item with a mark) and Tabs. Returns false when there is nothing to mark.
         // complete is false when the time budget ran out; walk again next frame.
+        // The roots below are the shop's inventories, as EmporiumEntry names them; Filter.Count walks the same list,
+        // so change the two together.
         public static bool Walk(StoreClient current, bool highlightClientGoods, out bool complete)
         {
             complete = true;
@@ -203,6 +205,8 @@ namespace DemandHighlight
             return item != null && entries.TryGetValue(item, out e) && e.Walk == walk ? e.Style : default(Style);
         }
 
+        // Walks the top-level items of one shop inventory. nodesSeen stops an inventory that two roots share from being
+        // walked twice in one pass.
         static bool Root(GameInventory inventory)
         {
             if (inventory == null || !nodesSeen.Add(inventory)) return true;
@@ -286,6 +290,8 @@ namespace DemandHighlight
             return up;
         }
 
+        // Asks the game about the item itself and stores the answers in its record. Runs again only after the item
+        // changed or the customer, intent or filter changed (a new epoch).
         static void ComputeSelf(GameItem item, Entry e)
         {
             Computed++;
@@ -312,6 +318,8 @@ namespace DemandHighlight
             e.F = f;
         }
 
+        // Visits the items under a container. A child that is not an item (an inventory or other node) is searched too,
+        // once per walk, so items one node deeper still count as inside.
         static void Children(List<GraphNodeStorage> nodes, int depth, bool lockedAbove, bool blockedAbove, bool shown,
             ref Agg inside, ref bool allBought, ref bool complete)
         {
@@ -350,6 +358,7 @@ namespace DemandHighlight
             Tabs.Add(hit);
         }
 
+        // The storage tabs of an open machine: the panel named "storage" when it has them, else the first panel that does.
         static MachineryTabs TabsOf(MachineryPanelRow row)
         {
             var panel = row.GetPanel("storage");
@@ -373,6 +382,7 @@ namespace DemandHighlight
             return page as GameInventory;
         }
 
+        // Contraband is checked first and stolen only when it is not contraband, as Decide.Illegality expects.
         static Mark Illegality(GameItem item)
         {
             bool contraband = ContrabandHelper.IsContraband(item);
@@ -385,6 +395,7 @@ namespace DemandHighlight
             return window != null && window.IsVisible();
         }
 
+        // Locked by the tag the game sets on lockable containers and supply crates, or by an open window that reports it.
         static bool IsLocked(GameItem item)
         {
             if (item.IsTag("LOCKED_CONTAINER_TAG") && LockStatus(item)) return true;
@@ -437,6 +448,7 @@ namespace DemandHighlight
             return buying;
         }
 
+        // Debris piles and anything the game's own removal check refuses are never offered to a customer, so they get no outline.
         static bool IsImmovable(GameItem item)
         {
             if (item.IsTag("DEBRIS_PILE_TAG")) return true;

@@ -15,6 +15,12 @@ namespace DemandHighlight
     // and reuses every cached verdict (see Rules); a walk cut short by its time budget continues next frame.
     //
     // Leaving the store releases everything kept from it (see Release).
+    //
+    // This file is the entry point (IMod): it installs the Harmony postfixes that only mark work as needed, reads the
+    // options and key bindings (ModHelper.GetConfig, ModHelper.AddGameOptionKeyBind), and runs Tick once per frame
+    // through Ticker. The walk is Rules, the item filter is Filter and Panel, the drawing is Painter and Sprites.
+    // Patched game types: GameItemElement (Validate, RotCW, RotCCW), GameItem (the tag methods, SetGameItemType,
+    // AddParent, RemoveParent) and PixelWindow (Show, Hide). All patches are postfixes and none changes a result.
     public sealed class DemandMod : IMod
     {
         public const string ModId = "demand_highlight";
@@ -24,6 +30,8 @@ namespace DemandHighlight
         const string PanelKeyPref = "DemandHighlight.panelKey";
         // No default keys: both are bound in the game's options menu (keybind section).
         const KeyCode DefaultKey = KeyCode.None, DefaultPanelKey = KeyCode.None;
+        // MinGap: shortest time between two walks. IntentPoll: how often the customer's intent is read, because the
+        // game gives no event for a customer turning from buying to selling or to an inspection.
         const float MinGap = 0.15f, IntentPoll = 0.5f;
         const double SlowWalkMs = 8.0;
 
@@ -37,6 +45,7 @@ namespace DemandHighlight
         static ConfigEntry<bool> clientGoods, fill;
         static bool optionsAdded;
 
+        // on: the player's toggle. dirty: something changed since the last walk. drawn: outlines are currently shown.
         static bool on = true;
         static bool dirty = true;
         static bool drawn;
@@ -48,6 +57,7 @@ namespace DemandHighlight
         static bool filtering;
         static bool warned;
 
+        // The game passes the manifest; its ID is the key for localized text and options, so it is read instead of ModId.
         public void Init(ModManifest manifest)
         {
             if (manifest != null && !string.IsNullOrEmpty(manifest.ID)) modId = manifest.ID;
@@ -76,6 +86,9 @@ namespace DemandHighlight
             TearDown();
         }
 
+        // Safe to run again after OnDisable: each part is created only when missing. The Validate, tag, AddParent and
+        // RemoveParent patches are what keep the cached records in Rules correct; without any of them an item could
+        // keep a stale verdict.
         static void Install()
         {
             if (harmony == null)
@@ -99,6 +112,8 @@ namespace DemandHighlight
                 Patch(h, typeof(GameItemElement).GetMethod("RotCCW", AnyInstance, null, Type.EmptyTypes, null), "GameItemElement.RotCCW", mark);
                 Patch(h, typeof(GameItem).GetMethod("AddParent", AnyInstance, null, new[] { typeof(GraphNodeStorage) }, null), "GameItem.AddParent", moved);
                 Patch(h, typeof(GameItem).GetMethod("RemoveParent", AnyInstance, null, new[] { typeof(GraphNodeStorage) }, null), "GameItem.RemoveParent", moved);
+                // PixelWindow.Show and Hide have several overloads; every one is patched so no way of opening a
+                // container window is missed.
                 int shows = 0, hides = 0;
                 foreach (var m in typeof(PixelWindow).GetMethods(AnyInstance))
                 {
@@ -109,6 +124,7 @@ namespace DemandHighlight
             }
             if (ticker == null)
             {
+                // The Ticker lives across scenes, but holds nothing from the store: it only calls Tick.
                 ticker = new GameObject("DemandHighlight.Ticker");
                 UnityEngine.Object.DontDestroyOnLoad(ticker);
                 ticker.hideFlags = HideFlags.HideAndDontSave;
@@ -118,6 +134,7 @@ namespace DemandHighlight
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
+        // The postfix named name in this class, found by reflection so a rename fails at startup, not silently.
         static HarmonyMethod Hook(string name)
         {
             var m = typeof(DemandMod).GetMethod(name, AnyStatic);
@@ -148,6 +165,8 @@ namespace DemandHighlight
             lastClient = null;
         }
 
+        // Only a single-mode load of a scene other than the store releases (rule in the code standard: nothing kept
+        // after leaving the store; the decision itself is StoreExit.Left, with a headless test).
         static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (!StoreExit.Left(scene.name, mode == LoadSceneMode.Single)) return;
@@ -203,8 +222,11 @@ namespace DemandHighlight
             if (owners != null && owners.Count > 0) dirty = true;
         }
 
+        // Localized text of this mod (Localization/*.csv), looked up each time so a language change applies at once.
         static string L(string key) { return ModHelper.GetLocalized(modId, key); }
 
+        // Reads the saved keys and defines the options once; the options live in the game's config, the keys in PlayerPrefs.
+        // A failure here leaves defaults in place and does not stop the mod.
         static void ReadConfig()
         {
             try
@@ -259,6 +281,7 @@ namespace DemandHighlight
             Painter.Fill = fill == null || fill.Value;
         }
 
+        // Thickness, rounding or fill changed: the cached textures no longer match, so they are rebuilt on the next walk.
         static void Restyle()
         {
             ApplyLook();
@@ -266,6 +289,8 @@ namespace DemandHighlight
             dirty = true;
         }
 
+        // One frame of the mod: hotkeys, then the customer and intent checks, then at most one time-limited walk.
+        // A walk happens only when dirty is set and MinGap has passed.
         internal static void Tick()
         {
             try
@@ -347,6 +372,7 @@ namespace DemandHighlight
         }
     }
 
+    // Unity calls Update on a MonoBehaviour every frame; this is the mod's only per-frame hook.
     public sealed class Ticker : MonoBehaviour
     {
         void Update() { DemandMod.Tick(); }

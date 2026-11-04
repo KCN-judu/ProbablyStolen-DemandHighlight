@@ -5,6 +5,9 @@ namespace DemandHighlight
     // The item filter: mark everything in the shop of the chosen item types (the game's own categories, the ones
     // customers ask for) and/or everything stolen or contraband. While anything is chosen it replaces the
     // customer highlight; Rules walks and indexes it the same way.
+    //
+    // Reads the game's ContrabandHelper.IsContraband, StolenHelper.IsStolenItem and GameItem.itemTypes, and holds no
+    // game object: only type names and counters, so nothing here has to be released when the store is left.
     public static class Filter
     {
         static readonly HashSet<string> types = new HashSet<string>();
@@ -23,6 +26,7 @@ namespace DemandHighlight
         public static bool Contraband { get { return contraband; } }
         public static bool Has(string type) { return types.Contains(type); }
 
+        // Each setter bumps Version only on a real change, so toggling to the same state costs nothing.
         public static void SetType(string type, bool on)
         {
             if (on ? types.Add(type) : types.Remove(type)) Version++;
@@ -76,6 +80,7 @@ namespace DemandHighlight
             return counts;
         }
 
+        // Counts one node and everything under it. Depth is capped and nodes are visited once, as in Rules.
         static void CountNode(GraphNodeStorage node, Counts counts, HashSet<object> seen, int depth)
         {
             if (node == null || depth > 16 || !seen.Add(node)) return;

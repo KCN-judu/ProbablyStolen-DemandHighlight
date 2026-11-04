@@ -15,7 +15,11 @@ namespace DemandHighlight
     // Panels are stacked, the status strip on one line, so the window stays low and narrow. Types are grouped
     // into families with a header each, families are packed into balanced columns, every toggle is left-aligned
     // so the eye runs down one edge, and counts are dimmed so the names lead. Explanations live in tooltips.
-    // The lists are rebuilt each time the window opens.
+    // The lists are rebuilt each time the window opens, if the stock or the filter changed.
+    //
+    // Game types used: PixelWindow (WindowStyle.Machinery), MachineryPanelRow, MachineryPanel, MachineryStack,
+    // MachineryRadioButton, MachineryButton, MachineHelper.Panel and TypeHelper.GetTypeDisplayName. The window object
+    // belongs to the store, so Destroy (called when the store is left) drops it.
     public static class Panel
     {
         const int TextSize = 6;
@@ -25,6 +29,7 @@ namespace DemandHighlight
         static MachineryPanel statusPanel, typesPanel;
         static MachineryPanelRow row;
 
+        // Set by DemandMod: L gives localized text, Changed asks for a new walk after a toggle.
         public static Func<string, string> L = k => k;
         public static Action Changed = () => { };
 
@@ -69,6 +74,7 @@ namespace DemandHighlight
             builtStock = builtFilter = -1;
         }
 
+        // Creates the window once, rebuilds the lists when needed and shows it.
         static void Open()
         {
             if (window == null || window.handler == null)
@@ -86,6 +92,7 @@ namespace DemandHighlight
         // A toggle already shows its new state; remember that the window matches the filter.
         static void Toggled() { builtFilter = Filter.Version; Changed(); }
 
+        // Fills both panels from the current counts. The Clear button rebuilds so the toggles show their new state.
         static void Rebuild()
         {
             var counts = Filter.Count();
@@ -160,6 +167,7 @@ namespace DemandHighlight
             return columns;
         }
 
+        // A toggle with its count dimmed behind the name.
         static MachineryRadioButton Toggle(string name, int count, bool on, Action<bool> changed)
         {
             return new MachineryRadioButton(name + "  <color=" + CountColor + ">" + count + "</color>", on, changed);

@@ -45,17 +45,19 @@ namespace DemandHighlight
         }
 
         static readonly Dictionary<Key, Sprite> cache = new Dictionary<Key, Sprite>();
+        // Bumped by Clear; Painter compares it so an outline drawn from a destroyed texture is drawn again.
         public static int Generation { get; private set; }
-
-        // Scratch buffers, reused between bakes.
 
         public static readonly Shape Full = Shape.Full;
 
+        // The cells of a game GridShape, read with GridShape.GetLocal (non-zero = covered).
         public static Shape Read(GridShape shape)
         {
             return Shape.FromCells(shape.width, shape.height, (x, y) => shape.GetLocal(x, y) != 0);
         }
 
+        // Destroys every texture and sprite. Called when an option changes the look, when the cache is full and when
+        // the mod is disabled (Unity textures and sprites must be destroyed by hand).
         public static void Clear()
         {
             foreach (var s in cache.Values)
@@ -64,6 +66,7 @@ namespace DemandHighlight
             Generation++;
         }
 
+        // The texture for an item of any shape at one size, from the cache or baked now.
         public static Sprite Get(Shape shape, float width, float height, Style style, int thickness, int corner, bool fill)
         {
             int w = Mathf.Clamp(Mathf.RoundToInt(width), 2, MaxSide);
