@@ -11,7 +11,7 @@ Press the key bound to **Open item filter** in the game's options menu. The wind
 - **Status** is one line with Stolen and Contraband, each with its count, and Clear.
 - **Types** has one toggle per item type found in the shop, with counts. These are the game's own categories, the ones customers ask for, such as Food, Medical, Tool or Luxury Item.
 
-Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, the most common first within each group, and the groups are packed into balanced columns. Hover a toggle to see what it does.
+Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, with any other type under Other. Within a group the most common comes first. The groups are packed into columns of similar height. Hover a toggle to see what it does.
 
 The window is rebuilt only when the stock or the filter changed since it was last opened.
 

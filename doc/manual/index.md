@@ -20,7 +20,7 @@ Outlines follow each item's grid cells, so an L-shaped item gets an L-shaped out
 ## Rules
 
 - Locked containers, items behind a lock and immovable items are skipped, as the customer would see them.
-- During a sheriff's inspection, only stolen goods and contraband are marked, and containers that block a search are skipped.
+- During an inspection, only stolen goods and contraband are marked, and containers that block a search are skipped.
 - When a customer is selling, their own stolen goods and contraband are marked only if the option is on. It is off by default.
 
 ## Options
@@ -31,7 +31,7 @@ Outlines follow each item's grid cells, so an L-shaped item gets an L-shaped out
 | Corner rounding | 2 | Radius of the rounded outer corners, from 0 to 8. |
 | Tint wanted items | on | A faint fill inside the outline of wanted items. |
 | Mark the customer's own goods | off | When a customer is selling, mark their stolen goods and contraband. |
-| Toggle demand highlight | unbound | A key that turns the outlines on and off. |
+| Toggle demand highlight | unbound | A key that turns the outlines on and off, the Item Filter's marks included. |
 | Open item filter | unbound | A key that opens the [Item Filter](item-filter.md) window. |
 
 Neither key has a default. Bind them in the game's options menu.

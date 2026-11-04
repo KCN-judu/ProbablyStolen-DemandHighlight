@@ -1,10 +1,10 @@
 # Performance
 
-Demand Highlight is built to stay out of the frame budget, even in a store with thousands of items.
+Demand Highlight does very little work per frame, even in a store with thousands of items.
 
 ## Work only on change
 
-Nothing runs while nothing changes. The mod reacts to the customer or their intent changing, an item being validated or having a tag changed, an item entering or leaving an inventory, and a container window opening or closing. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s, and there is no periodic refresh.
+While nothing changes, the mod does not walk the shop. A walk starts when the customer or their intent changes, an item is validated, turned or has a tag changed, an item enters or leaves an inventory, or a container window opens or closes. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s. The only repeated work is a check of the customer's intent every 0.5 s.
 
 ## One question per item
 
@@ -20,11 +20,11 @@ A walk visits the shop inventories and open containers. Closed containers answer
 
 ## Big jobs over several frames
 
-A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store never causes one long frame. Outlines appear over a few frames instead.
+A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store does not cause one long frame. Outlines appear over a few frames instead.
 
 ## Cheap drawing
 
-Rectangular items share one small nine-slice frame per look, so an outline of any size costs nothing to draw. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed.
+Rectangular items share one small nine-slice frame per look, so an outline of any size reuses the same texture. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed.
 
 ## Nothing kept after leaving the store
 
@@ -32,12 +32,12 @@ A store's items, their UI, windows and customers all point at each other, so a s
 
 ## Logging
 
-Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so a stutter can be traced to this mod or ruled out.
+Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so you can tell whether a stutter comes from this mod.
 
 ## Tested logic
 
-The decisions themselves need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`: `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it, and matches the Item Filter; `Outline.Pure.cs` computes the outline image of each look, for any cell shape; `Style.Pure.cs` combines marks; `StoreExit.Pure.cs` decides which scene loads leave the store.
+The decisions need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`. `Decide.Pure.cs` chooses each item's outline, what it passes on to the containers above it, and the Item Filter's matches. `Outline.Pure.cs` computes the outline image of each look, for any cell shape. `Style.Pure.cs` combines marks. `StoreExit.Pure.cs` decides which scene loads leave the store.
 
-Three tests run these files outside the game, with nothing but the C# compiler: `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter, `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks, and `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed; `tests/run.sh` compiles and runs them all.
+Three tests run these files outside the game, with only the C# compiler. `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter. `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed. `tests/run.sh` compiles and runs them all.
 
 Starting is all or nothing: if a method the mod hooks is missing, for example after a game update, everything already set up is taken down again, one line is written to `Player.log` and the mod stays off.

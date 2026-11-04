@@ -13,16 +13,16 @@ See at a glance what the customer at the counter wants, and find anything in you
 [*][b]Red double line[/b]: wanted, and contraband.
 [*][b]Corner brackets[/b]: not wanted itself, but something wanted is inside.
 [/list]
-Outlines follow each item's grid shape, and machine storage tabs are marked too. During a sheriff's inspection only stolen goods and contraband are shown. Locked containers and items behind a lock are skipped, just as the customer would see it.
+Outlines follow each item's grid shape, and machine storage tabs are marked too. During an inspection only stolen goods and contraband are shown. Locked containers and items behind a lock are skipped, just as the customer would see it.
 
 [h2]Item Filter[/h2]
 Open the [b]Item Filter[/b] window, built in the game's own machine-panel style, and tick any item type (Food, Tool, Luxury Item...), Stolen or Contraband. Everything matching is marked in the shop, so you can sort your stock by category. Clear the filter to return to the customer highlight.
 
-[h2]Light on your CPU[/h2]
+[h2]Performance[/h2]
 [list]
 [*]Nothing runs until something changes: the customer, an item, or a container opening or closing.
 [*]Only what is on screen is walked. Closed containers answer from a small index.
-[*]Outlines are redrawn only when they actually change.
+[*]An outline is redrawn only when its look, shape or size changes.
 [/list]
 
 [h2]Setup[/h2]
@@ -46,7 +46,7 @@ Bug reports and suggestions are welcome on GitHub or in the comments.
 
 [h2]1.1.2 新内容[/h2]
 [list]
-[*]离开商店（例如回到主菜单）后不再把它留在内存里，同一局之后的读档不会带着旧商店开始。商店里的表现不变，筛选选项会保留。
+[*]离开商店（比如回到主菜单）后，模组不再让商店留在内存里，同一次运行中之后的读档不会再带着旧商店。商店里的表现不变，筛选选项也会保留。
 [/list]
 
 [h2]框线[/h2]
@@ -56,20 +56,20 @@ Bug reports and suggestions are welcome on GitHub or in the comments.
 [*][b]红色双线[/b]：想要，而且是违禁品。
 [*][b]角括号[/b]：本身不是想要的，但里面装着想要的东西。
 [/list]
-框线贴合每件物品的网格形状，机器的存储标签页也会被标出。治安官检查时只显示赃物和违禁品。上锁的容器和锁后面的物品会被跳过，和顾客看到的一样。
+框线贴合每件物品的网格形状，机器的存储标签页也会被标出。盘查时只显示赃物和违禁品。上锁的容器和锁后面的物品会被跳过，和顾客看到的一样。
 
 [h2]物品筛选[/h2]
-打开用游戏机器面板风格搭建的 [b]物品筛选[/b] 窗口，勾选任意物品类型（食物、工具、奢侈品……）、赃物或违禁品，店里所有符合的东西都会被标出，方便按类别整理库存。清除筛选即恢复顾客需求高亮。
+打开 [b]物品筛选[/b] 窗口（样式和游戏里的机器面板一样），勾选物品类型（食物、工具、奢侈品……）、赃物或违禁品，店里符合的东西都会被标出，方便按类别整理库存。清除筛选后，顾客需求高亮恢复。
 
-[h2]几乎不占 CPU[/h2]
+[h2]性能[/h2]
 [list]
-[*]没有变化时什么都不做：只在顾客、物品变化或容器开关时才更新。
-[*]只遍历屏幕上可见的部分，关闭的容器由一个小索引直接回答。
-[*]框线只在真正变化时才重绘。
+[*]没有变化就不工作：只有顾客、物品或容器开关发生变化时才更新。
+[*]只检查屏幕上看得见的部分，关着的容器直接查记录。
+[*]框线只在样式、形状或大小变了才重画。
 [/list]
 
 [h2]设置[/h2]
-在游戏设置菜单中绑定 [b]开关需求高亮[/b] 和 [b]打开物品筛选[/b] 两个按键，默认没有绑定。
+在游戏的设置菜单里给 [b]开关需求高亮[/b] 和 [b]打开物品筛选[/b] 绑定按键。两个按键默认都没有绑定。
 如果你在用别的需求高亮模组，请把它关掉，否则两边都会画框。
 
 不需要任何特殊权限。适用于游戏版本 0.46D。

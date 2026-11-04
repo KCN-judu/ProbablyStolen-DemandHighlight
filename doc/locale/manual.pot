@@ -137,7 +137,7 @@ msgid "Locked containers, items behind a lock and immovable items are skipped, a
 msgstr ""
 
 #: manual/index.md:23
-msgid "During a sheriff's inspection, only stolen goods and contraband are marked, and containers that block a search are skipped."
+msgid "During an inspection, only stolen goods and contraband are marked, and containers that block a search are skipped."
 msgstr ""
 
 #: manual/index.md:24
@@ -206,7 +206,7 @@ msgid "unbound"
 msgstr ""
 
 #: manual/index.md:34
-msgid "A key that turns the outlines on and off."
+msgid "A key that turns the outlines on and off, the Item Filter's marks included."
 msgstr ""
 
 #: manual/index.md:35
@@ -254,7 +254,7 @@ msgid "**Types** has one toggle per item type found in the shop, with counts. Th
 msgstr ""
 
 #: manual/item-filter.md:14
-msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, the most common first within each group, and the groups are packed into balanced columns. Hover a toggle to see what it does."
+msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, with any other type under Other. Within a group the most common comes first. The groups are packed into columns of similar height. Hover a toggle to see what it does."
 msgstr ""
 
 #: manual/item-filter.md:16
@@ -294,7 +294,7 @@ msgid "Performance"
 msgstr ""
 
 #: manual/performance.md:3
-msgid "Demand Highlight is built to stay out of the frame budget, even in a store with thousands of items."
+msgid "Demand Highlight does very little work per frame, even in a store with thousands of items."
 msgstr ""
 
 #: manual/performance.md:5
@@ -302,7 +302,7 @@ msgid "Work only on change"
 msgstr ""
 
 #: manual/performance.md:7
-msgid "Nothing runs while nothing changes. The mod reacts to the customer or their intent changing, an item being validated or having a tag changed, an item entering or leaving an inventory, and a container window opening or closing. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s, and there is no periodic refresh."
+msgid "While nothing changes, the mod does not walk the shop. A walk starts when the customer or their intent changes, an item is validated, turned or has a tag changed, an item enters or leaves an inventory, or a container window opens or closes. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s. The only repeated work is a check of the customer's intent every 0.5 s."
 msgstr ""
 
 #: manual/performance.md:9
@@ -334,7 +334,7 @@ msgid "Big jobs over several frames"
 msgstr ""
 
 #: manual/performance.md:23
-msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store never causes one long frame. Outlines appear over a few frames instead."
+msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store does not cause one long frame. Outlines appear over a few frames instead."
 msgstr ""
 
 #: manual/performance.md:25
@@ -342,7 +342,7 @@ msgid "Cheap drawing"
 msgstr ""
 
 #: manual/performance.md:27
-msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size costs nothing to draw. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed."
+msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size reuses the same texture. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed."
 msgstr ""
 
 #: manual/performance.md:29
@@ -358,7 +358,7 @@ msgid "Logging"
 msgstr ""
 
 #: manual/performance.md:35
-msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so a stutter can be traced to this mod or ruled out."
+msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so you can tell whether a stutter comes from this mod."
 msgstr ""
 
 #: manual/performance.md:37
@@ -366,11 +366,11 @@ msgid "Tested logic"
 msgstr ""
 
 #: manual/performance.md:39
-msgid "The decisions themselves need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`: `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it, and matches the Item Filter; `Outline.Pure.cs` computes the outline image of each look, for any cell shape; `Style.Pure.cs` combines marks; `StoreExit.Pure.cs` decides which scene loads leave the store."
+msgid "The decisions need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`. `Decide.Pure.cs` chooses each item's outline, what it passes on to the containers above it, and the Item Filter's matches. `Outline.Pure.cs` computes the outline image of each look, for any cell shape. `Style.Pure.cs` combines marks. `StoreExit.Pure.cs` decides which scene loads leave the store."
 msgstr ""
 
 #: manual/performance.md:41
-msgid "Three tests run these files outside the game, with nothing but the C# compiler: `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter, `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks, and `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed; `tests/run.sh` compiles and runs them all."
+msgid "Three tests run these files outside the game, with only the C# compiler. `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter. `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed. `tests/run.sh` compiles and runs them all."
 msgstr ""
 
 #: manual/performance.md:43

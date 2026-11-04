@@ -9,7 +9,7 @@ msgstr ""
 
 #: conf.json:summary
 msgid "Outlines what the customer at the counter wants, and marks your stock by type with the Item Filter."
-msgstr "给柜台前顾客想要的东西加框，并可用物品筛选按类型标出你的库存。"
+msgstr "给柜台前的顾客想要的东西描上框线；物品筛选能按类型标出你的库存。"
 
 #: manual/building.md:1
 msgid "Building"
@@ -17,11 +17,11 @@ msgstr "构建"
 
 #: manual/building.md:4
 msgid "Requirements"
-msgstr "需求"
+msgstr "环境要求"
 
 #: manual/building.md:6
 msgid "*Probably Stolen*, game version 0.46D. The build compiles against the game's own assemblies in `Probably Stolen_Data/Managed`."
-msgstr "《深空当铺：可能是偷的》（*Probably Stolen*）游戏版本 0.46D。构建时会引用 `Probably Stolen_Data/Managed` 中的游戏程序集。"
+msgstr "游戏《深空当铺：可能是偷的》（*Probably Stolen*），版本 0.46D。构建时直接引用 `Probably Stolen_Data/Managed` 里的游戏程序集。"
 
 #: manual/building.md:7
 msgid "Git Bash or another POSIX shell on Windows."
@@ -29,7 +29,7 @@ msgstr "Windows 上的 Git Bash 或其他 POSIX shell。"
 
 #: manual/building.md:8
 msgid "The Roslyn C# compiler from Visual Studio Build Tools. The C# 5 compiler that ships with Windows cannot read some of the game's types."
-msgstr "Visual Studio Build Tools 中的 Roslyn C# 编译器。Windows 自带的 C# 5 编译器无法读取游戏的部分类型。"
+msgstr "Visual Studio Build Tools 里的 Roslyn C# 编译器。Windows 自带的 C# 5 编译器读不了游戏的部分类型。"
 
 #: manual/building.md:10
 msgid "Build"
@@ -37,7 +37,7 @@ msgstr "构建"
 
 #: manual/building.md:17
 msgid "Two environment variables override the defaults:"
-msgstr "可以用两个环境变量覆盖默认值："
+msgstr "两个环境变量可以改默认值："
 
 #: manual/building.md:19
 msgid "Variable"
@@ -58,11 +58,11 @@ msgstr "手动安装"
 
 #: manual/building.md:26
 msgid "Copy the folder `out/demand_highlight` into the game's `Mods` folder, start the game, and enable the mod in the Mods menu. Mods load when the game starts, so restart after enabling or updating one."
-msgstr "把 `out/demand_highlight` 文件夹复制到游戏的 `Mods` 文件夹，启动游戏，在模组菜单中启用它。模组在游戏启动时加载，所以启用或更新后要重启游戏。"
+msgstr "把 `out/demand_highlight` 文件夹复制到游戏的 `Mods` 文件夹，启动游戏，在模组菜单里启用。模组在游戏启动时加载，所以启用或更新后要重启游戏。"
 
 #: manual/building.md:28
 msgid "The mod declares no capabilities, so the game enables it without a permission prompt."
-msgstr "这个模组不声明任何权限，游戏启用它时不会弹出权限确认。"
+msgstr "这个模组不需要任何权限，游戏启用它时不会弹出权限确认。"
 
 #: manual/index.md:1
 msgid "Demand Highlight"
@@ -70,7 +70,7 @@ msgstr "需求高亮"
 
 #: manual/index.md:3
 msgid "See at a glance what the customer at the counter wants, in the shop inventories, in open containers and on machine storage tabs."
-msgstr "一眼看出柜台前的顾客想要什么，覆盖店铺库存、打开的容器和机器的储物标签页。"
+msgstr "一眼看出柜台前的顾客想要什么：店铺库存、打开的容器和机器的储物标签页里都会标出来。"
 
 #: manual/index.md:5
 msgid "![Demand Highlight cover](../attachments/cover.png)"
@@ -102,27 +102,27 @@ msgstr "琥珀色斜纹“警戒带”"
 
 #: manual/index.md:12
 msgid "Wanted, and stolen"
-msgstr "顾客想要，且是赃物"
+msgstr "顾客想要，而且是赃物"
 
 #: manual/index.md:13
 msgid "Red heavy line with a thin inner line"
-msgstr "红色粗线加一条内细线"
+msgstr "红色粗线，内侧再加一条细线"
 
 #: manual/index.md:13
 msgid "Wanted, and contraband"
-msgstr "顾客想要，且是违禁品"
+msgstr "顾客想要，而且是违禁品"
 
 #: manual/index.md:14
 msgid "Corner brackets in one of those colours"
-msgstr "上述颜色之一的四角标"
+msgstr "四角标，颜色为上面三种之一"
 
 #: manual/index.md:14
 msgid "Not wanted itself, but something wanted is inside"
-msgstr "本身不要，但里面有顾客想要的东西"
+msgstr "物品本身不是顾客想要的，但里面有想要的东西"
 
 #: manual/index.md:16
 msgid "Outlines follow each item's grid cells, so an L-shaped item gets an L-shaped outline. Patterns as well as colours tell the styles apart."
-msgstr "框线沿着物品实际占用的格子画，L 形物品就是 L 形的框。不同样式靠线型区分，不只靠颜色。"
+msgstr "框线沿着物品占用的格子画，L 形物品的框也是 L 形。样式靠线型区分，也靠颜色。"
 
 #: manual/index.md:18
 msgid "![The four outline styles](../attachments/outline-styles.png)"
@@ -134,15 +134,15 @@ msgstr "规则"
 
 #: manual/index.md:22
 msgid "Locked containers, items behind a lock and immovable items are skipped, as the customer would see them."
-msgstr "上锁的容器、锁后面的物品和不可移动的物品都会跳过，和顾客看到的一致。"
+msgstr "上锁的容器、锁后面的物品和不可移动的物品都不标，和顾客看到的一样。"
 
 #: manual/index.md:23
-msgid "During a sheriff's inspection, only stolen goods and contraband are marked, and containers that block a search are skipped."
-msgstr "治安官盘查时只标出赃物和违禁品，能阻挡搜查的容器会被跳过。"
+msgid "During an inspection, only stolen goods and contraband are marked, and containers that block a search are skipped."
+msgstr "盘查时只标出赃物和违禁品，会挡住搜查的容器不标。"
 
 #: manual/index.md:24
 msgid "When a customer is selling, their own stolen goods and contraband are marked only if the option is on. It is off by default."
-msgstr "顾客卖货时，只有打开相应选项，才会标出他们自带的赃物和违禁品。该选项默认关闭。"
+msgstr "顾客卖货时，他们自带的赃物和违禁品要打开相应选项才会标出。该选项默认关闭。"
 
 #: manual/index.md:26
 msgid "Options"
@@ -162,7 +162,7 @@ msgstr "框线粗细"
 
 #: manual/index.md:30
 msgid "Line width in UI pixels, from 1 to 6."
-msgstr "线宽，单位为界面像素，范围 1 到 6。"
+msgstr "线宽，单位是界面像素，范围 1 到 6。"
 
 #: manual/index.md:31
 msgid "Corner rounding"
@@ -170,7 +170,7 @@ msgstr "圆角"
 
 #: manual/index.md:31
 msgid "Radius of the rounded outer corners, from 0 to 8."
-msgstr "外角圆角半径，范围 0 到 8。"
+msgstr "外角圆角的半径，范围 0 到 8。"
 
 #: manual/index.md:32
 msgid "Tint wanted items"
@@ -182,7 +182,7 @@ msgstr "开"
 
 #: manual/index.md:32
 msgid "A faint fill inside the outline of wanted items."
-msgstr "在想要的物品框内加一层淡色。"
+msgstr "想要的物品的框内填一层淡色。"
 
 #: manual/index.md:33
 msgid "Mark the customer's own goods"
@@ -206,8 +206,8 @@ msgid "unbound"
 msgstr "未绑定"
 
 #: manual/index.md:34
-msgid "A key that turns the outlines on and off."
-msgstr "显示或隐藏框线的按键。"
+msgid "A key that turns the outlines on and off, the Item Filter's marks included."
+msgstr "显示或隐藏框线的按键，物品筛选的标记也一起显示或隐藏。"
 
 #: manual/index.md:35
 msgid "Open item filter"
@@ -219,7 +219,7 @@ msgstr "打开[物品筛选](item-filter.md)窗口的按键。"
 
 #: manual/index.md:37
 msgid "Neither key has a default. Bind them in the game's options menu."
-msgstr "两个按键都没有默认值，请在游戏的设置菜单中绑定。"
+msgstr "两个按键都没有默认值，请在游戏的设置菜单里绑定。"
 
 #: manual/index.md:39
 msgid "If you use another demand-highlight mod, turn it off, or both will draw outlines."
@@ -231,7 +231,7 @@ msgstr "物品筛选"
 
 #: manual/item-filter.md:3
 msgid "The Item Filter marks your own stock by type, stolen or contraband, whoever is at the counter. Use it to sort the shop by category."
-msgstr "物品筛选按类型、赃物或违禁品标出你自己的库存，不管柜台前是谁。可以用它按类别整理店铺。"
+msgstr "物品筛选按类型、赃物或违禁品标出你自己的库存，柜台前是谁都一样。用它可以按类别整理店铺。"
 
 #: manual/item-filter.md:5
 msgid "Opening it"
@@ -239,7 +239,7 @@ msgstr "打开方式"
 
 #: manual/item-filter.md:7
 msgid "Press the key bound to **Open item filter** in the game's options menu. The window is built from the game's own machine-panel widgets, so it looks like a machine window."
-msgstr "按下在游戏设置菜单中为 **打开物品筛选** 绑定的键。窗口用游戏自己的机器面板组件搭建，所以看起来和机器窗口一样。"
+msgstr "按下你在游戏设置菜单里给 **打开物品筛选** 绑定的键。窗口用游戏自带的机器面板组件搭成，看起来和机器窗口一样。"
 
 #: manual/item-filter.md:9
 msgid "The window"
@@ -247,19 +247,19 @@ msgstr "窗口"
 
 #: manual/item-filter.md:11
 msgid "**Status** is one line with Stolen and Contraband, each with its count, and Clear."
-msgstr "**状态** 一栏是一行：赃物和违禁品（各带数量），以及清除按钮。"
+msgstr "**状态** 只有一行：赃物、违禁品（各带数量）和清除按钮。"
 
 #: manual/item-filter.md:12
 msgid "**Types** has one toggle per item type found in the shop, with counts. These are the game's own categories, the ones customers ask for, such as Food, Medical, Tool or Luxury Item."
-msgstr "**类型** 一栏为店里出现的每种物品类型提供一个开关，并显示数量。这些是游戏自己的分类，也就是顾客要货时用的分类，比如食物、医疗品、工具和奢侈品。"
+msgstr "**类型** 为店里出现的每种物品类型各设一个开关，并显示数量。这些是游戏自己的分类，也就是顾客要货时用的分类，比如食物、医疗品、工具和奢侈品。"
 
 #: manual/item-filter.md:14
-msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, the most common first within each group, and the groups are packed into balanced columns. Hover a toggle to see what it does."
-msgstr "类型分为日常商品、物资原料、装备武器、机器模组、品级和管制六组，组内按数量从多到少排列，各组再平衡排成几列。鼠标悬停在开关上可以看到它的作用。"
+msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, with any other type under Other. Within a group the most common comes first. The groups are packed into columns of similar height. Hover a toggle to see what it does."
+msgstr "类型分为日常商品、物资原料、装备武器、机器模组、品级和管制六组，其他类型归入“其他”。组内数量多的排在前面，各组排成高度相近的几列。鼠标悬停在开关上可以看到它的作用。"
 
 #: manual/item-filter.md:16
 msgid "The window is rebuilt only when the stock or the filter changed since it was last opened."
-msgstr "只有库存或筛选条件自上次打开后发生变化，窗口才会重建。"
+msgstr "只有库存或筛选条件在上次打开后变过，窗口才会重建。"
 
 #: manual/item-filter.md:18
 msgid "Marking"
@@ -271,11 +271,11 @@ msgstr "勾选任意一项，店里所有符合的物品都会被标出，直到
 
 #: manual/item-filter.md:21
 msgid "Several ticks combine as \"any of these\"."
-msgstr "勾选多项时，满足其中任意一项即可。"
+msgstr "勾选多项时，符合其中任意一项就会标出。"
 
 #: manual/item-filter.md:22
 msgid "Type matches are drawn in cyan with the solid style. Stolen goods and contraband keep their amber and red styles."
-msgstr "按类型匹配的物品用青色实线标出。赃物和违禁品保持各自的琥珀色和红色样式。"
+msgstr "按类型匹配的物品用青色实线标出。赃物和违禁品仍用琥珀色和红色样式。"
 
 #: manual/item-filter.md:23
 msgid "Containers holding matches get corner brackets."
@@ -283,27 +283,27 @@ msgstr "装着匹配物品的容器显示四角标。"
 
 #: manual/item-filter.md:24
 msgid "Locks are ignored, because the filter is for sorting your own stock."
-msgstr "筛选时不考虑上锁，因为它是用来整理你自己的库存的。"
+msgstr "筛选不管上锁，因为它是用来整理你自己的库存的。"
 
 #: manual/item-filter.md:26
 msgid "Turning the filter on pauses the customer highlight, and clearing it brings the highlight back."
-msgstr "开启筛选时顾客需求高亮暂停，清除筛选后恢复。"
+msgstr "开启筛选后，顾客需求高亮暂停；清除筛选后恢复。"
 
 #: manual/performance.md:1
 msgid "Performance"
 msgstr "性能"
 
 #: manual/performance.md:3
-msgid "Demand Highlight is built to stay out of the frame budget, even in a store with thousands of items."
-msgstr "需求高亮的设计目标是不占用帧时间，即使店里有成千上万件物品。"
+msgid "Demand Highlight does very little work per frame, even in a store with thousands of items."
+msgstr "需求高亮每帧做的事很少，店里有上千件物品也一样。"
 
 #: manual/performance.md:5
 msgid "Work only on change"
 msgstr "只在变化时工作"
 
 #: manual/performance.md:7
-msgid "Nothing runs while nothing changes. The mod reacts to the customer or their intent changing, an item being validated or having a tag changed, an item entering or leaving an inventory, and a container window opening or closing. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s, and there is no periodic refresh."
-msgstr "没有变化时什么都不运行。模组只响应这些事件：顾客或其意图变化、物品被校验或标签改变、物品进出库存、容器窗口打开或关闭。提示框等其他窗口会被忽略。变化会合并处理，最多每 0.15 秒遍历一次，没有定时刷新。"
+msgid "While nothing changes, the mod does not walk the shop. A walk starts when the customer or their intent changes, an item is validated, turned or has a tag changed, an item enters or leaves an inventory, or a container window opens or closes. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s. The only repeated work is a check of the customer's intent every 0.5 s."
+msgstr "没有变化时，模组不会遍历店铺。下面这些情况会触发一次遍历：顾客或其意图变了，物品被校验、旋转或标签变了，物品进出库存，容器窗口打开或关闭。提示框等其他窗口不算。变化会合并处理，两次遍历至少间隔 0.15 秒。唯一重复做的事，是每 0.5 秒检查一次顾客的意图。"
 
 #: manual/performance.md:9
 msgid "One question per item"
@@ -311,7 +311,7 @@ msgstr "每件物品只问一次"
 
 #: manual/performance.md:11
 msgid "The game's own \"would this customer buy it\" check, run on a container, lists every item inside and checks each one again, recursively, which is quadratic in a deep store. The mod asks the game only about the item itself and rebuilds the same rule bottom-up: a container is bought when it is acceptable itself and, unless it is locked, has no window or is an advanced gun, everything inside it is bought. Each item is checked once per customer."
-msgstr "游戏自己的“顾客会不会收”判定在容器上运行时，会列出里面的每件物品并逐个递归检查，在嵌套很深的店里接近平方复杂度。模组只向游戏询问物品本身，再自底向上重建同样的规则：容器本身可接受，并且（除非上锁、没有窗口或是高级枪械）里面的东西全都会被收，这个容器才会被收。每个顾客对每件物品只检查一次。"
+msgstr "游戏自己的“顾客会不会收”判定用在容器上时，会列出里面的每件物品，再逐个递归检查，在嵌套很深的店里计算量按平方增长。模组只向游戏问物品本身，再自下而上重建同一条规则：容器本身可以收，并且里面的东西全都会收，这个容器才算会收；上锁、没有窗口或是高级枪械的容器除外，不查它里面的东西。每位顾客对每件物品只检查一次。"
 
 #: manual/performance.md:13
 msgid "A record per item"
@@ -319,7 +319,7 @@ msgstr "每件物品一份记录"
 
 #: manual/performance.md:15
 msgid "Each item keeps its verdict, its lock, ownership and contraband flags, and a summary of what is inside it. A change clears the changed item's record and marks only the summaries of the containers above it as stale."
-msgstr "每件物品保存它的判定结果、锁定状态、归属和违禁标记，以及内部物品的汇总。某件物品变化时，只清除它自己的记录，并把它上层容器的汇总标记为过期。"
+msgstr "每件物品保存自己的判定结果、锁定状态、归属和违禁标记，以及里面物品的汇总。物品变化时，只清掉它自己的记录，并把它上层各容器的汇总标为过期。"
 
 #: manual/performance.md:17
 msgid "Only what is on screen"
@@ -327,23 +327,23 @@ msgstr "只遍历屏幕上的内容"
 
 #: manual/performance.md:19
 msgid "A walk visits the shop inventories and open containers. Closed containers answer from their record."
-msgstr "每次遍历只访问店铺库存和打开的容器。关着的容器直接用记录回答。"
+msgstr "每次遍历只看店铺库存和打开的容器。关着的容器直接用记录回答。"
 
 #: manual/performance.md:21
 msgid "Big jobs over several frames"
 msgstr "大任务分摊到多帧"
 
 #: manual/performance.md:23
-msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store never causes one long frame. Outlines appear over a few frames instead."
-msgstr "每次遍历最多运行 2.5 毫秒，剩下的留到下一帧继续，所以大型店铺来了新顾客也不会卡住一帧。框线会在几帧内陆续出现。"
+msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store does not cause one long frame. Outlines appear over a few frames instead."
+msgstr "每次遍历最多运行 2.5 毫秒，没做完的留到下一帧继续，所以大型店铺来了新顾客也不会卡一帧。框线会在几帧内陆续出现。"
 
 #: manual/performance.md:25
 msgid "Cheap drawing"
 msgstr "低开销绘制"
 
 #: manual/performance.md:27
-msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size costs nothing to draw. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed."
-msgstr "矩形物品每种样式共用一张很小的九宫格贴图，任意尺寸的框线都几乎不花时间绘制。其他形状按实际格子单独生成贴图，并按形状和尺寸缓存。只有样式、形状或尺寸变化时才重画框线。"
+msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size reuses the same texture. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed."
+msgstr "矩形物品每种样式共用一张很小的九宫格贴图，所以任意大小的框线都用同一张贴图。其他形状按实际格子生成贴图，并按形状和大小缓存。只有样式、形状或大小变了，才会重画框线。"
 
 #: manual/performance.md:29
 msgid "Nothing kept after leaving the store"
@@ -351,28 +351,28 @@ msgstr "离开店铺后不留任何东西"
 
 #: manual/performance.md:31
 msgid "A store's items, their UI, windows and customers all point at each other, so a single reference kept after leaving the store would keep the whole store in memory. When another scene replaces the store (`SceneManager.sceneLoaded` in single mode for any scene other than `InventoryScene`, such as the main menu), the mod drops its item records, outlines, last customer and Item Filter window. The next store builds them again. The filter's choices are kept."
-msgstr "店铺里的物品、物品界面、窗口和顾客都互相引用，所以离开店铺后只要留下一个引用，整个店铺就会一直留在内存里。当另一个场景替换掉店铺时（`SceneManager.sceneLoaded` 以单场景模式加载 `InventoryScene` 以外的场景，比如主菜单），模组会丢掉它的物品记录、框线、上一位顾客和物品筛选窗口。下一次进店时再重新建立。筛选的选择会保留。"
+msgstr "店铺里的物品、物品界面、窗口和顾客互相引用，离开店铺后只要还留着一个引用，整个店铺就会一直占着内存。一离开店铺，也就是以单场景模式加载了 `InventoryScene` 以外的场景（比如回到主菜单，对应 `SceneManager.sceneLoaded`），模组就会丢掉物品记录、框线、上一位顾客和物品筛选窗口，下次进店再重新建立。筛选的选择会保留。"
 
 #: manual/performance.md:33
 msgid "Logging"
 msgstr "日志"
 
 #: manual/performance.md:35
-msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so a stutter can be traced to this mod or ruled out."
-msgstr "任何超过 8 毫秒的刷新都会以 `[DemandHighlight] slow refresh: ...` 写入游戏的 `Player.log`，并分别记录遍历和绘制的耗时，方便确认卡顿是否来自这个模组。"
+msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so you can tell whether a stutter comes from this mod."
+msgstr "刷新超过 8 毫秒时，会向游戏的 `Player.log` 写一行 `[DemandHighlight] slow refresh: ...`，记下遍历和绘制各用了多久，这样能判断卡顿是不是这个模组造成的。"
 
 #: manual/performance.md:37
 msgid "Tested logic"
 msgstr "经过测试的逻辑"
 
 #: manual/performance.md:39
-msgid "The decisions themselves need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`: `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it, and matches the Item Filter; `Outline.Pure.cs` computes the outline image of each look, for any cell shape; `Style.Pure.cs` combines marks; `StoreExit.Pure.cs` decides which scene loads leave the store."
-msgstr "判断本身既不需要 Unity 也不需要游戏，所以和读取游戏的代码分开，放在以 `.Pure.cs` 结尾的文件里：`Decide.Pure.cs` 决定每件物品的框线、它向上层容器传递什么，以及物品筛选的匹配；`Outline.Pure.cs` 为任意格子形状计算每种外观的框线图像；`Style.Pure.cs` 负责合并标记；`StoreExit.Pure.cs` 判断哪些场景加载意味着离开店铺。"
+msgid "The decisions need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`. `Decide.Pure.cs` chooses each item's outline, what it passes on to the containers above it, and the Item Filter's matches. `Outline.Pure.cs` computes the outline image of each look, for any cell shape. `Style.Pure.cs` combines marks. `StoreExit.Pure.cs` decides which scene loads leave the store."
+msgstr "这些判断不需要 Unity，也不需要游戏，所以和读取游戏的代码分开，放在以 `.Pure.cs` 结尾的文件里。`Decide.Pure.cs` 决定每件物品的框线、它向上层容器传递什么，以及物品筛选的匹配。`Outline.Pure.cs` 为任意格子形状算出每种外观的框线图像。`Style.Pure.cs` 合并标记。`StoreExit.Pure.cs` 判断哪些场景加载意味着离开店铺。"
 
 #: manual/performance.md:41
-msgid "Three tests run these files outside the game, with nothing but the C# compiler: `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter, `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks, and `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed; `tests/run.sh` compiles and runs them all."
-msgstr "三个测试只用 C# 编译器就能在游戏外运行这些文件：`tests/DecideTest.cs` 覆盖买货、卖货、检查、上锁、禁止搜查和物品筛选，`tests/OutlineTest.cs` 覆盖形状、角落、圆角和四种外观，`tests/StoreExitTest.cs` 覆盖离开店铺。每个用例输出 ok 或 FAIL，有任何失败时以 1 退出；`tests/run.sh` 会编译并运行全部测试。"
+msgid "Three tests run these files outside the game, with only the C# compiler. `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter. `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed. `tests/run.sh` compiles and runs them all."
+msgstr "三个测试只用 C# 编译器，就能在游戏外运行这些文件。`tests/DecideTest.cs` 覆盖买货、卖货、盘查、上锁、禁止搜查和物品筛选。`tests/OutlineTest.cs` 覆盖形状、角落、圆角和四种外观。`tests/StoreExitTest.cs` 覆盖离开店铺。每个用例输出 ok 或 FAIL，有失败时以 1 退出。`tests/run.sh` 会编译并运行全部测试。"
 
 #: manual/performance.md:43
 msgid "Starting is all or nothing: if a method the mod hooks is missing, for example after a game update, everything already set up is taken down again, one line is written to `Player.log` and the mod stays off."
-msgstr "启动是全有或全无的：如果模组挂接的某个方法不存在（比如游戏更新后），已经装好的一切都会撤下，`Player.log` 里写入一行，模组保持关闭。"
+msgstr "启动要么全部成功，要么全部撤回：如果模组要挂接的某个方法不存在（比如游戏更新后），已经装好的部分都会撤下，`Player.log` 里写一行，模组保持关闭。"
