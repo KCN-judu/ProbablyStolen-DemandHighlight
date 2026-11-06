@@ -7,16 +7,15 @@ opt_fill,Tint wanted items
 opt_fill_tip,Adds a faint fill inside the outline of wanted items.
 opt_goods,Mark the customer's own goods
 opt_goods_tip,When a customer is selling: mark their stolen goods and contraband.
+opt_numbers,Numbers in the item filter
+opt_numbers_tip,Shows in the Item Filter how many items match and what they are worth; also the grid cells they take and their worth per cell.
 opt_key,Toggle demand highlight
 opt_key_tip,Turns the outlines on and off.
 opt_panel_key,Open item filter
 opt_panel_key_tip,Opens the window that marks items by type or as stolen or contraband.
 window_title,Item Filter
-panel_status,Status
-panel_types,Types
 filter_stolen,Stolen
 filter_contraband,Contraband
-button_clear,Clear
 no_items,No items in the shop.
 fam_goods,GOODS
 fam_supplies,SUPPLIES
@@ -25,7 +24,23 @@ fam_machines,MACHINES
 fam_grade,GRADE
 fam_legal,RESTRICTED
 fam_other,OTHER
-tip_stolen,Mark every stolen item in the shop in amber. The customer highlight pauses while a filter is on.
-tip_contraband,Mark every contraband item in the shop in red. The customer highlight pauses while a filter is on.
-tip_clear,Untick everything and return to the customer highlight.
-tip_type,Mark every # item in the shop in cyan. Containers holding one get corner brackets.
+tip_stolen,Only stolen items; with types ticked their stolen ones. With Contraband ticked too: either. The customer highlight pauses while a filter is on. Click again to exclude (✗), once more to untick.
+tip_contraband,Only contraband; with types ticked their contraband. With Stolen ticked too: either. The customer highlight pauses while a filter is on. Click again to exclude (✗), once more to untick.
+tip_type,Marks # items in cyan. Ticked types mean any of them. The count is what this tick finds with the rest of the filter. Click again to exclude (✗), once more to untick.
+tip_clear,Empty the filter and return to the customer highlight.
+expr_placeholder,Tick below or type: type:food -stolen
+tip_expr,The filter itself: the ticks below write into it and follow what you type. Words: stolen; contraband; owned; a type name. Keys: type: tag: id: condition:. Join with and / or / not (or + | -) and brackets.
+expr_hint,Tick below or type a filter. Hover the box for the syntax.
+expr_reads,Reads: #
+err_pos,(at character #)
+err_expected_term,Something is missing at the end.
+err_expected_close,A ) is missing.
+err_expected_value,‘#:’ needs a value.
+err_unknown_key,Unknown key ‘#:’. Use type: tag: id: or condition:.
+err_unknown_word,‘#’ is not a type or a word the filter knows.
+err_unexpected,Unexpected ‘#’.
+err_unclosed_quote,A closing quote is missing.
+stats_shop,Shop  {n} items   {v} total   {c} cells   {d} per cell
+stats_match,Matches  {n} items   {v} total ({p} of the shop)   {c} cells   {d} per cell (shop {a})
+short_form,Short
+tip_short_form,Write the filter with + | - instead of and or not. Both are always understood.

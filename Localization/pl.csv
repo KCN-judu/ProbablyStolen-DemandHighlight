@@ -7,16 +7,15 @@ opt_fill,Podbarwiaj poszukiwane przedmioty
 opt_fill_tip,Dodaje lekkie wypełnienie w obrysie poszukiwanych przedmiotów.
 opt_goods,Oznaczaj towary klienta
 opt_goods_tip,Gdy klient sprzedaje: oznacza jego kradzione towary i kontrabandę.
+opt_numbers,Liczby w filtrze przedmiotów
+opt_numbers_tip,Pokazuje w filtrze przedmiotów ile pasuje; ich wartość; zajęte pola i wartość na pole.
 opt_key,Przełącz podświetlanie
 opt_key_tip,Włącza i wyłącza obrysy.
 opt_panel_key,Otwórz filtr przedmiotów
 opt_panel_key_tip,Otwiera okno oznaczające przedmioty według typu albo jako kradzione lub kontrabandę.
 window_title,Filtr przedmiotów
-panel_status,Status
-panel_types,Typy
 filter_stolen,Kradzione
 filter_contraband,Kontrabanda
-button_clear,Wyczyść
 no_items,Brak przedmiotów w sklepie.
 fam_goods,TOWARY
 fam_supplies,ZAOPATRZENIE
@@ -25,7 +24,23 @@ fam_machines,MASZYNY
 fam_grade,JAKOŚĆ
 fam_legal,OGRANICZONE
 fam_other,INNE
-tip_stolen,Oznacza na bursztynowo wszystkie kradzione przedmioty w sklepie. Podświetlanie klienta jest wstrzymane, gdy filtr jest włączony.
-tip_contraband,Oznacza na czerwono całą kontrabandę w sklepie. Podświetlanie klienta jest wstrzymane, gdy filtr jest włączony.
-tip_clear,Odznacz wszystko i wróć do podświetlania klienta.
-tip_type,Oznacza na cyjanowo wszystkie przedmioty typu # w sklepie. Pojemniki z nimi dostają narożne nawiasy.
+tip_stolen,Tylko kradzione; przy zaznaczonych typach ich kradzione. Razem z Kontrabandą: jedno z dwóch. Podświetlanie klienta jest wstrzymane gdy filtr jest włączony. Kolejne kliknięcie wyklucza (✗), następne odznacza.
+tip_contraband,Tylko kontrabanda; przy zaznaczonych typach ich kontrabanda. Razem z Kradzionymi: jedno z dwóch. Podświetlanie klienta jest wstrzymane gdy filtr jest włączony. Kolejne kliknięcie wyklucza (✗), następne odznacza.
+tip_type,Oznacza na cyjanowo przedmioty typu #. Kilka zaznaczonych typów to dowolny z nich. Liczba to ile znajdzie to zaznaczenie z resztą filtra. Kolejne kliknięcie wyklucza (✗), następne odznacza.
+tip_clear,Wyczyść filtr i wróć do podświetlania klienta.
+expr_placeholder,Zaznacz poniżej lub wpisz: type:food -stolen
+tip_expr,To jest sam filtr: zaznaczenia poniżej się do niego wpisują i podążają za tym co piszesz. Słowa: stolen; contraband; owned; nazwa typu. Klucze: type: tag: id: condition:. Łącz przez and / or / not (lub + | -) i nawiasy.
+expr_hint,Zaznacz poniżej lub wpisz filtr. Najedź na pole aby zobaczyć składnię.
+expr_reads,Odczytano: #
+err_pos,(znak #)
+err_expected_term,Na końcu czegoś brakuje.
+err_expected_close,Brakuje „)”.
+err_expected_value,„#:” wymaga wartości.
+err_unknown_key,Nieznany klucz „#:”. Użyj type: tag: id: lub condition:.
+err_unknown_word,„#” nie jest typem ani znanym słowem.
+err_unexpected,Nieoczekiwane „#”.
+err_unclosed_quote,Brakuje cudzysłowu zamykającego.
+stats_shop,Sklep  przedmioty: {n}   razem {v}   pola: {c}   {d} na pole
+stats_match,Pasuje  przedmioty: {n}   razem {v} ({p} sklepu)   pola: {c}   {d} na pole (sklep {a})
+short_form,Skrót
+tip_short_form,Zapisuje filtr przez + | - zamiast and or not. Obie formy są zawsze rozumiane.

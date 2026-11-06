@@ -7,16 +7,15 @@ opt_fill,给想要的物品加底色
 opt_fill_tip,在想要的物品框内加一层淡色。
 opt_goods,标记顾客自带的物品
 opt_goods_tip,顾客卖货时，标出其中的赃物和违禁品。
+opt_numbers,物品筛选显示统计
+opt_numbers_tip,在物品筛选窗口显示匹配物品的件数、总值、占用格数和每格价值。
 opt_key,开关需求高亮
 opt_key_tip,显示或隐藏框线。
 opt_panel_key,打开物品筛选
 opt_panel_key_tip,打开按类型、赃物或违禁品标记物品的窗口。
 window_title,物品筛选
-panel_status,状态
-panel_types,类型
 filter_stolen,赃物
 filter_contraband,违禁品
-button_clear,清除
 no_items,店里没有物品。
 fam_goods,日常商品
 fam_supplies,物资原料
@@ -25,7 +24,23 @@ fam_machines,机器模组
 fam_grade,品级
 fam_legal,管制
 fam_other,其他
-tip_stolen,用琥珀色标出店里所有赃物。开启筛选时顾客需求高亮暂停。
-tip_contraband,用红色标出店里所有违禁品。开启筛选时顾客需求高亮暂停。
-tip_clear,取消全部勾选，恢复顾客需求高亮。
-tip_type,用青色标出店里所有「#」类物品。装着这类物品的容器显示四角标。
+tip_stolen,只看赃物；勾了类型时就是这些类型里的赃物。同时勾了违禁品时，二者任一即可。开启筛选时顾客需求高亮暂停。再点一次为排除（✗），再点一次取消。
+tip_contraband,只看违禁品；勾了类型时就是这些类型里的违禁品。同时勾了赃物时，二者任一即可。开启筛选时顾客需求高亮暂停。再点一次为排除（✗），再点一次取消。
+tip_type,用青色标出「#」类物品。勾选多个类型表示任一即可。数字是加上其余筛选条件后这一项能找到的数量。再点一次为排除（✗），再点一次取消。
+tip_clear,清空筛选，恢复顾客需求高亮。
+expr_placeholder,在下面勾选，或输入：type:food -stolen
+tip_expr,这里就是筛选本身：下面的勾选会写进来，你输入的内容也会反映到勾选上。词：stolen（赃物）、contraband（违禁品）、owned（自己的）、类型名。键：type: tag: id: condition:。用 and / or / not（或 + | -）和括号组合。
+expr_hint,在下面勾选或输入筛选条件。鼠标停在输入框上可查看语法。
+expr_reads,解读为：#
+err_pos,（第 # 个字符）
+err_expected_term,结尾缺了内容。
+err_expected_close,缺少「)」。
+err_expected_value,「#:」后面需要一个值。
+err_unknown_key,不认识的键「#:」，可用 type: tag: id: 或 condition:。
+err_unknown_word,「#」不是类型名，也不是筛选认识的词。
+err_unexpected,多余的「#」。
+err_unclosed_quote,缺少结尾的引号。
+stats_shop,全店 {n} 件　总值 {v}　占 {c} 格　每格 {d}
+stats_match,匹配 {n} 件　总值 {v}（占全店 {p}）　占 {c} 格　每格 {d}（全店 {a}）
+short_form,缩写
+tip_short_form,用 + | - 代替 and or not 来写筛选。两种写法始终都能识别。

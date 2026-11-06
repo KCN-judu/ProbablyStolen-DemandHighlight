@@ -7,16 +7,15 @@ opt_fill,Teinter les objets voulus
 opt_fill_tip,Ajoute un léger remplissage dans le contour des objets voulus.
 opt_goods,Marquer les objets du client
 opt_goods_tip,Quand un client vend : marque ses objets volés et sa contrebande.
+opt_numbers,Chiffres dans le filtre d’objets
+opt_numbers_tip,Affiche dans le filtre d’objets le nombre de correspondances ; leur valeur ; les cases occupées et la valeur par case.
 opt_key,Activer ou désactiver la surbrillance
 opt_key_tip,Affiche ou masque les contours.
 opt_panel_key,Ouvrir le filtre d’objets
 opt_panel_key_tip,Ouvre la fenêtre qui marque les objets par type ou comme volés ou de contrebande.
 window_title,Filtre d’objets
-panel_status,Statut
-panel_types,Types
 filter_stolen,Volé
 filter_contraband,Contrebande
-button_clear,Effacer
 no_items,Aucun objet dans la boutique.
 fam_goods,MARCHANDISES
 fam_supplies,FOURNITURES
@@ -25,7 +24,23 @@ fam_machines,MACHINES
 fam_grade,QUALITÉ
 fam_legal,RÉGLEMENTÉ
 fam_other,AUTRES
-tip_stolen,Marque en ambre tous les objets volés de la boutique. La surbrillance du client est en pause tant qu’un filtre est actif.
-tip_contraband,Marque en rouge toute la contrebande de la boutique. La surbrillance du client est en pause tant qu’un filtre est actif.
-tip_clear,Tout décocher et revenir à la surbrillance du client.
-tip_type,Marque en cyan tous les objets de type # de la boutique. Les conteneurs qui en contiennent un reçoivent des crochets d’angle.
+tip_stolen,Seulement les objets volés ; avec des types cochés leurs objets volés. Avec Contrebande cochée aussi : l’un ou l’autre. La surbrillance du client est en pause tant qu’un filtre est actif. Un autre clic exclut (✗), encore un autre décoche.
+tip_contraband,Seulement la contrebande ; avec des types cochés leur contrebande. Avec Volé coché aussi : l’un ou l’autre. La surbrillance du client est en pause tant qu’un filtre est actif. Un autre clic exclut (✗), encore un autre décoche.
+tip_type,Marque en cyan les objets de type #. Plusieurs types cochés veulent dire l’un d’eux. Le nombre est ce que cette case trouve avec le reste du filtre. Un autre clic exclut (✗), encore un autre décoche.
+tip_clear,Vider le filtre et revenir à la surbrillance du client.
+expr_placeholder,Cochez ci-dessous ou tapez : type:food -stolen
+tip_expr,Le filtre lui-même : les cases ci-dessous y écrivent et suivent ce que vous tapez. Mots : stolen ; contraband ; owned ; un nom de type. Clés : type: tag: id: condition:. À combiner avec and / or / not (ou + | -) et des parenthèses.
+expr_hint,Cochez ci-dessous ou tapez un filtre. Survolez le champ pour la syntaxe.
+expr_reads,Lu comme : #
+err_pos,(au caractère #)
+err_expected_term,Il manque quelque chose à la fin.
+err_expected_close,Il manque une « ) ».
+err_expected_value,« #: » attend une valeur.
+err_unknown_key,Clé inconnue « #: ». Utilisez type: tag: id: ou condition:.
+err_unknown_word,« # » n’est ni un type ni un mot connu.
+err_unexpected,« # » inattendu.
+err_unclosed_quote,Il manque le guillemet fermant.
+stats_shop,Boutique  {n} objets   {v} au total   {c} cases   {d} par case
+stats_match,Correspondances  {n} objets   {v} au total ({p} de la boutique)   {c} cases   {d} par case (boutique {a})
+short_form,Court
+tip_short_form,Écrire le filtre avec + | - au lieu de and or not. Les deux sont toujours compris.

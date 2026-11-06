@@ -7,16 +7,15 @@ opt_fill,Colora gli oggetti richiesti
 opt_fill_tip,Aggiunge un leggero riempimento nel contorno degli oggetti richiesti.
 opt_goods,Segna la merce del cliente
 opt_goods_tip,Quando un cliente vende: segna la sua merce rubata e di contrabbando.
+opt_numbers,Numeri nel filtro oggetti
+opt_numbers_tip,Mostra nel filtro oggetti quanti corrispondono; il loro valore; le caselle occupate e il valore per casella.
 opt_key,Attiva o disattiva l’evidenziazione
 opt_key_tip,Mostra o nasconde i contorni.
 opt_panel_key,Apri il filtro oggetti
 opt_panel_key_tip,Apre la finestra che segna gli oggetti per tipo o come rubati o di contrabbando.
 window_title,Filtro oggetti
-panel_status,Stato
-panel_types,Tipi
 filter_stolen,Rubato
 filter_contraband,Contrabbando
-button_clear,Azzera
 no_items,Nessun oggetto nel negozio.
 fam_goods,MERCI
 fam_supplies,FORNITURE
@@ -25,7 +24,23 @@ fam_machines,MACCHINE
 fam_grade,QUALITÀ
 fam_legal,LIMITATO
 fam_other,ALTRO
-tip_stolen,Segna in ambra tutti gli oggetti rubati del negozio. L’evidenziazione del cliente si sospende finché un filtro è attivo.
-tip_contraband,Segna in rosso tutto il contrabbando del negozio. L’evidenziazione del cliente si sospende finché un filtro è attivo.
-tip_clear,Deseleziona tutto e torna all’evidenziazione del cliente.
-tip_type,Segna in ciano tutti gli oggetti di tipo # del negozio. I contenitori che ne hanno uno ricevono le parentesi agli angoli.
+tip_stolen,Solo oggetti rubati; con tipi spuntati i loro rubati. Insieme a Contrabbando: l’uno o l’altro. L’evidenziazione del cliente è in pausa finché c’è un filtro. Un altro clic esclude (✗), un altro ancora toglie la spunta.
+tip_contraband,Solo contrabbando; con tipi spuntati il loro contrabbando. Insieme a Rubato: l’uno o l’altro. L’evidenziazione del cliente è in pausa finché c’è un filtro. Un altro clic esclude (✗), un altro ancora toglie la spunta.
+tip_type,Segna in ciano gli oggetti di tipo #. Più tipi spuntati significano uno qualsiasi. Il numero è ciò che questa spunta trova con il resto del filtro. Un altro clic esclude (✗), un altro ancora toglie la spunta.
+tip_clear,Svuota il filtro e torna all’evidenziazione del cliente.
+expr_placeholder,Spunta qui sotto o scrivi: type:food -stolen
+tip_expr,Il filtro stesso: le spunte qui sotto ci scrivono e seguono ciò che digiti. Parole: stolen; contraband; owned; un nome di tipo. Chiavi: type: tag: id: condition:. Si unisce con and / or / not (o + | -) e parentesi.
+expr_hint,Spunta qui sotto o scrivi un filtro. Passa sul campo per la sintassi.
+expr_reads,Letto come: #
+err_pos,(al carattere #)
+err_expected_term,Manca qualcosa alla fine.
+err_expected_close,Manca una «)».
+err_expected_value,«#:» richiede un valore.
+err_unknown_key,Chiave sconosciuta «#:». Usa type: tag: id: o condition:.
+err_unknown_word,«#» non è un tipo né una parola nota.
+err_unexpected,«#» inatteso.
+err_unclosed_quote,Manca la virgoletta di chiusura.
+stats_shop,Negozio  {n} oggetti   {v} in tutto   {c} caselle   {d} per casella
+stats_match,Corrispondenze  {n} oggetti   {v} in tutto ({p} del negozio)   {c} caselle   {d} per casella (negozio {a})
+short_form,Breve
+tip_short_form,Scrive il filtro con + | - invece di and or not. Entrambe le forme sono sempre capite.

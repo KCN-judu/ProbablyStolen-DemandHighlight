@@ -7,10 +7,11 @@ namespace DemandHighlight
     // Puts one outline image on each marked item (and storage tab) and keeps it there. An outline is only
     // touched when its look, the item's shape or its size changed; everything else is a few field compares.
     //
-    // Reads the walk's result (Rules.Hits, Rules.Tabs) and adds one child Image under each marked GameItemElement's
-    // RectTransform, or under its rotator when the item is turned. Outlines are kept per item in a dictionary and hidden,
-    // not destroyed, when an item is not marked, so the next customer reuses them. DestroyAll drops them all, which the
-    // store-exit release needs: a Frame holds a UI object of the store.
+    // Draws an Engine Result and nothing else: it does not know what was asked or why an item is marked. It adds one
+    // child Image under each marked GameItemElement's RectTransform, or under its rotator when the item is turned.
+    // Outlines are kept per item in a dictionary and hidden, not destroyed, when an item is not marked, so the next
+    // result reuses them. Only the outlines shown by the last pass are checked for hiding, not every outline kept.
+    // DestroyAll drops them all, which the store-exit release needs: a Frame holds a UI object of the store.
     public static class Painter
     {
         const string NodeName = "DemandHighlight";
@@ -28,6 +29,7 @@ namespace DemandHighlight
         // One outline: its UI objects, and the state it was last drawn with, so Item can skip a redraw that would change nothing.
         sealed class Frame
         {
+            public object Key;
             public GameObject Root;
             public RectTransform Rect;
             public Image Image;
@@ -43,26 +45,37 @@ namespace DemandHighlight
 
         static readonly Dictionary<object, Frame> frames = new Dictionary<object, Frame>();
         static readonly List<object> scratch = new List<object>();
+        // The outlines on screen after the last pass, and those this pass shows.
+        static List<Frame> shown = new List<Frame>(), next = new List<Frame>();
         static int pass;
 
         public static int Thickness = 2, Corner = 2;
         public static bool Fill = true;
 
-        // complete: the walk reached everything; only then are outlines it did not report hidden (a walk cut short
-        // by its time budget leaves the rest as they were until it finishes).
-        public static void Paint(bool complete)
+        // Outlines the result did not report are hidden only when the walk reached everything (a walk cut short by its
+        // time budget leaves the rest as they were until it finishes).
+        public static void Paint(Result result)
         {
             pass++;
-            var hits = Rules.Hits;
-            for (int i = 0; i < hits.Count; i++) Item(hits[i].Element, hits[i].Style);
-            var tabs = Rules.Tabs;
+            next.Clear();
+            var items = result.Items;
+            for (int i = 0; i < items.Count; i++) Item(items[i].Element, items[i].Style);
+            var tabs = result.Tabs;
             for (int i = 0; i < tabs.Count; i++) Tabs(tabs[i]);
-            if (complete) HideUnseen();
+            if (result.Complete) HideUnseen();
+            else
+            {
+                // Still on screen from earlier passes: keep tracking them.
+                for (int i = 0; i < shown.Count; i++)
+                    if (shown[i].Seen != pass && shown[i].Visible) next.Add(shown[i]);
+                Swap();
+            }
         }
 
         public static void HideAll()
         {
             pass++;
+            next.Clear();
             HideUnseen();
         }
 
@@ -71,6 +84,8 @@ namespace DemandHighlight
             foreach (var f in frames.Values) if (f.Root != null) Object.Destroy(f.Root);
             frames.Clear();
             plates.Clear();
+            shown.Clear();
+            next.Clear();
         }
 
         public static Color ColorOf(Mark mark)
@@ -104,7 +119,6 @@ namespace DemandHighlight
 
             var frame = Ensure(element, anchor);
             if (frame == null) return;
-            frame.Seen = pass;
             Show(frame);
             if (frame.Drawn && frame.Style.Equals(style) && frame.Shape == shape && frame.Orientation == orientation &&
                 frame.Flipped == flipped && frame.W == w && frame.H == h && frame.Generation == Sprites.Generation)
@@ -116,19 +130,14 @@ namespace DemandHighlight
             frame.Shape = shape; frame.Orientation = orientation; frame.Flipped = flipped; frame.W = w; frame.H = h;
         }
 
-        // Outlines the tab buttons of an open machine: a tab takes the strongest mark of the items on its page (marks are
-        // read back through Rules.StyleOf, so only items of this walk count).
-        static void Tabs(Rules.TabsHit hit)
+        // Outlines the tab buttons of an open machine with the mark the result gives each page.
+        static void Tabs(Result.TabMarks marks)
         {
-            var plates = Plates(hit.Tabs, hit.Pages.Count);
+            var plates = Plates(marks.Tabs, marks.Pages.Count);
             if (plates == null) return;
             for (int i = 0; i < plates.Count; i++)
             {
-                var style = default(Style);
-                var page = hit.Pages[i];
-                var items = page != null ? page.childItems : null;
-                if (items != null)
-                    for (int k = 0; k < items.Count; k++) style = Style.Max(style, Rules.StyleOf(items[k]));
+                var style = marks.Pages[i];
                 if (style.Mark == Mark.None) continue;
 
                 var plate = plates[i];
@@ -137,7 +146,6 @@ namespace DemandHighlight
                 if (w < 2 || h < 2) continue;
                 var frame = Ensure(plate, plate);
                 if (frame == null) continue;
-                frame.Seen = pass;
                 Show(frame);
                 if (frame.Drawn && frame.Style.Equals(style) && frame.W == w && frame.H == h &&
                     frame.Generation == Sprites.Generation)
@@ -233,37 +241,47 @@ namespace DemandHighlight
             var image = go.AddComponent<Image>();
             image.raycastTarget = false;
             image.type = Image.Type.Simple;
-            frame = new Frame { Root = go, Rect = rt, Image = image, Anchor = anchor, Visible = true };
+            frame = new Frame { Key = key, Root = go, Rect = rt, Image = image, Anchor = anchor, Visible = true };
             frames[key] = frame;
             return frame;
         }
 
+        // Marks the outline as shown by this pass, and makes it visible.
         static void Show(Frame frame)
         {
+            if (frame.Seen != pass) { frame.Seen = pass; next.Add(frame); }
             if (frame.Visible) return;
             frame.Root.SetActive(true);
             frame.Visible = true;
         }
 
-        // Hides every outline the current pass did not touch. A hidden outline of an item that left the shop keeps its
-        // UI object alive until HiddenCap is passed.
+        // Hides the outlines the last pass showed and this one did not. Every other outline kept is already hidden, so
+        // it is not looked at. Outlines of items that left the shop stay hidden for reuse until HiddenCap is passed.
         static void HideUnseen()
         {
+            for (int i = 0; i < shown.Count; i++)
+            {
+                var f = shown[i];
+                if (f.Seen == pass || !f.Visible) continue;
+                if (f.Root != null) f.Root.SetActive(false);
+                f.Visible = false;
+            }
+            Swap();
+            if (frames.Count - shown.Count <= HiddenCap) return;
             scratch.Clear();
-            int hidden = 0;
             foreach (var pair in frames)
             {
                 var f = pair.Value;
-                if (f.Root == null) { scratch.Add(pair.Key); continue; }
-                if (f.Seen == pass) continue;
-                if (f.Visible) { f.Root.SetActive(false); f.Visible = false; }
-                hidden++;
+                if (f.Root == null) scratch.Add(pair.Key);
+                else if (!f.Visible) { Object.Destroy(f.Root); scratch.Add(pair.Key); }
             }
-            // Items that left the shop keep a hidden outline for reuse; drop them when there are too many.
-            if (hidden > HiddenCap)
-                foreach (var pair in frames)
-                    if (pair.Value.Root != null && !pair.Value.Visible) { Object.Destroy(pair.Value.Root); scratch.Add(pair.Key); }
             for (int i = 0; i < scratch.Count; i++) frames.Remove(scratch[i]);
+        }
+
+        static void Swap()
+        {
+            var t = shown; shown = next; next = t;
+            next.Clear();
         }
 
         static bool Measurable(RectTransform rt)

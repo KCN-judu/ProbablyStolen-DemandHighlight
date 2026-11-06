@@ -16,6 +16,7 @@ msgid "Building"
 msgstr ""
 
 #: manual/building.md:4
+#: manual/query-api.md:11
 msgid "Requirements"
 msgstr ""
 
@@ -44,7 +45,7 @@ msgid "Variable"
 msgstr ""
 
 #: manual/building.md:19
-#: manual/index.md:28
+#: manual/index.md:31
 msgid "Default"
 msgstr ""
 
@@ -62,6 +63,341 @@ msgstr ""
 
 #: manual/building.md:28
 msgid "The mod declares no capabilities, so the game enables it without a permission prompt."
+msgstr ""
+
+#: manual/filter-language.md:1
+msgid "Filter language"
+msgstr ""
+
+#: manual/filter-language.md:3
+msgid "The [Item Filter](item-filter.md)'s box takes a small language. This page is its full definition. `tests/LanguageTest.cs` checks every rule here; when one changes, both change."
+msgstr ""
+
+#: manual/filter-language.md:5
+msgid "Words and symbols"
+msgstr ""
+
+#: manual/filter-language.md:7
+msgid "Text is read as tokens, left to right. Spaces separate tokens and mean nothing else."
+msgstr ""
+
+#: manual/filter-language.md:9
+msgid "Token"
+msgstr ""
+
+#: manual/filter-language.md:9
+msgid "Written as"
+msgstr ""
+
+#: manual/filter-language.md:11
+msgid "word"
+msgstr ""
+
+#: manual/filter-language.md:11
+msgid "letters of any script, digits, `_`, `.`, `'`: `stolen`, `食物`, `x.y`, `it's`"
+msgstr ""
+
+#: manual/filter-language.md:12
+msgid "quoted text"
+msgstr ""
+
+#: manual/filter-language.md:12
+msgid "`\"...\"`; inside, `\\\"` is a quote and `\\\\` a backslash"
+msgstr ""
+
+#: manual/filter-language.md:13
+msgid "colon"
+msgstr ""
+
+#: manual/filter-language.md:14
+msgid "brackets"
+msgstr ""
+
+#: manual/filter-language.md:14
+msgid "`(` and `)`"
+msgstr ""
+
+#: manual/filter-language.md:15
+msgid "and"
+msgstr ""
+
+#: manual/filter-language.md:15
+msgid "`and` or `+`"
+msgstr ""
+
+#: manual/filter-language.md:16
+msgid "or"
+msgstr ""
+
+#: manual/filter-language.md:16
+msgid "`or` or `\\|`"
+msgstr ""
+
+#: manual/filter-language.md:17
+#: manual/item-filter.md:68
+msgid "not"
+msgstr ""
+
+#: manual/filter-language.md:17
+msgid "`not` or `-`"
+msgstr ""
+
+#: manual/filter-language.md:19
+msgid "`-` and `+` are never part of a word: `a-b` is `a`, not, `b`. Any other symbol (`&`, `!`, `#` and so on) is an error."
+msgstr ""
+
+#: manual/filter-language.md:21
+msgid "`and`, `or` and `not` are operators only as whole words, in any case: `Or` is or, `orange` and `notebook` are words."
+msgstr ""
+
+#: manual/filter-language.md:23
+msgid "Terms"
+msgstr ""
+
+#: manual/filter-language.md:25
+msgid "Term"
+msgstr ""
+
+#: manual/filter-language.md:25
+#: manual/item-filter.md:60
+msgid "Means"
+msgstr ""
+
+#: manual/filter-language.md:27
+msgid "`stolen`, `contraband`, `owned` (or `mine`)"
+msgstr ""
+
+#: manual/filter-language.md:27
+msgid "the item is stolen, contraband, yours"
+msgstr ""
+
+#: manual/filter-language.md:28
+msgid "every item, no item"
+msgstr ""
+
+#: manual/filter-language.md:29
+msgid "a type's name on its own, `food` or `食物`"
+msgstr ""
+
+#: manual/filter-language.md:29
+msgid "items of that type"
+msgstr ""
+
+#: manual/filter-language.md:30
+msgid "items of that type, by name in your language or by identifier; case, spaces and underscores do not matter"
+msgstr ""
+
+#: manual/filter-language.md:31
+msgid "items with that tag"
+msgstr ""
+
+#: manual/filter-language.md:32
+msgid "items with that identifier"
+msgstr ""
+
+#: manual/filter-language.md:33
+msgid "`condition:broken` (or `cond:`)"
+msgstr ""
+
+#: manual/filter-language.md:33
+msgid "items in that condition"
+msgstr ""
+
+#: manual/filter-language.md:34
+msgid "the key over a group, below"
+msgstr ""
+
+#: manual/filter-language.md:35
+msgid "brackets, for grouping"
+msgstr ""
+
+#: manual/filter-language.md:37
+msgid "No space is allowed around the colon: `type: food` and `type :food` are errors."
+msgstr ""
+
+#: manual/filter-language.md:39
+msgid "Groups"
+msgstr ""
+
+#: manual/filter-language.md:41
+msgid "`key:( ... )` applies the key to every word and quoted text inside the brackets. `type:(food or medical)` is `type:food or type:medical`. Inside, the operators and brackets work as everywhere: `type:(food -junk)` is food that is not junk. A word inside is always a value, so `type:(stolen)` is the type called stolen; a key written inside keeps its own key: `type:(food or tag:x)`. To use `and`, `or` or `not` as a value, quote it: `type:(\"or\")`. Groups can nest."
+msgstr ""
+
+#: manual/filter-language.md:43
+msgid "Precedence and associativity"
+msgstr ""
+
+#: manual/filter-language.md:45
+msgid "From the tightest to the loosest:"
+msgstr ""
+
+#: manual/filter-language.md:47
+msgid "Level"
+msgstr ""
+
+#: manual/filter-language.md:47
+msgid "Operators"
+msgstr ""
+
+#: manual/filter-language.md:47
+msgid "Kind"
+msgstr ""
+
+#: manual/filter-language.md:47
+msgid "Reads"
+msgstr ""
+
+#: manual/filter-language.md:49
+msgid "terms, `key:( )`, `( )`"
+msgstr ""
+
+#: manual/filter-language.md:49
+msgid "atoms"
+msgstr ""
+
+#: manual/filter-language.md:50
+msgid "prefix, right to left"
+msgstr ""
+
+#: manual/filter-language.md:50
+msgid "`not not a` is `not (not a)`"
+msgstr ""
+
+#: manual/filter-language.md:51
+msgid "`and`, `+`, two terms side by side"
+msgstr ""
+
+#: manual/filter-language.md:51
+#: manual/filter-language.md:52
+msgid "n-ary, left to right"
+msgstr ""
+
+#: manual/filter-language.md:51
+msgid "`a b c` is `a and b and c`"
+msgstr ""
+
+#: manual/filter-language.md:54
+msgid "So:"
+msgstr ""
+
+#: manual/filter-language.md:56
+msgid "`a or b and c` is `a or (b and c)`."
+msgstr ""
+
+#: manual/filter-language.md:57
+msgid "`not a b` is `(not a) and b`; `not` takes one term, and brackets give it more: `not (a b)`."
+msgstr ""
+
+#: manual/filter-language.md:58
+msgid "`-a b | c` is `((not a) and b) or c`."
+msgstr ""
+
+#: manual/filter-language.md:59
+msgid "`type:x y` is `type:x and y`: a key takes one value unless it is given a group."
+msgstr ""
+
+#: manual/filter-language.md:61
+msgid "`and` and `or` are associative, so how a run of one of them is grouped never changes what it means: `(a b) c` and `a (b c)` are the same filter."
+msgstr ""
+
+#: manual/filter-language.md:63
+msgid "Errors"
+msgstr ""
+
+#: manual/filter-language.md:65
+msgid "The first error in the text is reported, with the character it is at. The box turns red and the last filter that read stays in force."
+msgstr ""
+
+#: manual/filter-language.md:67
+msgid "Error"
+msgstr ""
+
+#: manual/filter-language.md:67
+msgid "Example"
+msgstr ""
+
+#: manual/filter-language.md:69
+msgid "something is missing at the end"
+msgstr ""
+
+#: manual/filter-language.md:70
+msgid "a `)` is missing"
+msgstr ""
+
+#: manual/filter-language.md:71
+msgid "a key has no value"
+msgstr ""
+
+#: manual/filter-language.md:72
+msgid "a key is unknown"
+msgstr ""
+
+#: manual/filter-language.md:73
+msgid "a word is not a keyword or a type"
+msgstr ""
+
+#: manual/filter-language.md:74
+msgid "a symbol where none belongs"
+msgstr ""
+
+#: manual/filter-language.md:74
+msgid "`stolen)`, `a or or b`, `a & b`, `\"food\"` outside a group"
+msgstr ""
+
+#: manual/filter-language.md:75
+msgid "a quote is not closed"
+msgstr ""
+
+#: manual/filter-language.md:77
+msgid "The canonical form"
+msgstr ""
+
+#: manual/filter-language.md:79
+msgid "The box rewrites what you typed in one regular form when you press Enter or leave it, the way a code editor formats on save, and the ticks write in the same form. What you wrote keeps its structure and order; only its spelling changes:"
+msgstr ""
+
+#: manual/filter-language.md:81
+msgid "`and`, `or`, `not` in words, or as `+`, `|`, `-` with the window's **Short** tick;"
+msgstr ""
+
+#: manual/filter-language.md:82
+msgid "one space around `and` and `or`; none after `-`, around the colon or inside brackets;"
+msgstr ""
+
+#: manual/filter-language.md:83
+msgid "brackets wherever `and` and `or` meet, and after `not` around an `and` or `or`; brackets that change nothing are removed;"
+msgstr ""
+
+#: manual/filter-language.md:84
+msgid "keys and keywords in lower case, in one spelling: `cond` becomes `condition`, `mine` becomes `owned`;"
+msgstr ""
+
+#: manual/filter-language.md:85
+msgid "values as written, quoted only when they must be;"
+msgstr ""
+
+#: manual/filter-language.md:86
+msgid "several types or values of one key chosen together are written as one group: `type:(Food or Medical)`;"
+msgstr ""
+
+#: manual/filter-language.md:87
+msgid "types are written by their names in your language."
+msgstr ""
+
+#: manual/filter-language.md:89
+msgid "Typed"
+msgstr ""
+
+#: manual/filter-language.md:89
+msgid "Words"
+msgstr ""
+
+#: manual/filter-language.md:89
+msgid "Short"
+msgstr ""
+
+#: manual/filter-language.md:97
+msgid "Formatting never changes what the text means, formatting twice gives the same text, and each style formats the other's text into its own."
 msgstr ""
 
 #: manual/index.md:1
@@ -85,6 +421,7 @@ msgid "Look"
 msgstr ""
 
 #: manual/index.md:9
+#: manual/query-api.md:83
 msgid "Meaning"
 msgstr ""
 
@@ -144,84 +481,105 @@ msgstr ""
 msgid "When a customer is selling, their own stolen goods and contraband are marked only if the option is on. It is off by default."
 msgstr ""
 
+#: manual/index.md:25
+msgid "A customer who barters is shown the items of yours that meet any of their terms. A container counts on its own, whatever is inside it."
+msgstr ""
+
 #: manual/index.md:26
+msgid "A customer who wants variety stops wanting a kind of item as soon as you sell them one."
+msgstr ""
+
+#: manual/index.md:27
+msgid "The flexi buyer arrives without wanting anything and picks a kind of goods when its first words end. Nothing is marked until then."
+msgstr ""
+
+#: manual/index.md:29
 msgid "Options"
 msgstr ""
 
-#: manual/index.md:28
+#: manual/index.md:31
 msgid "Option"
 msgstr ""
 
-#: manual/index.md:28
+#: manual/index.md:31
 msgid "What it does"
 msgstr ""
 
-#: manual/index.md:30
+#: manual/index.md:33
 msgid "Outline thickness"
 msgstr ""
 
-#: manual/index.md:30
+#: manual/index.md:33
 msgid "Line width in UI pixels, from 1 to 6."
 msgstr ""
 
-#: manual/index.md:31
+#: manual/index.md:34
 msgid "Corner rounding"
 msgstr ""
 
-#: manual/index.md:31
+#: manual/index.md:34
 msgid "Radius of the rounded outer corners, from 0 to 8."
 msgstr ""
 
-#: manual/index.md:32
+#: manual/index.md:35
 msgid "Tint wanted items"
 msgstr ""
 
-#: manual/index.md:32
+#: manual/index.md:35
+#: manual/index.md:37
 msgid "on"
 msgstr ""
 
-#: manual/index.md:32
+#: manual/index.md:35
 msgid "A faint fill inside the outline of wanted items."
 msgstr ""
 
-#: manual/index.md:33
+#: manual/index.md:36
 msgid "Mark the customer's own goods"
 msgstr ""
 
-#: manual/index.md:33
+#: manual/index.md:36
 msgid "off"
 msgstr ""
 
-#: manual/index.md:33
+#: manual/index.md:36
 msgid "When a customer is selling, mark their stolen goods and contraband."
 msgstr ""
 
-#: manual/index.md:34
-msgid "Toggle demand highlight"
-msgstr ""
-
-#: manual/index.md:34
-#: manual/index.md:35
-msgid "unbound"
-msgstr ""
-
-#: manual/index.md:34
-msgid "A key that turns the outlines on and off, the Item Filter's marks included."
-msgstr ""
-
-#: manual/index.md:35
-msgid "Open item filter"
-msgstr ""
-
-#: manual/index.md:35
-msgid "A key that opens the [Item Filter](item-filter.md) window."
+#: manual/index.md:37
+msgid "Numbers in the item filter"
 msgstr ""
 
 #: manual/index.md:37
-msgid "Neither key has a default. Bind them in the game's options menu."
+msgid "The line of numbers in the [Item Filter](item-filter.md): items, worth, cells and worth per cell. Off also skips adding them up."
+msgstr ""
+
+#: manual/index.md:38
+msgid "Toggle demand highlight"
+msgstr ""
+
+#: manual/index.md:38
+#: manual/index.md:39
+msgid "unbound"
+msgstr ""
+
+#: manual/index.md:38
+msgid "A key that turns the outlines on and off, the Item Filter's marks included."
 msgstr ""
 
 #: manual/index.md:39
+msgid "Open item filter"
+msgstr ""
+
+#: manual/index.md:39
+msgid "A key that opens the [Item Filter](item-filter.md) window."
+msgstr ""
+
+#: manual/index.md:41
+msgid "Neither key has a default. Bind them in the game's options menu."
+msgstr ""
+
+#: manual/index.md:43
 msgid "If you use another demand-highlight mod, turn it off, or both will draw outlines."
 msgstr ""
 
@@ -230,7 +588,7 @@ msgid "Item Filter"
 msgstr ""
 
 #: manual/item-filter.md:3
-msgid "The Item Filter marks your own stock by type, stolen or contraband, whoever is at the counter. Use it to sort the shop by category."
+msgid "The Item Filter marks your own stock by type, stolen or contraband, or by anything you can write as an expression, whoever is at the counter. Use it to sort the shop."
 msgstr ""
 
 #: manual/item-filter.md:5
@@ -238,7 +596,7 @@ msgid "Opening it"
 msgstr ""
 
 #: manual/item-filter.md:7
-msgid "Press the key bound to **Open item filter** in the game's options menu. The window is built from the game's own machine-panel widgets, so it looks like a machine window."
+msgid "Press the key bound to **Open item filter** in the game's options menu. It is an ordinary game window: drag it by its title, close it with Esc or its cross, and it opens again where you left it. Texture packs that reskin the game's windows reskin it too."
 msgstr ""
 
 #: manual/item-filter.md:9
@@ -246,47 +604,211 @@ msgid "The window"
 msgstr ""
 
 #: manual/item-filter.md:11
-msgid "**Status** is one line with Stolen and Contraband, each with its count, and Clear."
+msgid "From top to bottom:"
 msgstr ""
 
-#: manual/item-filter.md:12
-msgid "**Types** has one toggle per item type found in the shop, with counts. These are the game's own categories, the ones customers ask for, such as Food, Medical, Tool or Luxury Item."
+#: manual/item-filter.md:13
+msgid "**The box**, with a red cross beside it that empties it. The box is the filter (see below)."
 msgstr ""
 
 #: manual/item-filter.md:14
-msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, with any other type under Other. Within a group the most common comes first. The groups are packed into columns of similar height. Hover a toggle to see what it does."
+msgid "**One line under the box**, with the **Short** tick at its end: what is wrong and at which character when the text does not read, with the box itself in red; how the text was read when that differs from what you wrote (a type name resolved, `-` spelled out as `not`); a hint when the box is empty. While the text has an error, the last filter that read keeps working."
+msgstr ""
+
+#: manual/item-filter.md:15
+msgid "**The numbers** (see below)."
 msgstr ""
 
 #: manual/item-filter.md:16
-msgid "The window is rebuilt only when the stock or the filter changed since it was last opened."
+msgid "**Stolen** and **Contraband**, each with its count."
 msgstr ""
 
-#: manual/item-filter.md:18
-msgid "Marking"
+#: manual/item-filter.md:17
+msgid "**Types**: one tick per item type found in the shop, with counts. These are the game's own categories, the ones customers ask for, such as Food, Medical, Tool or Luxury Item. They are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, with any other type under Other, three to a row, the most common first. Only this part scrolls."
 msgstr ""
 
-#: manual/item-filter.md:20
-msgid "Tick anything and every matching item in the shop is marked until you clear the filter."
+#: manual/item-filter.md:19
+msgid "Hover anything to see what it does."
 msgstr ""
 
 #: manual/item-filter.md:21
-msgid "Several ticks combine as \"any of these\"."
-msgstr ""
-
-#: manual/item-filter.md:22
-msgid "Type matches are drawn in cyan with the solid style. Stolen goods and contraband keep their amber and red styles."
+msgid "The numbers"
 msgstr ""
 
 #: manual/item-filter.md:23
+msgid "With nothing chosen, the line shows the whole shop, as a baseline:"
+msgstr ""
+
+#: manual/item-filter.md:27
+msgid "With a filter on, it shows what matches, against that baseline:"
+msgstr ""
+
+#: manual/item-filter.md:31
+msgid "**Items** counts everything in the shop, closed containers included."
+msgstr ""
+
+#: manual/item-filter.md:32
+msgid "**Total** is each item's own estimated worth, the one its tooltip shows, without what is inside it, so a container and its contents are each counted once."
+msgstr ""
+
+#: manual/item-filter.md:33
+msgid "**Cells** are the grid cells each item's shape takes, wherever it sits, inside containers too."
+msgstr ""
+
+#: manual/item-filter.md:34
+msgid "**Per cell** is total worth divided by cells. Compare it with the shop's to see which goods earn their space."
+msgstr ""
+
+#: manual/item-filter.md:36
+msgid "The numbers follow the stock and the filter while the window is open, at most twice a second."
+msgstr ""
+
+#: manual/item-filter.md:38
+msgid "The box is the filter"
+msgstr ""
+
+#: manual/item-filter.md:40
+msgid "There is one filter, the text in the box. The ticks are another way to see and edit it:"
+msgstr ""
+
+#: manual/item-filter.md:42
+msgid "A tick has three states, cycled by clicking: off, ✓ (include) and ✗ (exclude), then off again. The ✗ is drawn from the game's own check mark, in the same pixel art."
+msgstr ""
+
+#: manual/item-filter.md:43
+msgid "Ticking writes into the box. Tick Stolen, then Household Good and Medical, and the box reads `stolen and type:(\"Household Good\" or Medical)`. Click Junk twice for ✗ and `and not type:Junk` is added."
+msgstr ""
+
+#: manual/item-filter.md:44
+msgid "Typing moves the ticks. Type `type:Food -owned` and Food shows as ticked."
+msgstr ""
+
+#: manual/item-filter.md:45
+msgid "Within the status ticks or within the types, any ✓ will do; every ✗ must hold, and so must the two groups and anything else in the box. So the example above is stolen goods that are household goods or medical."
+msgstr ""
+
+#: manual/item-filter.md:46
+msgid "Types are written by their names in your language, always with `type:`, so the type Contraband (`type:Contraband`) never looks like the word `contraband`. Types ticked together are written as one group, and brackets wherever `and` and `or` meet."
+msgstr ""
+
+#: manual/item-filter.md:47
+msgid "An expression of another shape, such as `type:Food or stolen`, shows nothing ticked; ticking then adds to it: `type:Medical and (type:Food or stolen)`."
+msgstr ""
+
+#: manual/item-filter.md:48
+msgid "If the box has an error when you tick, the tick edits the last filter that read, and the box is rewritten from it."
+msgstr ""
+
+#: manual/item-filter.md:50
+msgid "The red cross empties the box."
+msgstr ""
+
+#: manual/item-filter.md:52
+msgid "Counts"
+msgstr ""
+
+#: manual/item-filter.md:54
+msgid "Each tick's count is what it would find with the rest of the filter: everything in the box except its own group. With Stolen ticked, each type shows how many stolen items it has; with Medical ticked, Stolen shows how many stolen medical items there are. A ✗ tick is struck through and shows how many items it takes away (`-4`). A tick that would find nothing is dimmed but still works. The layout does not move as the counts change: types keep their places, ordered by how common they are in the whole shop."
+msgstr ""
+
+#: manual/item-filter.md:56
+msgid "Expressions"
+msgstr ""
+
+#: manual/item-filter.md:58
+msgid "The box takes a small language; [Filter language](filter-language.md) defines it in full. In short:"
+msgstr ""
+
+#: manual/item-filter.md:60
+msgid "Write"
+msgstr ""
+
+#: manual/item-filter.md:62
+msgid "a type, by its name in your language or its identifier"
+msgstr ""
+
+#: manual/item-filter.md:63
+msgid "any of these types: a key over a group"
+msgstr ""
+
+#: manual/item-filter.md:64
+msgid "stolen, contraband, yours"
+msgstr ""
+
+#: manual/item-filter.md:65
+msgid "a tag, an item identifier, a condition"
+msgstr ""
+
+#: manual/item-filter.md:66
+msgid "both"
+msgstr ""
+
+#: manual/item-filter.md:67
+msgid "either"
+msgstr ""
+
+#: manual/item-filter.md:69
+msgid "grouping"
+msgstr ""
+
+#: manual/item-filter.md:71
+msgid "`not` binds tightest, then `and`, then `or`: `-stolen food | medical` is (not stolen and food) or medical. The box writes brackets wherever `and` and `or` meet, so its text never relies on this."
+msgstr ""
+
+#: manual/item-filter.md:73
+msgid "When you press Enter or leave the box, the text is rewritten in its regular form, as a code editor formats on save: `-stolen food` becomes `not stolen and food`. The **Short** tick beside the box writes `+`, `|` and `-` instead; both are always understood."
+msgstr ""
+
+#: manual/item-filter.md:75
+msgid "Examples:"
+msgstr ""
+
+#: manual/item-filter.md:77
+msgid "`food -stolen`: food that is not stolen."
+msgstr ""
+
+#: manual/item-filter.md:78
+msgid "`type:(food or medical) owned`: your food and medical goods."
+msgstr ""
+
+#: manual/item-filter.md:79
+msgid "`contraband -owned`: contraband that is not yours."
+msgstr ""
+
+#: manual/item-filter.md:81
+msgid "Marking"
+msgstr ""
+
+#: manual/item-filter.md:83
+msgid "Every matching item in the shop is marked until you clear the filter."
+msgstr ""
+
+#: manual/item-filter.md:84
+msgid "Type matches are drawn in cyan with the solid style. Stolen goods and contraband keep their amber and red styles."
+msgstr ""
+
+#: manual/item-filter.md:85
 msgid "Containers holding matches get corner brackets."
 msgstr ""
 
-#: manual/item-filter.md:24
+#: manual/item-filter.md:86
 msgid "Locks are ignored, because the filter is for sorting your own stock."
 msgstr ""
 
-#: manual/item-filter.md:26
-msgid "Turning the filter on pauses the customer highlight, and clearing it brings the highlight back."
+#: manual/item-filter.md:88
+msgid "Turning the filter on pauses the customer highlight, and clearing it brings the highlight back. While you type in the box, the mod's own keys do nothing."
+msgstr ""
+
+#: manual/item-filter.md:90
+msgid "Texture packs"
+msgstr ""
+
+#: manual/item-filter.md:92
+msgid "The ✗ can be replaced by a texture pack. Its file is named"
+msgstr ""
+
+#: manual/item-filter.md:96
+msgid "and is the whole box with the ✗ in it, 13 by 13 pixels, the size of the game's checkbox pictures; `textures.schema.tsv` in the mod's folder lists it. Without such a file, the ✗ is found by comparing the game's checked and empty boxes and drawn into the empty one, so a pack that only redraws the checkbox gets a matching ✗ for free. The ✓ is the game's own and is replaced like any of the game's pictures."
 msgstr ""
 
 #: manual/performance.md:1
@@ -302,77 +824,346 @@ msgid "Work only on change"
 msgstr ""
 
 #: manual/performance.md:7
-msgid "While nothing changes, the mod does not walk the shop. A walk starts when the customer or their intent changes, an item is validated, turned or has a tag changed, an item enters or leaves an inventory, or a container window opens or closes. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s. The only repeated work is a check of the customer's intent every 0.5 s."
+#: manual/query-api.md:7
+msgid "![How a query travels](../attachments/query-architecture.png)"
 msgstr ""
 
 #: manual/performance.md:9
-msgid "One question per item"
+msgid "The mod is three parts that only hand data to each other. The first reads what the customer at the counter wants, or what the Item Filter asks for, and writes it down as a query: a small value such as \"items the game says this customer buys, except these identifiers\". The second answers the query over the store. The third draws the answer. The second part never looks at the customer and the third never looks at the query. The Item Filter's counts and the [Query API](query-api.md) use a fourth part, a plain walk over the whole shop that evaluates a query on every item and keeps nothing; it does not touch the second or third."
 msgstr ""
 
 #: manual/performance.md:11
-msgid "The game's own \"would this customer buy it\" check, run on a container, lists every item inside and checks each one again, recursively, which is quadratic in a deep store. The mod asks the game only about the item itself and rebuilds the same rule bottom-up: a container is bought when it is acceptable itself and, unless it is locked, has no window or is an advanced gun, everything inside it is bought. Each item is checked once per customer."
+msgid "While nothing changes, the mod does not walk the shop. A walk starts when the query changes, an item is validated, turned or has a tag changed, an item enters or leaves an inventory, or a container window opens or closes. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s. The only repeated work is reading the query every 0.5 s, because the game gives no signal when a customer changes what they want, and comparing it with the last one."
 msgstr ""
 
 #: manual/performance.md:13
-msgid "A record per item"
+msgid "One question per item"
 msgstr ""
 
 #: manual/performance.md:15
-msgid "Each item keeps its verdict, its lock, ownership and contraband flags, and a summary of what is inside it. A change clears the changed item's record and marks only the summaries of the containers above it as stale."
+msgid "The game's own \"would this customer buy it\" check, run on a container, lists every item inside and checks each one again, recursively, which is quadratic in a deep store. The mod asks the game only about the item itself and rebuilds the same rule bottom-up: a container is bought when it is acceptable itself and, unless it is locked, has no window or is an advanced gun, everything inside it is bought. Each item is checked once per customer."
 msgstr ""
 
 #: manual/performance.md:17
-msgid "Only what is on screen"
+msgid "A record per item"
 msgstr ""
 
 #: manual/performance.md:19
-msgid "A walk visits the shop inventories and open containers. Closed containers answer from their record."
+msgid "Each item keeps three things, each for exactly as long as it holds:"
 msgstr ""
 
 #: manual/performance.md:21
-msgid "Big jobs over several frames"
+msgid "its facts (stolen, contraband, locked, yours): until the item changes;"
+msgstr ""
+
+#: manual/performance.md:22
+msgid "the game's answer to \"would this customer buy it\": until the item changes or the question does. The question names everything the answer depends on, the customer and what they want, so a new customer asks again and the same customer does not;"
 msgstr ""
 
 #: manual/performance.md:23
-msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store does not cause one long frame. Outlines appear over a few frames instead."
+msgid "its verdict on the query and, for a container, a summary of what is inside: until the query or the item changes."
 msgstr ""
 
 #: manual/performance.md:25
-msgid "Cheap drawing"
+msgid "A change to an item clears its record and marks only the summaries of the containers above it as stale. When you sell to a customer who wants variety, only the query changes (\"except this identifier\"), so every item is judged again from what it already knows, without asking the game again."
 msgstr ""
 
 #: manual/performance.md:27
-msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size reuses the same texture. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed."
+msgid "The Item Filter window counts the whole shop by type and adds up its numbers in one walk, only while it is open, and only when the stock or the filter changed, at most every 0.5 s."
 msgstr ""
 
 #: manual/performance.md:29
-msgid "Nothing kept after leaving the store"
+msgid "Only what is on screen"
 msgstr ""
 
 #: manual/performance.md:31
-msgid "A store's items, their UI, windows and customers all point at each other, so a single reference kept after leaving the store would keep the whole store in memory. When another scene replaces the store (`SceneManager.sceneLoaded` in single mode for any scene other than `InventoryScene`, such as the main menu), the mod drops its item records, outlines, last customer and Item Filter window. The next store builds them again. The filter's choices are kept."
+msgid "A walk visits the shop inventories and open containers. Closed containers answer from their record."
 msgstr ""
 
 #: manual/performance.md:33
-msgid "Logging"
+msgid "Big jobs over several frames"
 msgstr ""
 
 #: manual/performance.md:35
-msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so you can tell whether a stutter comes from this mod."
+msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store does not cause one long frame. Outlines appear over a few frames instead."
 msgstr ""
 
 #: manual/performance.md:37
-msgid "Tested logic"
+msgid "Cheap drawing"
 msgstr ""
 
 #: manual/performance.md:39
-msgid "The decisions need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`. `Decide.Pure.cs` chooses each item's outline, what it passes on to the containers above it, and the Item Filter's matches. `Outline.Pure.cs` computes the outline image of each look, for any cell shape. `Style.Pure.cs` combines marks. `StoreExit.Pure.cs` decides which scene loads leave the store."
+msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size reuses the same texture. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed. Outlines that are not needed any more are hidden and kept for reuse; to find them, only the outlines shown last time are looked at, not every one kept."
 msgstr ""
 
 #: manual/performance.md:41
-msgid "Three tests run these files outside the game, with only the C# compiler. `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter. `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed. `tests/run.sh` compiles and runs them all."
+msgid "Nothing kept after leaving the store"
 msgstr ""
 
 #: manual/performance.md:43
+msgid "A store's items, their UI, windows and customers all point at each other, so a single reference kept after leaving the store would keep the whole store in memory. When another scene replaces the store (`SceneManager.sceneLoaded` in single mode for any scene other than `InventoryScene`, such as the main menu), the mod drops its item records, outlines, last customer and Item Filter window. The next store builds them again. The filter's choices are kept."
+msgstr ""
+
+#: manual/performance.md:45
+msgid "Logging"
+msgstr ""
+
+#: manual/performance.md:47
+msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so you can tell whether a stutter comes from this mod. Each new query is written once, as `[DemandHighlight] query: ...`, with how many items were visited, judged, asked about and marked."
+msgstr ""
+
+#: manual/performance.md:49
+msgid "Tested logic"
+msgstr ""
+
+#: manual/performance.md:51
+msgid "The decisions need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`. `Query.Pure.cs` defines queries and how an item answers them. `Intent.Pure.cs` turns a customer, or the Item Filter, into a query. The filter language is built like a small compiler, one stage per file: `Lexer.Pure.cs` turns text into tokens, `Parser.Pure.cs` tokens into a syntax tree (`Ast.Pure.cs`), `Binder.Pure.cs` the tree into a predicate; `Formatter.Pure.cs` writes a tree in the one canonical form, and `Lift.Pure.cs` turns a predicate back into a tree for it, so typed text and text made by the ticks are formatted alike; `Expr.Pure.cs` runs the stages. `Facets.Pure.cs` reads the window's ticks from a filter and edits it. `QueryApi.Pure.cs` is the public query API's contract and its host side (see [Query API](query-api.md)). `Stats.Pure.cs` adds up the Item Filter's numbers and fills in their line. `Cross.Pure.cs` draws the filter's \"exclude\" cross from the pixels of the game's check mark: its outline, fill, stroke and size. `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it. `Outline.Pure.cs` computes the outline image of each look, for any cell shape. `Style.Pure.cs` combines marks. `StoreExit.Pure.cs` decides which scene loads leave the store."
+msgstr ""
+
+#: manual/performance.md:53
+msgid "Eleven tests run these files outside the game, with only the C# compiler. `tests/QueryTest.cs` covers queries and their answers. `tests/IntentTest.cs` covers every kind of customer and the Item Filter. `tests/LanguageTest.cs` is the filter language's specification as tests: tables for the lexer, the grammar, errors, binding and formatting, then properties checked on 2,000 random trees. `tests/ExprTest.cs` covers the filter language, stage by stage. `tests/FacetsTest.cs` covers ticks read from and written into a filter. `tests/StatsTest.cs` covers the numbers and their line. `tests/CrossTest.cs` covers the cross drawn from a check, and prints both. `tests/QueryApiTest.cs` runs the query API end to end: the client file other mods copy in, talking through real AppDomain slots to the host side, with stand-in items. `tests/DecideTest.cs` covers buying, bartering, selling, inspections, locks, blocked searches and the Item Filter. `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed. `tests/run.sh` compiles and runs them all."
+msgstr ""
+
+#: manual/performance.md:55
 msgid "Starting is all or nothing: if a method the mod hooks is missing, for example after a game update, everything already set up is taken down again, one line is written to `Player.log` and the mod stays off."
+msgstr ""
+
+#: manual/query-api.md:1
+msgid "Query API"
+msgstr ""
+
+#: manual/query-api.md:3
+msgid "Demand Highlight can answer one question for other mods: which items of the shop match an Item Filter expression. You write the expression, for example `type:(food or medical) not stolen`, and get back the matching items, without the outlines, the filter window or anything else of this mod showing up."
+msgstr ""
+
+#: manual/query-api.md:5
+msgid "You might use it to count what the player has of a kind, to find the stolen goods before an inspection, to sort or move items in your own mod, or to build a feature on the same language the Item Filter uses."
+msgstr ""
+
+#: manual/query-api.md:9
+msgid "The diagram shows where the API sits. Demand Highlight builds a query from the customer or from the filter window. The highlight (Engine, Result, Painter) is one consumer of that query. The whole-shop walk is another: it serves the filter's counts and this API. The API compiles your text with the filter language and runs it on that walk. It never touches the Engine or the Painter."
+msgstr ""
+
+#: manual/query-api.md:13
+msgid "Demand Highlight 1.2.0 or later, enabled. List it as a dependency on your Workshop page if your mod needs it; your mod still loads and runs without it."
+msgstr ""
+
+#: manual/query-api.md:14
+msgid "One file in your mod: `api/DemandHighlightQuery.cs` from Demand Highlight's repository. Copy it into your sources. It needs no reference to Demand Highlight's assembly, which you could not use anyway: the game resolves a mod's references inside that mod's own folder only."
+msgstr ""
+
+#: manual/query-api.md:15
+msgid "The game's assemblies, which your mod already references (`Assembly-CSharp` for `GameItem`)."
+msgstr ""
+
+#: manual/query-api.md:17
+msgid "Integration"
+msgstr ""
+
+#: manual/query-api.md:19
+msgid "The client file reads what Demand Highlight publishes when it is enabled. You can check before you call:"
+msgstr ""
+
+#: manual/query-api.md:26
+msgid "You don't have to check. Without Demand Highlight, every call returns `Status.NotInstalled` and does nothing else, so you can call whenever you like and handle that status."
+msgstr ""
+
+#: manual/query-api.md:28
+msgid "Load order does not matter. Demand Highlight publishes the API when it is enabled and takes it back when it is disabled, and the client file looks it up again on every call."
+msgstr ""
+
+#: manual/query-api.md:30
+msgid "A basic query"
+msgstr ""
+
+#: manual/query-api.md:52
+msgid "`Run` clears your list, then adds every matching item. Pass `null` instead of a list if you only need `r.Count`."
+msgstr ""
+
+#: manual/query-api.md:54
+msgid "`tools/QuerySample` in the repository is a small development mod that does exactly this each time a shop loads and writes the answers to `Player.log`. Build it with `tools/QuerySample/build.sh --install`."
+msgstr ""
+
+#: manual/query-api.md:56
+msgid "What is searched"
+msgstr ""
+
+#: manual/query-api.md:58
+msgid "Every item of the shop, each once: the shop inventories, the counter, the showcase, the market stall, the hidden and sold areas, and everything inside them, closed and locked containers included. An item matches on its own facts. A container matches only if the container itself matches, not because of what it holds. Items come back in the order of the walk, which is stable for an unchanged shop, but don't rely on it for anything else."
+msgstr ""
+
+#: manual/query-api.md:60
+msgid "The expression is the Item Filter's language, described in full on [Filter language](filter-language.md): `stolen`, `contraband`, `owned`, `type:`, `tag:`, `id:`, `condition:`, groups such as `type:(a or b)`, and `and` / `+`, `or` / `|`, `not` / `-` with brackets. Type names are read in the player's language too (`type:食物`), so in code use the game's identifiers (`type:FOOD`): they work in every language."
+msgstr ""
+
+#: manual/query-api.md:62
+msgid "Building expressions"
+msgstr ""
+
+#: manual/query-api.md:64
+msgid "There is no structured query object in this version. Expressions are text, and two helpers build terms safely:"
+msgstr ""
+
+#: manual/query-api.md:72
+msgid "`Format` gives an expression back in its canonical form, the one the Item Filter writes, with `and`/`or`/`not` in words or as `+ | -`:"
+msgstr ""
+
+#: manual/query-api.md:79
+msgid "Results and errors"
+msgstr ""
+
+#: manual/query-api.md:81
+msgid "Every call returns a `DemandHighlightQuery.Result`:"
+msgstr ""
+
+#: manual/query-api.md:83
+msgid "Field"
+msgstr ""
+
+#: manual/query-api.md:85
+msgid "what happened, below"
+msgstr ""
+
+#: manual/query-api.md:87
+msgid "how many items matched (`Run`)"
+msgstr ""
+
+#: manual/query-api.md:88
+msgid "the expression in canonical form, when it compiled"
+msgstr ""
+
+#: manual/query-api.md:89
+msgid "for `Invalid`: `ExpectedTerm`, `ExpectedClose`, `ExpectedValue`, `UnknownKey`, `UnknownWord`, `Unexpected` or `UnclosedQuote`"
+msgstr ""
+
+#: manual/query-api.md:90
+msgid "for `Invalid`: the word or character concerned"
+msgstr ""
+
+#: manual/query-api.md:91
+msgid "for `Invalid`: where in your text, 0-based, and how many characters"
+msgstr ""
+
+#: manual/query-api.md:92
+msgid "what went wrong, in English, for your log"
+msgstr ""
+
+#: manual/query-api.md:94
+msgid "Status"
+msgstr ""
+
+#: manual/query-api.md:94
+msgid "When"
+msgstr ""
+
+#: manual/query-api.md:96
+msgid "the query ran; zero matches is still `Ok`"
+msgstr ""
+
+#: manual/query-api.md:97
+msgid "the expression does not compile: a syntax mistake, an unknown key, an unknown word"
+msgstr ""
+
+#: manual/query-api.md:98
+msgid "no shop is loaded (main menu, loading screen)"
+msgstr ""
+
+#: manual/query-api.md:99
+msgid "the expression compiled, but reading the shop failed in the game; `Message` has the exception"
+msgstr ""
+
+#: manual/query-api.md:100
+msgid "the expression is null or blank"
+msgstr ""
+
+#: manual/query-api.md:101
+msgid "not called from the game's main thread"
+msgstr ""
+
+#: manual/query-api.md:102
+msgid "Demand Highlight is not enabled, or offers no 1.x contract"
+msgstr ""
+
+#: manual/query-api.md:104
+msgid "`Invalid` is about your text and is reported even with no shop loaded, so you can check an expression in the main menu. `Failed` is about the game at that moment. On anything but `Ok`, your list is left empty."
+msgstr ""
+
+#: manual/query-api.md:106
+msgid "Lifecycle and rules"
+msgstr ""
+
+#: manual/query-api.md:108
+msgid "Call from the game's main thread, as with any game code."
+msgstr ""
+
+#: manual/query-api.md:109
+msgid "The items belong to the shop. Use them while it is loaded and let them go when the scene changes. Keeping one keeps the whole store in memory after the player leaves it."
+msgstr ""
+
+#: manual/query-api.md:110
+msgid "Nothing is cached between calls: each `Run` walks the whole shop once. Run a query when you need an answer, not every frame."
+msgstr ""
+
+#: manual/query-api.md:111
+msgid "Results are a snapshot. If items move afterwards, run the query again."
+msgstr ""
+
+#: manual/query-api.md:113
+msgid "Versions"
+msgstr ""
+
+#: manual/query-api.md:115
+msgid "The API has its own version, separate from the mod's. This is contract 1.0, published with Demand Highlight 1.2.0."
+msgstr ""
+
+#: manual/query-api.md:117
+msgid "A 1.x release can only add things: new fields at the end of a result, new keys or words in the language. A client file written for 1.0 keeps working with any 1.x."
+msgstr ""
+
+#: manual/query-api.md:118
+msgid "A change that would break a 1.x client gets a new major version under new names. An old client then sees `NotInstalled`, never wrong answers."
+msgstr ""
+
+#: manual/query-api.md:119
+msgid "`DemandHighlightQuery.Version` tells you which 1.x you are talking to."
+msgstr ""
+
+#: manual/query-api.md:121
+msgid "How it works underneath: Demand Highlight puts two delegates and a version string into slots of the AppDomain, which every mod's assembly shares, and the client file reads them. You don't need any of this unless you write your own client:"
+msgstr ""
+
+#: manual/query-api.md:123
+msgid "Slot"
+msgstr ""
+
+#: manual/query-api.md:123
+msgid "Type"
+msgstr ""
+
+#: manual/query-api.md:129
+msgid "A result row is `object[] { int status, int count, string problem, string detail, int position, int length, string message, string text }`."
+msgstr ""
+
+#: manual/query-api.md:131
+msgid "Not in this version"
+msgstr ""
+
+#: manual/query-api.md:133
+msgid "Structured queries without text. The predicate types inside the mod are not a contract we want to freeze yet. Text plus `Field` and `Quote` covers what they would do."
+msgstr ""
+
+#: manual/query-api.md:134
+msgid "Subscriptions or change notifications. Run the query again when you need a fresh answer."
+msgstr ""
+
+#: manual/query-api.md:135
+msgid "Your own keys or predicates in the language."
+msgstr ""
+
+#: manual/query-api.md:137
+msgid "What comes next"
+msgstr ""
+
+#: manual/query-api.md:139
+msgid "For now the API lives inside Demand Highlight. If other mods start using it and need more than this, the query part may later move into a small library of its own. That depends on what people actually build with it, so tell us what you need."
 msgstr ""

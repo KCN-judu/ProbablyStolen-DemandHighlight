@@ -7,16 +7,15 @@ opt_fill,원하는 물건에 색 입히기
 opt_fill_tip,원하는 물건의 테두리 안을 옅게 채웁니다.
 opt_goods,손님이 가져온 물건 표시
 opt_goods_tip,손님이 물건을 팔 때 장물과 밀수품을 표시합니다.
+opt_numbers,아이템 필터에 수치 표시
+opt_numbers_tip,아이템 필터에 일치하는 물건의 개수·총액·차지하는 칸 수·칸당 가치를 표시합니다.
 opt_key,수요 강조 켜기/끄기
 opt_key_tip,테두리를 켜고 끕니다.
 opt_panel_key,아이템 필터 열기
 opt_panel_key_tip,종류별 또는 장물·밀수품으로 물건을 표시하는 창을 엽니다.
 window_title,아이템 필터
-panel_status,상태
-panel_types,종류
 filter_stolen,장물
 filter_contraband,밀수품
-button_clear,지우기
 no_items,가게에 물건이 없습니다.
 fam_goods,상품
 fam_supplies,자재
@@ -25,7 +24,23 @@ fam_machines,기계
 fam_grade,등급
 fam_legal,규제품
 fam_other,기타
-tip_stolen,가게의 장물을 모두 호박색으로 표시합니다. 필터를 켜는 동안 손님 강조는 멈춥니다.
-tip_contraband,가게의 밀수품을 모두 빨간색으로 표시합니다. 필터를 켜는 동안 손님 강조는 멈춥니다.
-tip_clear,모두 해제하고 손님 강조로 돌아갑니다.
-tip_type,가게의 # 종류 물건을 모두 청록색으로 표시합니다. 이를 담은 용기에는 모서리 괄호가 붙습니다.
+tip_stolen,장물만. 종류를 체크하면 그 종류의 장물. 밀수품도 체크하면 둘 중 하나. 필터가 켜져 있는 동안 손님 강조는 멈춥니다. 한 번 더 누르면 제외(✗), 또 누르면 해제됩니다.
+tip_contraband,밀수품만. 종류를 체크하면 그 종류의 밀수품. 장물도 체크하면 둘 중 하나. 필터가 켜져 있는 동안 손님 강조는 멈춥니다. 한 번 더 누르면 제외(✗), 또 누르면 해제됩니다.
+tip_type,# 종류 물건을 청록색으로 표시합니다. 여러 종류를 체크하면 그중 하나입니다. 숫자는 나머지 조건을 더했을 때 이 항목이 찾는 수입니다. 한 번 더 누르면 제외(✗), 또 누르면 해제됩니다.
+tip_clear,필터를 비우고 손님 강조로 돌아갑니다.
+expr_placeholder,아래에서 체크하거나 입력: type:food -stolen
+tip_expr,여기가 필터 자체입니다. 아래 체크가 여기에 쓰이고 입력한 내용을 따라갑니다. 단어: stolen; contraband; owned; 종류 이름. 키: type: tag: id: condition:. and / or / not(+ | -)과 괄호로 조합합니다.
+expr_hint,아래에서 체크하거나 필터를 입력하세요. 입력란에 마우스를 올리면 문법이 보입니다.
+expr_reads,해석: #
+err_pos,(#번째 글자)
+err_expected_term,끝에 무언가 빠졌습니다.
+err_expected_close,‘)’가 없습니다.
+err_expected_value,‘#:’ 뒤에 값이 필요합니다.
+err_unknown_key,알 수 없는 키 ‘#:’. type: tag: id: condition:을 쓰세요.
+err_unknown_word,‘#’은(는) 종류도 아는 단어도 아닙니다.
+err_unexpected,예상치 못한 ‘#’.
+err_unclosed_quote,닫는 따옴표가 없습니다.
+stats_shop,가게 전체 {n}개   총 {v}   {c}칸   칸당 {d}
+stats_match,일치 {n}개   총 {v} (가게의 {p})   {c}칸   칸당 {d} (가게 {a})
+short_form,축약
+tip_short_form,and or not 대신 + | -로 필터를 씁니다. 두 가지 모두 항상 인식됩니다.

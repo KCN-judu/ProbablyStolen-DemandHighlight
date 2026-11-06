@@ -10,7 +10,7 @@ mkdir -p out/demand_highlight
 
 refs=()
 for r in mscorlib netstandard System System.Core Assembly-CSharp Assembly-CSharp-firstpass 0Harmony \
-         UnityEngine UnityEngine.CoreModule UnityEngine.UI UnityEngine.UIModule UnityEngine.InputLegacyModule Unity.TextMeshPro; do
+         UnityEngine UnityEngine.CoreModule UnityEngine.UI UnityEngine.UIModule UnityEngine.InputLegacyModule UnityEngine.TextRenderingModule Unity.TextMeshPro; do
   [ -f "$M/$r.dll" ] && refs+=("-r:$M/$r.dll")
 done
 
@@ -27,6 +27,8 @@ cp "$WORK/DemandHighlight.dll" out/demand_highlight/
 
 cp manifest.xml out/demand_highlight/
 cp preview.png out/demand_highlight/
+# The pictures texture packs can replace (doc/manual/item-filter.md), for pack makers; the game never reads it.
+[ -f textures.schema.tsv ] && cp textures.schema.tsv out/demand_highlight/
 mkdir -p out/demand_highlight/Localization
 cp Localization/*.csv out/demand_highlight/Localization/
 echo "built out/demand_highlight"

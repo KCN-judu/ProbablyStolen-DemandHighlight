@@ -7,16 +7,15 @@ opt_fill,Teñir los objetos deseados
 opt_fill_tip,Añade un relleno tenue dentro del contorno de los objetos deseados.
 opt_goods,Marcar los objetos del cliente
 opt_goods_tip,Cuando un cliente vende: marca sus objetos robados y su contrabando.
+opt_numbers,Cifras en el filtro de objetos
+opt_numbers_tip,Muestra en el filtro de objetos cuántos coinciden; su valor; las casillas que ocupan y el valor por casilla.
 opt_key,Activar o desactivar el resaltado
 opt_key_tip,Activa y desactiva los contornos.
 opt_panel_key,Abrir el filtro de objetos
 opt_panel_key_tip,Abre la ventana que marca objetos por tipo o como robados o de contrabando.
 window_title,Filtro de objetos
-panel_status,Estado
-panel_types,Tipos
 filter_stolen,Robado
 filter_contraband,Contrabando
-button_clear,Borrar
 no_items,No hay objetos en la tienda.
 fam_goods,BIENES
 fam_supplies,SUMINISTROS
@@ -25,7 +24,23 @@ fam_machines,MÁQUINAS
 fam_grade,CALIDAD
 fam_legal,RESTRINGIDO
 fam_other,OTROS
-tip_stolen,Marca en ámbar todos los objetos robados de la tienda. El resaltado del cliente se pausa mientras haya un filtro activo.
-tip_contraband,Marca en rojo todo el contrabando de la tienda. El resaltado del cliente se pausa mientras haya un filtro activo.
-tip_clear,Desmarca todo y vuelve al resaltado del cliente.
-tip_type,Marca en cian todos los objetos de tipo # de la tienda. Los contenedores que guardan uno reciben corchetes en las esquinas.
+tip_stolen,Solo objetos robados; con tipos marcados sus robados. Junto con Contrabando: cualquiera de los dos. El resaltado del cliente se pausa mientras haya un filtro. Otro clic excluye (✗) y otro más desmarca.
+tip_contraband,Solo contrabando; con tipos marcados su contrabando. Junto con Robado: cualquiera de los dos. El resaltado del cliente se pausa mientras haya un filtro. Otro clic excluye (✗) y otro más desmarca.
+tip_type,Marca en cian los objetos de tipo #. Varios tipos marcados significan cualquiera. La cifra es lo que esta marca encuentra con el resto del filtro. Otro clic excluye (✗) y otro más desmarca.
+tip_clear,Vacía el filtro y vuelve al resaltado del cliente.
+expr_placeholder,Marca abajo o escribe: type:food -stolen
+tip_expr,El filtro en sí: las marcas de abajo escriben en él y siguen lo que escribes. Palabras: stolen; contraband; owned; un nombre de tipo. Claves: type: tag: id: condition:. Se une con and / or / not (o + | -) y paréntesis.
+expr_hint,Marca abajo o escribe un filtro. Pasa el ratón por el cuadro para ver la sintaxis.
+expr_reads,Se lee: #
+err_pos,(en el carácter #)
+err_expected_term,Falta algo al final.
+err_expected_close,Falta un «)».
+err_expected_value,«#:» necesita un valor.
+err_unknown_key,Clave desconocida «#:». Usa type: tag: id: o condition:.
+err_unknown_word,«#» no es un tipo ni una palabra conocida.
+err_unexpected,«#» inesperado.
+err_unclosed_quote,Faltan las comillas de cierre.
+stats_shop,Tienda  {n} objetos   {v} en total   {c} casillas   {d} por casilla
+stats_match,Coinciden  {n} objetos   {v} en total ({p} de la tienda)   {c} casillas   {d} por casilla (tienda {a})
+short_form,Corto
+tip_short_form,Escribe el filtro con + | - en vez de and or not. Ambas formas se entienden siempre.

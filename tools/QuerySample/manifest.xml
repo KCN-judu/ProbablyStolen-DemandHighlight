@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <ID>query_sample</ID>
+  <Name>Query Sample (development)</Name>
+  <Author>KCN-judu</Author>
+  <ModVersion>0.1.0</ModVersion>
+  <Description>Development tool for Demand Highlight's query API. Each time a shop loads, it runs a few queries through the API and writes the answers to Player.log. Not meant for play.</Description>
+  <GameVersions>
+    <Version>0.46D</Version>
+  </GameVersions>
+  <Prerequisites />
+  <Assemblies>
+    <Assembly>QuerySample.dll</Assembly>
+  </Assemblies>
+  <Capabilities />
+</Manifest>

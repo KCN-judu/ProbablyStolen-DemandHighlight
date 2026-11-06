@@ -9,30 +9,37 @@ namespace DemandHighlight
     // Outlines what the current customer wants: green = wanted, amber = stolen, red = contraband, corner
     // brackets = wanted things are inside. During an inspection only stolen goods and contraband are marked.
     //
-    // Work happens only when something changed: the customer or their intent, an item (validated by the game or a
-    // tag changed), an item entering or leaving an inventory, or a container window opening or closing. Changes
-    // are batched to one walk at most every 0.15 s. With no change, nothing runs. A walk covers what is on screen
-    // and reuses every cached verdict (see Rules); a walk cut short by its time budget continues next frame.
+    // The mod is three parts that only pass data along:
+    //   front (Intent.Pure.cs, GameIntent): what the customer or the item filter asks for, as a Query value;
+    //   back (Engine): the answer to a Query over the store, as a Result;
+    //   painter (Painter, Sprites): a Result drawn on screen.
+    //
+    // Work happens only when something changed: the query (read every 0.5 s and before each walk, and compared by
+    // value), an item (validated by the game or a tag changed), an item entering or leaving an inventory, or a
+    // container window opening or closing. Changes are batched to one walk at most every 0.15 s. With no change,
+    // nothing runs. A walk covers what is on screen and reuses every answer still valid (see Engine); a walk cut short
+    // by its time budget continues next frame.
     //
     // Leaving the store releases everything kept from it (see Release).
     //
     // This file is the entry point (IMod): it installs the Harmony postfixes that only mark work as needed, reads the
     // options and key bindings (ModHelper.GetConfig, ModHelper.AddGameOptionKeyBind), and runs Tick once per frame
-    // through Ticker. The walk is Rules, the item filter is Filter and Panel, the drawing is Painter and Sprites.
-    // Patched game types: GameItemElement (Validate, RotCW, RotCCW), GameItem (the tag methods, SetGameItemType,
-    // AddParent, RemoveParent) and PixelWindow (Show, Hide). All patches are postfixes and none changes a result.
+    // through Ticker. Patched game types: GameItemElement (Validate, RotCW, RotCCW), GameItem (the tag methods,
+    // SetGameItemType, AddParent, RemoveParent) and PixelWindow (Show, Hide). All patches are postfixes and none
+    // changes a result.
     public sealed class DemandMod : IMod
     {
         public const string ModId = "demand_highlight";
         const string HarmonyId = "mod." + ModId;
-        const string Tag = "[DemandHighlight] ";
+        internal const string Tag = "[DemandHighlight] ";
         const string HotkeyPref = "DemandHighlight.hotkey";
         const string PanelKeyPref = "DemandHighlight.panelKey";
         // No default keys: both are bound in the game's options menu (keybind section).
         const KeyCode DefaultKey = KeyCode.None, DefaultPanelKey = KeyCode.None;
-        // MinGap: shortest time between two walks. IntentPoll: how often the customer's intent is read, because the
-        // game gives no event for a customer turning from buying to selling or to an inspection.
-        const float MinGap = 0.15f, IntentPoll = 0.5f;
+        // MinGap: shortest time between two walks. QueryPoll: how often the query is read between walks, because the
+        // game gives no event for a customer changing what they do or want (a flexi buyer choosing, an inspection
+        // starting).
+        const float MinGap = 0.15f, QueryPoll = 0.5f;
         const double SlowWalkMs = 8.0;
 
         const BindingFlags AnyInstance = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
@@ -42,15 +49,17 @@ namespace DemandHighlight
         static Harmony harmony;
         static GameObject ticker;
         static ConfigEntry<int> thickness, corner;
-        static ConfigEntry<bool> clientGoods, fill;
+        static ConfigEntry<bool> clientGoods, fill, filterNumbers;
         static bool optionsAdded;
 
         // on: the player's toggle. dirty: something changed since the last walk. drawn: outlines are currently shown.
         static bool on = true;
         static bool dirty = true;
+        // Set when the query changed; the next complete walk writes one line to the log.
+        static bool logNext;
         static bool drawn;
-        static float nextAllowed, nextIntentPoll, nextSlowLog;
-        static int lastIntent;
+        static float nextAllowed, nextPoll, nextSlowLog;
+        static Query query = Query.Nothing;
         static readonly System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
         static StoreClient lastClient;
         static KeyCode toggleKey = DefaultKey, panelKey = DefaultPanelKey;
@@ -73,6 +82,13 @@ namespace DemandHighlight
                 ReadConfig();
                 Install();
                 dirty = true;
+                // Pictures made in code, offered to texture packs (Marks.cs). Not part of the all or nothing above:
+                // without it the filter still works, with the cross drawn at first use.
+                try { Marks.Offer(); } catch (Exception e) { Debug.LogWarning(Tag + "could not offer pictures to texture packs: " + e.Message); }
+                // The public query API (QueryHost), for other mods. Also outside the all or nothing: the filter and the
+                // highlight do not need it.
+                try { QueryHost.Publish(); Debug.Log(Tag + "query API " + QueryApi.Version + " published"); }
+                catch (Exception e) { Debug.LogWarning(Tag + "could not publish the query API: " + e.Message); }
             }
             catch (Exception e)
             {
@@ -84,10 +100,12 @@ namespace DemandHighlight
         public void OnDisable()
         {
             TearDown();
+            try { Marks.Withdraw(); } catch (Exception) { }
+            try { QueryHost.Withdraw(); } catch (Exception) { }
         }
 
         // Safe to run again after OnDisable: each part is created only when missing. The Validate, tag, AddParent and
-        // RemoveParent patches are what keep the cached records in Rules correct; without any of them an item could
+        // RemoveParent patches are what keep the answers kept in Engine correct; without any of them an item could
         // keep a stale verdict.
         static void Install()
         {
@@ -161,6 +179,7 @@ namespace DemandHighlight
             try { Painter.DestroyAll(); } catch (Exception) { }
             try { Sprites.Clear(); } catch (Exception) { }
             try { Panel.Destroy(); } catch (Exception) { }
+            try { Marks.Release(); } catch (Exception) { }
             drawn = false;
             lastClient = null;
         }
@@ -179,22 +198,24 @@ namespace DemandHighlight
         // into the store is dropped; the next store fills them again. The item filter's choices stay.
         static void Release()
         {
-            Rules.Release();
+            Engine.Release();
+            GameIntent.Release();
             Painter.DestroyAll();
             Panel.Destroy();
+            Marks.Release();
             lastClient = null;
-            lastIntent = 0;
+            query = Query.Nothing;
             drawn = false;
             dirty = true;
         }
 
         static void MarkDirty() { dirty = true; }
 
-        // An item changed: its own entry and those of the containers above it are stale.
+        // An item changed: what is kept about it, and the insides of the containers above it, are stale.
         static void ItemChanged(GameItem __instance)
         {
             dirty = true;
-            Rules.Forget(__instance);
+            Engine.Forget(__instance);
         }
 
         // A tag changed: as above, and the filter counts are stale.
@@ -202,7 +223,7 @@ namespace DemandHighlight
         {
             dirty = true;
             Filter.StockVersion++;
-            Rules.Forget(__instance);
+            Engine.Forget(__instance);
         }
 
         // An item entered or left a container: the item's record (it may now be movable or not) and the insides of
@@ -211,8 +232,8 @@ namespace DemandHighlight
         {
             dirty = true;
             Filter.StockVersion++;
-            Rules.Forget(__instance);
-            Rules.ForgetAbove(node);
+            Engine.Forget(__instance);
+            Engine.ForgetAbove(node);
         }
 
         // Only a container window opening or closing changes what is on screen; tooltips and other windows don't.
@@ -257,6 +278,9 @@ namespace DemandHighlight
                 corner.OnChanged += _ => Restyle();
                 fill.OnChanged += _ => Restyle();
                 clientGoods.OnChanged += _ => dirty = true;
+                filterNumbers = config.Define("filterNumbers", true, "General", () => L("opt_numbers"), () => L("opt_numbers_tip"), false);
+                filterNumbers.OnChanged += on => Panel.SetNumbers(on);
+                Panel.Numbers = () => filterNumbers == null || filterNumbers.Value;
             }
             catch (Exception e) { Debug.LogWarning(Tag + "settings unavailable, using defaults: " + e.Message); }
             try
@@ -289,13 +313,14 @@ namespace DemandHighlight
             dirty = true;
         }
 
-        // One frame of the mod: hotkeys, then the customer and intent checks, then at most one time-limited walk.
-        // A walk happens only when dirty is set and MinGap has passed.
+        // One frame of the mod: hotkeys, then the query, then at most one time-limited walk. A walk happens only when
+        // dirty is set and MinGap has passed.
         internal static void Tick()
         {
             try
             {
-                if (!KeyBindHelper.SuppressHotkeys)
+                // Not while a key is being bound, nor while the filter's box is being typed in.
+                if (!KeyBindHelper.SuppressHotkeys && !Panel.Typing)
                 {
                     if (toggleKey != KeyCode.None && Input.GetKeyDown(toggleKey))
                     {
@@ -305,6 +330,7 @@ namespace DemandHighlight
                     }
                     if (panelKey != KeyCode.None && Input.GetKeyDown(panelKey)) Panel.Toggle();
                 }
+                Panel.Refresh();
 
                 if (!on)
                 {
@@ -323,31 +349,42 @@ namespace DemandHighlight
                 }
 
                 float now = Time.unscaledTime;
-                var client = Rules.CurrentClient();
-                if (client != lastClient) { lastClient = client; dirty = true; nextAllowed = 0f; }
-                if (client != null && now >= nextIntentPoll)
+                var client = GameIntent.CurrentClient();
+                if (client != lastClient) { lastClient = client; dirty = true; nextAllowed = 0f; nextPoll = 0f; }
+
+                // The query is read on the poll and right before a walk; a different value means new work.
+                bool due = dirty && now >= nextAllowed;
+                if (due || now >= nextPoll)
                 {
-                    nextIntentPoll = now + IntentPoll;
-                    int intent = Rules.Intent(client);
-                    if (intent != lastIntent) { lastIntent = intent; dirty = true; }
+                    nextPoll = now + QueryPoll;
+                    var q = GameIntent.Read(client, clientGoods != null && clientGoods.Value);
+                    if (!q.Equals(query))
+                    {
+                        query = q;
+                        dirty = true;
+                        logNext = true;
+                        due = now >= nextAllowed;
+                    }
                 }
-                if (client == null && !filtering)
+                if (query.Kind == Query.Op.Nothing)
                 {
                     if (drawn) { Painter.HideAll(); drawn = false; }
+                    if (logNext) { logNext = false; Debug.Log(Tag + "query: nothing"); }
                     dirty = false;
                     return;
                 }
 
-                if (dirty && now >= nextAllowed)
+                if (due)
                 {
                     dirty = false;
                     nextAllowed = now + MinGap;
                     timer.Reset();
                     timer.Start();
                     bool complete;
-                    bool any = Rules.Walk(client, clientGoods != null && clientGoods.Value, out complete);
+                    bool any = Engine.Run(query, GameIntent.Ask, out complete);
                     double walkMs = timer.Elapsed.TotalMilliseconds;
-                    if (any) { Painter.Paint(complete); drawn = true; }
+                    if (logNext && complete) { logNext = false; Debug.Log(Tag + "query: " + query + "; " + Stats()); }
+                    if (any) { Painter.Paint(Engine.Result); drawn = true; }
                     else if (drawn) { Painter.HideAll(); drawn = false; }
                     // Cut short by the time budget: carry on next frame.
                     if (!complete) { dirty = true; nextAllowed = 0f; }
@@ -357,8 +394,7 @@ namespace DemandHighlight
                     {
                         nextSlowLog = now + 2f;
                         Debug.Log(Tag + "slow refresh: " + ms.ToString("0.0") + " ms (walk " + walkMs.ToString("0.0") +
-                            " ms, draw " + (ms - walkMs).ToString("0.0") + " ms; visited " + Rules.Visited +
-                            ", computed " + Rules.Computed + ", marked " + Rules.Hits.Count +
+                            " ms, draw " + (ms - walkMs).ToString("0.0") + " ms; " + Stats() +
                             (complete ? ")" : ", continuing)"));
                     }
                 }
@@ -366,9 +402,16 @@ namespace DemandHighlight
             catch (Exception e)
             {
                 // Never retry a failing refresh every frame: an exception per frame is itself a stutter.
+                dirty = true;
                 nextAllowed = Time.unscaledTime + 1f;
                 if (!warned) { warned = true; Debug.LogWarning(Tag + "refresh failed: " + e); }
             }
+        }
+
+        static string Stats()
+        {
+            return "visited " + Engine.Visited + ", judged " + Engine.Computed + ", asked the game " + Engine.Asked +
+                ", marked " + Engine.Result.Items.Count;
         }
     }
 

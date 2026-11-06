@@ -22,6 +22,9 @@ Outlines follow each item's grid cells, so an L-shaped item gets an L-shaped out
 - Locked containers, items behind a lock and immovable items are skipped, as the customer would see them.
 - During an inspection, only stolen goods and contraband are marked, and containers that block a search are skipped.
 - When a customer is selling, their own stolen goods and contraband are marked only if the option is on. It is off by default.
+- A customer who barters is shown the items of yours that meet any of their terms. A container counts on its own, whatever is inside it.
+- A customer who wants variety stops wanting a kind of item as soon as you sell them one.
+- The flexi buyer arrives without wanting anything and picks a kind of goods when its first words end. Nothing is marked until then.
 
 ## Options
 
@@ -31,6 +34,7 @@ Outlines follow each item's grid cells, so an L-shaped item gets an L-shaped out
 | Corner rounding | 2 | Radius of the rounded outer corners, from 0 to 8. |
 | Tint wanted items | on | A faint fill inside the outline of wanted items. |
 | Mark the customer's own goods | off | When a customer is selling, mark their stolen goods and contraband. |
+| Numbers in the item filter | on | The line of numbers in the [Item Filter](item-filter.md): items, worth, cells and worth per cell. Off also skips adding them up. |
 | Toggle demand highlight | unbound | A key that turns the outlines on and off, the Item Filter's marks included. |
 | Open item filter | unbound | A key that opens the [Item Filter](item-filter.md) window. |
 

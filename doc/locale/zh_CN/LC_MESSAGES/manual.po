@@ -16,6 +16,7 @@ msgid "Building"
 msgstr "构建"
 
 #: manual/building.md:4
+#: manual/query-api.md:11
 msgid "Requirements"
 msgstr "环境要求"
 
@@ -44,7 +45,7 @@ msgid "Variable"
 msgstr "变量"
 
 #: manual/building.md:19
-#: manual/index.md:28
+#: manual/index.md:31
 msgid "Default"
 msgstr "默认值"
 
@@ -63,6 +64,341 @@ msgstr "把 `out/demand_highlight` 文件夹复制到游戏的 `Mods` 文件夹�
 #: manual/building.md:28
 msgid "The mod declares no capabilities, so the game enables it without a permission prompt."
 msgstr "这个模组不需要任何权限，游戏启用它时不会弹出权限确认。"
+
+#: manual/filter-language.md:1
+msgid "Filter language"
+msgstr "筛选语言"
+
+#: manual/filter-language.md:3
+msgid "The [Item Filter](item-filter.md)'s box takes a small language. This page is its full definition. `tests/LanguageTest.cs` checks every rule here; when one changes, both change."
+msgstr "[物品筛选](item-filter.md)的输入框接受一种小语言，本页是它的完整定义。`tests/LanguageTest.cs` 会检查这里的每一条规则；改了其中一边，另一边也要跟着改。"
+
+#: manual/filter-language.md:5
+msgid "Words and symbols"
+msgstr "单词和符号"
+
+#: manual/filter-language.md:7
+msgid "Text is read as tokens, left to right. Spaces separate tokens and mean nothing else."
+msgstr "文本从左到右读成一个个记号（token）。空格只用来分隔记号，没有别的意思。"
+
+#: manual/filter-language.md:9
+msgid "Token"
+msgstr "记号"
+
+#: manual/filter-language.md:9
+msgid "Written as"
+msgstr "写法"
+
+#: manual/filter-language.md:11
+msgid "word"
+msgstr "单词"
+
+#: manual/filter-language.md:11
+msgid "letters of any script, digits, `_`, `.`, `'`: `stolen`, `食物`, `x.y`, `it's`"
+msgstr "任何文字的字母、数字、`_`、`.`、`'`：`stolen`、`食物`、`x.y`、`it's`"
+
+#: manual/filter-language.md:12
+msgid "quoted text"
+msgstr "带引号的文本"
+
+#: manual/filter-language.md:12
+msgid "`\"...\"`; inside, `\\\"` is a quote and `\\\\` a backslash"
+msgstr "`\"...\"`；引号里 `\\\"` 表示一个引号，`\\\\` 表示一个反斜杠"
+
+#: manual/filter-language.md:13
+msgid "colon"
+msgstr "冒号"
+
+#: manual/filter-language.md:14
+msgid "brackets"
+msgstr "括号"
+
+#: manual/filter-language.md:14
+msgid "`(` and `)`"
+msgstr "`(` 和 `)`"
+
+#: manual/filter-language.md:15
+msgid "and"
+msgstr "与"
+
+#: manual/filter-language.md:15
+msgid "`and` or `+`"
+msgstr "`and` 或 `+`"
+
+#: manual/filter-language.md:16
+msgid "or"
+msgstr "或"
+
+#: manual/filter-language.md:16
+msgid "`or` or `\\|`"
+msgstr "`or` 或 `\\|`"
+
+#: manual/filter-language.md:17
+#: manual/item-filter.md:68
+msgid "not"
+msgstr "非"
+
+#: manual/filter-language.md:17
+msgid "`not` or `-`"
+msgstr "`not` 或 `-`"
+
+#: manual/filter-language.md:19
+msgid "`-` and `+` are never part of a word: `a-b` is `a`, not, `b`. Any other symbol (`&`, `!`, `#` and so on) is an error."
+msgstr "`-` 和 `+` 永远不算单词的一部分：`a-b` 是 `a`、非、`b`。其他符号（`&`、`!`、`#` 等）都会报错。"
+
+#: manual/filter-language.md:21
+msgid "`and`, `or` and `not` are operators only as whole words, in any case: `Or` is or, `orange` and `notebook` are words."
+msgstr "`and`、`or` 和 `not` 只有作为完整单词时才是运算符，大小写不限：`Or` 是或，`orange` 和 `notebook` 则是普通单词。"
+
+#: manual/filter-language.md:23
+msgid "Terms"
+msgstr "项"
+
+#: manual/filter-language.md:25
+msgid "Term"
+msgstr "项"
+
+#: manual/filter-language.md:25
+#: manual/item-filter.md:60
+msgid "Means"
+msgstr "含义"
+
+#: manual/filter-language.md:27
+msgid "`stolen`, `contraband`, `owned` (or `mine`)"
+msgstr "`stolen`、`contraband`、`owned`（或 `mine`）"
+
+#: manual/filter-language.md:27
+msgid "the item is stolen, contraband, yours"
+msgstr "物品是赃物、违禁品、你自己的"
+
+#: manual/filter-language.md:28
+msgid "every item, no item"
+msgstr "所有物品、没有物品"
+
+#: manual/filter-language.md:29
+msgid "a type's name on its own, `food` or `食物`"
+msgstr "单独写一个类型名，`food` 或 `食物`"
+
+#: manual/filter-language.md:29
+msgid "items of that type"
+msgstr "该类型的物品"
+
+#: manual/filter-language.md:30
+msgid "items of that type, by name in your language or by identifier; case, spaces and underscores do not matter"
+msgstr "该类型的物品，可以用你的语言里的名字，也可以用标识符；大小写、空格和下划线都无所谓"
+
+#: manual/filter-language.md:31
+msgid "items with that tag"
+msgstr "带有该标签的物品"
+
+#: manual/filter-language.md:32
+msgid "items with that identifier"
+msgstr "该标识符的物品"
+
+#: manual/filter-language.md:33
+msgid "`condition:broken` (or `cond:`)"
+msgstr "`condition:broken`（或 `cond:`）"
+
+#: manual/filter-language.md:33
+msgid "items in that condition"
+msgstr "处于该状态的物品"
+
+#: manual/filter-language.md:34
+msgid "the key over a group, below"
+msgstr "键作用于一个分组，见下文"
+
+#: manual/filter-language.md:35
+msgid "brackets, for grouping"
+msgstr "括号，用于分组"
+
+#: manual/filter-language.md:37
+msgid "No space is allowed around the colon: `type: food` and `type :food` are errors."
+msgstr "冒号两边不能有空格：`type: food` 和 `type :food` 都会报错。"
+
+#: manual/filter-language.md:39
+msgid "Groups"
+msgstr "分组"
+
+#: manual/filter-language.md:41
+msgid "`key:( ... )` applies the key to every word and quoted text inside the brackets. `type:(food or medical)` is `type:food or type:medical`. Inside, the operators and brackets work as everywhere: `type:(food -junk)` is food that is not junk. A word inside is always a value, so `type:(stolen)` is the type called stolen; a key written inside keeps its own key: `type:(food or tag:x)`. To use `and`, `or` or `not` as a value, quote it: `type:(\"or\")`. Groups can nest."
+msgstr "`key:( ... )` 把键套用到括号里的每个单词和带引号的文本上。`type:(food or medical)` 就是 `type:food or type:medical`。括号里的运算符和括号跟其他地方一样用：`type:(food -junk)` 是不属于垃圾的食物。括号里的单词一律是值，所以 `type:(stolen)` 是名叫 stolen 的类型；括号里自己写了键的，用它自己的键：`type:(food or tag:x)`。要把 `and`、`or` 或 `not` 当作值，就加上引号：`type:(\"or\")`。分组可以嵌套。"
+
+#: manual/filter-language.md:43
+msgid "Precedence and associativity"
+msgstr "优先级和结合性"
+
+#: manual/filter-language.md:45
+msgid "From the tightest to the loosest:"
+msgstr "从结合最紧到最松："
+
+#: manual/filter-language.md:47
+msgid "Level"
+msgstr "级别"
+
+#: manual/filter-language.md:47
+msgid "Operators"
+msgstr "运算符"
+
+#: manual/filter-language.md:47
+msgid "Kind"
+msgstr "类别"
+
+#: manual/filter-language.md:47
+msgid "Reads"
+msgstr "读作"
+
+#: manual/filter-language.md:49
+msgid "terms, `key:( )`, `( )`"
+msgstr "项、`key:( )`、`( )`"
+
+#: manual/filter-language.md:49
+msgid "atoms"
+msgstr "原子"
+
+#: manual/filter-language.md:50
+msgid "prefix, right to left"
+msgstr "前缀，从右到左"
+
+#: manual/filter-language.md:50
+msgid "`not not a` is `not (not a)`"
+msgstr "`not not a` 读作 `not (not a)`"
+
+#: manual/filter-language.md:51
+msgid "`and`, `+`, two terms side by side"
+msgstr "`and`、`+`、两个项并排"
+
+#: manual/filter-language.md:51
+#: manual/filter-language.md:52
+msgid "n-ary, left to right"
+msgstr "n 元，从左到右"
+
+#: manual/filter-language.md:51
+msgid "`a b c` is `a and b and c`"
+msgstr "`a b c` 读作 `a and b and c`"
+
+#: manual/filter-language.md:54
+msgid "So:"
+msgstr "所以："
+
+#: manual/filter-language.md:56
+msgid "`a or b and c` is `a or (b and c)`."
+msgstr "`a or b and c` 读作 `a or (b and c)`。"
+
+#: manual/filter-language.md:57
+msgid "`not a b` is `(not a) and b`; `not` takes one term, and brackets give it more: `not (a b)`."
+msgstr "`not a b` 读作 `(not a) and b`；`not` 只管一个项，要管更多就加括号：`not (a b)`。"
+
+#: manual/filter-language.md:58
+msgid "`-a b | c` is `((not a) and b) or c`."
+msgstr "`-a b | c` 读作 `((not a) and b) or c`。"
+
+#: manual/filter-language.md:59
+msgid "`type:x y` is `type:x and y`: a key takes one value unless it is given a group."
+msgstr "`type:x y` 读作 `type:x and y`：键只取一个值，除非给它一个分组。"
+
+#: manual/filter-language.md:61
+msgid "`and` and `or` are associative, so how a run of one of them is grouped never changes what it means: `(a b) c` and `a (b c)` are the same filter."
+msgstr "`and` 和 `or` 满足结合律，所以一串同样的运算符不管怎么分组，意思都不变：`(a b) c` 和 `a (b c)` 是同一个筛选。"
+
+#: manual/filter-language.md:63
+msgid "Errors"
+msgstr "错误"
+
+#: manual/filter-language.md:65
+msgid "The first error in the text is reported, with the character it is at. The box turns red and the last filter that read stays in force."
+msgstr "只报告文本里的第一个错误，并指出它在第几个字符。输入框会变红，上一个能读通的筛选继续生效。"
+
+#: manual/filter-language.md:67
+msgid "Error"
+msgstr "错误"
+
+#: manual/filter-language.md:67
+msgid "Example"
+msgstr "示例"
+
+#: manual/filter-language.md:69
+msgid "something is missing at the end"
+msgstr "结尾缺了内容"
+
+#: manual/filter-language.md:70
+msgid "a `)` is missing"
+msgstr "缺少 `)`"
+
+#: manual/filter-language.md:71
+msgid "a key has no value"
+msgstr "键没有值"
+
+#: manual/filter-language.md:72
+msgid "a key is unknown"
+msgstr "不认识的键"
+
+#: manual/filter-language.md:73
+msgid "a word is not a keyword or a type"
+msgstr "单词既不是关键字也不是类型"
+
+#: manual/filter-language.md:74
+msgid "a symbol where none belongs"
+msgstr "出现了不该有的符号"
+
+#: manual/filter-language.md:74
+msgid "`stolen)`, `a or or b`, `a & b`, `\"food\"` outside a group"
+msgstr "`stolen)`、`a or or b`、`a & b`、分组外的 `\"food\"`"
+
+#: manual/filter-language.md:75
+msgid "a quote is not closed"
+msgstr "引号没有闭合"
+
+#: manual/filter-language.md:77
+msgid "The canonical form"
+msgstr "规范形式"
+
+#: manual/filter-language.md:79
+msgid "The box rewrites what you typed in one regular form when you press Enter or leave it, the way a code editor formats on save, and the ticks write in the same form. What you wrote keeps its structure and order; only its spelling changes:"
+msgstr "按回车或离开输入框时，输入框会把你输入的内容改写成统一的规范形式，就像代码编辑器保存时自动格式化一样；勾选写进去的也是这种形式。你写的内容结构和顺序都不变，只改写法："
+
+#: manual/filter-language.md:81
+msgid "`and`, `or`, `not` in words, or as `+`, `|`, `-` with the window's **Short** tick;"
+msgstr "`and`、`or`、`not` 用单词写；勾上窗口里的 **缩写** 时写成 `+`、`|`、`-`；"
+
+#: manual/filter-language.md:82
+msgid "one space around `and` and `or`; none after `-`, around the colon or inside brackets;"
+msgstr "`and` 和 `or` 两边各一个空格；`-` 后面、冒号两边和括号里面不加空格；"
+
+#: manual/filter-language.md:83
+msgid "brackets wherever `and` and `or` meet, and after `not` around an `and` or `or`; brackets that change nothing are removed;"
+msgstr "`and` 和 `or` 相遇的地方一律加括号，`not` 后面跟着 `and` 或 `or` 时也加括号；不改变意思的括号会去掉；"
+
+#: manual/filter-language.md:84
+msgid "keys and keywords in lower case, in one spelling: `cond` becomes `condition`, `mine` becomes `owned`;"
+msgstr "键和关键字用小写，并统一成一种拼写：`cond` 变成 `condition`，`mine` 变成 `owned`；"
+
+#: manual/filter-language.md:85
+msgid "values as written, quoted only when they must be;"
+msgstr "值保持原样，只在必须时才加引号；"
+
+#: manual/filter-language.md:86
+msgid "several types or values of one key chosen together are written as one group: `type:(Food or Medical)`;"
+msgstr "同一个键下一起选中的多个类型或值，写成一个分组：`type:(Food or Medical)`；"
+
+#: manual/filter-language.md:87
+msgid "types are written by their names in your language."
+msgstr "类型用你的语言里的名字来写。"
+
+#: manual/filter-language.md:89
+msgid "Typed"
+msgstr "输入"
+
+#: manual/filter-language.md:89
+msgid "Words"
+msgstr "单词"
+
+#: manual/filter-language.md:89
+msgid "Short"
+msgstr "缩写"
+
+#: manual/filter-language.md:97
+msgid "Formatting never changes what the text means, formatting twice gives the same text, and each style formats the other's text into its own."
+msgstr "格式化永远不会改变文本的意思，格式化两次得到的文本相同，两种写法也都能把对方的文本格式化成自己的样子。"
 
 #: manual/index.md:1
 msgid "Demand Highlight"
@@ -85,6 +421,7 @@ msgid "Look"
 msgstr "外观"
 
 #: manual/index.md:9
+#: manual/query-api.md:83
 msgid "Meaning"
 msgstr "含义"
 
@@ -144,84 +481,105 @@ msgstr "盘查时只标出赃物和违禁品，会挡住搜查的容器不标。
 msgid "When a customer is selling, their own stolen goods and contraband are marked only if the option is on. It is off by default."
 msgstr "顾客卖货时，他们自带的赃物和违禁品要打开相应选项才会标出。该选项默认关闭。"
 
+#: manual/index.md:25
+msgid "A customer who barters is shown the items of yours that meet any of their terms. A container counts on its own, whatever is inside it."
+msgstr "以物易物的顾客，会标出你的物品中满足其任一条件的那些。容器只看它自己，不管里面装了什么。"
+
 #: manual/index.md:26
+msgid "A customer who wants variety stops wanting a kind of item as soon as you sell them one."
+msgstr "想要多样化的顾客，你卖给他某一类物品后，他就不再想要这一类了。"
+
+#: manual/index.md:27
+msgid "The flexi buyer arrives without wanting anything and picks a kind of goods when its first words end. Nothing is marked until then."
+msgstr "灵活买家来的时候什么都不想要，第一段话说完后才挑定一类商品。在那之前什么都不标。"
+
+#: manual/index.md:29
 msgid "Options"
 msgstr "选项"
 
-#: manual/index.md:28
+#: manual/index.md:31
 msgid "Option"
 msgstr "选项"
 
-#: manual/index.md:28
+#: manual/index.md:31
 msgid "What it does"
 msgstr "作用"
 
-#: manual/index.md:30
+#: manual/index.md:33
 msgid "Outline thickness"
 msgstr "框线粗细"
 
-#: manual/index.md:30
+#: manual/index.md:33
 msgid "Line width in UI pixels, from 1 to 6."
 msgstr "线宽，单位是界面像素，范围 1 到 6。"
 
-#: manual/index.md:31
+#: manual/index.md:34
 msgid "Corner rounding"
 msgstr "圆角"
 
-#: manual/index.md:31
+#: manual/index.md:34
 msgid "Radius of the rounded outer corners, from 0 to 8."
 msgstr "外角圆角的半径，范围 0 到 8。"
 
-#: manual/index.md:32
+#: manual/index.md:35
 msgid "Tint wanted items"
 msgstr "给想要的物品加底色"
 
-#: manual/index.md:32
+#: manual/index.md:35
+#: manual/index.md:37
 msgid "on"
 msgstr "开"
 
-#: manual/index.md:32
+#: manual/index.md:35
 msgid "A faint fill inside the outline of wanted items."
 msgstr "想要的物品的框内填一层淡色。"
 
-#: manual/index.md:33
+#: manual/index.md:36
 msgid "Mark the customer's own goods"
 msgstr "标记顾客自带的物品"
 
-#: manual/index.md:33
+#: manual/index.md:36
 msgid "off"
 msgstr "关"
 
-#: manual/index.md:33
+#: manual/index.md:36
 msgid "When a customer is selling, mark their stolen goods and contraband."
 msgstr "顾客卖货时，标出其中的赃物和违禁品。"
 
-#: manual/index.md:34
+#: manual/index.md:37
+msgid "Numbers in the item filter"
+msgstr "物品筛选显示统计"
+
+#: manual/index.md:37
+msgid "The line of numbers in the [Item Filter](item-filter.md): items, worth, cells and worth per cell. Off also skips adding them up."
+msgstr "[物品筛选](item-filter.md)里的那一行统计：件数、总值、占用格数和每格价值。关掉后也不再计算这些数字。"
+
+#: manual/index.md:38
 msgid "Toggle demand highlight"
 msgstr "开关需求高亮"
 
-#: manual/index.md:34
-#: manual/index.md:35
+#: manual/index.md:38
+#: manual/index.md:39
 msgid "unbound"
 msgstr "未绑定"
 
-#: manual/index.md:34
+#: manual/index.md:38
 msgid "A key that turns the outlines on and off, the Item Filter's marks included."
 msgstr "显示或隐藏框线的按键，物品筛选的标记也一起显示或隐藏。"
 
-#: manual/index.md:35
+#: manual/index.md:39
 msgid "Open item filter"
 msgstr "打开物品筛选"
 
-#: manual/index.md:35
+#: manual/index.md:39
 msgid "A key that opens the [Item Filter](item-filter.md) window."
 msgstr "打开[物品筛选](item-filter.md)窗口的按键。"
 
-#: manual/index.md:37
+#: manual/index.md:41
 msgid "Neither key has a default. Bind them in the game's options menu."
 msgstr "两个按键都没有默认值，请在游戏的设置菜单里绑定。"
 
-#: manual/index.md:39
+#: manual/index.md:43
 msgid "If you use another demand-highlight mod, turn it off, or both will draw outlines."
 msgstr "如果你还装了其他需求高亮类的模组，请先停用它，否则会画出两层框。"
 
@@ -230,64 +588,228 @@ msgid "Item Filter"
 msgstr "物品筛选"
 
 #: manual/item-filter.md:3
-msgid "The Item Filter marks your own stock by type, stolen or contraband, whoever is at the counter. Use it to sort the shop by category."
-msgstr "物品筛选按类型、赃物或违禁品标出你自己的库存，柜台前是谁都一样。用它可以按类别整理店铺。"
+msgid "The Item Filter marks your own stock by type, stolen or contraband, or by anything you can write as an expression, whoever is at the counter. Use it to sort the shop."
+msgstr "物品筛选按类型、赃物或违禁品，或者任何你能写成表达式的条件，标出你自己的库存，柜台前是谁都一样。用它来整理店铺。"
 
 #: manual/item-filter.md:5
 msgid "Opening it"
 msgstr "打开方式"
 
 #: manual/item-filter.md:7
-msgid "Press the key bound to **Open item filter** in the game's options menu. The window is built from the game's own machine-panel widgets, so it looks like a machine window."
-msgstr "按下你在游戏设置菜单里给 **打开物品筛选** 绑定的键。窗口用游戏自带的机器面板组件搭成，看起来和机器窗口一样。"
+msgid "Press the key bound to **Open item filter** in the game's options menu. It is an ordinary game window: drag it by its title, close it with Esc or its cross, and it opens again where you left it. Texture packs that reskin the game's windows reskin it too."
+msgstr "按下你在游戏设置菜单里给 **打开物品筛选** 绑定的键。它是一个普通的游戏窗口：拖动标题栏移动，按 Esc 或点叉号关闭，再打开时还在你上次放的位置。给游戏窗口换皮的材质包也会给它换皮。"
 
 #: manual/item-filter.md:9
 msgid "The window"
 msgstr "窗口"
 
 #: manual/item-filter.md:11
-msgid "**Status** is one line with Stolen and Contraband, each with its count, and Clear."
-msgstr "**状态** 只有一行：赃物、违禁品（各带数量）和清除按钮。"
+msgid "From top to bottom:"
+msgstr "从上到下依次是："
 
-#: manual/item-filter.md:12
-msgid "**Types** has one toggle per item type found in the shop, with counts. These are the game's own categories, the ones customers ask for, such as Food, Medical, Tool or Luxury Item."
-msgstr "**类型** 为店里出现的每种物品类型各设一个开关，并显示数量。这些是游戏自己的分类，也就是顾客要货时用的分类，比如食物、医疗品、工具和奢侈品。"
+#: manual/item-filter.md:13
+msgid "**The box**, with a red cross beside it that empties it. The box is the filter (see below)."
+msgstr "**输入框**，旁边有一个红叉，点它清空。输入框就是筛选本身（见下文）。"
 
 #: manual/item-filter.md:14
-msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, with any other type under Other. Within a group the most common comes first. The groups are packed into columns of similar height. Hover a toggle to see what it does."
-msgstr "类型分为日常商品、物资原料、装备武器、机器模组、品级和管制六组，其他类型归入“其他”。组内数量多的排在前面，各组排成高度相近的几列。鼠标悬停在开关上可以看到它的作用。"
+msgid "**One line under the box**, with the **Short** tick at its end: what is wrong and at which character when the text does not read, with the box itself in red; how the text was read when that differs from what you wrote (a type name resolved, `-` spelled out as `not`); a hint when the box is empty. While the text has an error, the last filter that read keeps working."
+msgstr "**输入框下面的一行**，行尾是 **缩写** 勾选框：文本读不通时，显示哪里错了、在第几个字符，输入框本身也变红；读出的意思和你写的不一样时（比如解析出了类型名，或把 `-` 写成了 `not`），显示它是怎么读的；输入框为空时显示提示。文本有错误期间，上一个能读通的筛选继续生效。"
+
+#: manual/item-filter.md:15
+msgid "**The numbers** (see below)."
+msgstr "**统计数字**（见下文）。"
 
 #: manual/item-filter.md:16
-msgid "The window is rebuilt only when the stock or the filter changed since it was last opened."
-msgstr "只有库存或筛选条件在上次打开后变过，窗口才会重建。"
+msgid "**Stolen** and **Contraband**, each with its count."
+msgstr "**赃物** 和 **违禁品**，各带数量。"
 
-#: manual/item-filter.md:18
+#: manual/item-filter.md:17
+msgid "**Types**: one tick per item type found in the shop, with counts. These are the game's own categories, the ones customers ask for, such as Food, Medical, Tool or Luxury Item. They are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, with any other type under Other, three to a row, the most common first. Only this part scrolls."
+msgstr "**类型**：店里出现的每种物品类型各一个勾选框，带数量。这些是游戏自己的分类，也就是顾客要货时说的那些，比如食物、医疗、工具、奢侈品。它们分成日常商品、物资原料、装备武器、机器模组、品级和管制几组，其他类型归入“其他”，每行三个，数量多的排在前面。只有这一部分可以滚动。"
+
+#: manual/item-filter.md:19
+msgid "Hover anything to see what it does."
+msgstr "鼠标悬停在任何一项上，都能看到它的作用。"
+
+#: manual/item-filter.md:21
+msgid "The numbers"
+msgstr "统计数字"
+
+#: manual/item-filter.md:23
+msgid "With nothing chosen, the line shows the whole shop, as a baseline:"
+msgstr "什么都没选时，这一行显示整个店铺的情况，作为基准："
+
+#: manual/item-filter.md:27
+msgid "With a filter on, it shows what matches, against that baseline:"
+msgstr "开启筛选后，显示匹配的部分，并和基准对比："
+
+#: manual/item-filter.md:31
+msgid "**Items** counts everything in the shop, closed containers included."
+msgstr "**件数** 统计店里的所有东西，关着的容器也算在内。"
+
+#: manual/item-filter.md:32
+msgid "**Total** is each item's own estimated worth, the one its tooltip shows, without what is inside it, so a container and its contents are each counted once."
+msgstr "**总值** 是每件物品自身的估值，也就是它的提示框里显示的那个，不含里面装的东西，所以容器和里面的物品各算一次。"
+
+#: manual/item-filter.md:33
+msgid "**Cells** are the grid cells each item's shape takes, wherever it sits, inside containers too."
+msgstr "**格数** 是每件物品的形状占用的网格格子数，不管它放在哪里，容器里的也算。"
+
+#: manual/item-filter.md:34
+msgid "**Per cell** is total worth divided by cells. Compare it with the shop's to see which goods earn their space."
+msgstr "**每格** 是总值除以格数。和全店的数字比一比，就知道哪些货物对得起它占的地方。"
+
+#: manual/item-filter.md:36
+msgid "The numbers follow the stock and the filter while the window is open, at most twice a second."
+msgstr "窗口开着时，统计数字会跟着库存和筛选更新，每秒最多两次。"
+
+#: manual/item-filter.md:38
+msgid "The box is the filter"
+msgstr "输入框就是筛选"
+
+#: manual/item-filter.md:40
+msgid "There is one filter, the text in the box. The ticks are another way to see and edit it:"
+msgstr "筛选只有一个，就是输入框里的文本。勾选框是查看和编辑它的另一种方式："
+
+#: manual/item-filter.md:42
+msgid "A tick has three states, cycled by clicking: off, ✓ (include) and ✗ (exclude), then off again. The ✗ is drawn from the game's own check mark, in the same pixel art."
+msgstr "勾选框有三种状态，点击依次切换：关、✓（包含）、✗（排除），再点一下回到关。✗ 是照着游戏自己的勾号画的，像素画风一致。"
+
+#: manual/item-filter.md:43
+msgid "Ticking writes into the box. Tick Stolen, then Household Good and Medical, and the box reads `stolen and type:(\"Household Good\" or Medical)`. Click Junk twice for ✗ and `and not type:Junk` is added."
+msgstr "勾选会写进输入框。勾上赃物，再勾家居用品和医疗，输入框里就是 `stolen and type:(\"Household Good\" or Medical)`。在垃圾上点两下得到 ✗，就会加上 `and not type:Junk`。"
+
+#: manual/item-filter.md:44
+msgid "Typing moves the ticks. Type `type:Food -owned` and Food shows as ticked."
+msgstr "输入会带动勾选。输入 `type:Food -owned`，食物就显示为已勾选。"
+
+#: manual/item-filter.md:45
+msgid "Within the status ticks or within the types, any ✓ will do; every ✗ must hold, and so must the two groups and anything else in the box. So the example above is stolen goods that are household goods or medical."
+msgstr "状态勾选框之间、类型之间，任意一个 ✓ 满足即可；每个 ✗ 都必须满足，两组之间以及输入框里的其他内容也都必须满足。所以上面的例子是：属于家居用品或医疗的赃物。"
+
+#: manual/item-filter.md:46
+msgid "Types are written by their names in your language, always with `type:`, so the type Contraband (`type:Contraband`) never looks like the word `contraband`. Types ticked together are written as one group, and brackets wherever `and` and `or` meet."
+msgstr "类型用你的语言里的名字来写，并且总是带上 `type:`，所以违禁品这个类型（`type:Contraband`）永远不会和单词 `contraband` 混淆。一起勾选的类型写成一个分组，`and` 和 `or` 相遇的地方一律加括号。"
+
+#: manual/item-filter.md:47
+msgid "An expression of another shape, such as `type:Food or stolen`, shows nothing ticked; ticking then adds to it: `type:Medical and (type:Food or stolen)`."
+msgstr "其他形状的表达式，比如 `type:Food or stolen`，不会显示任何勾选；这时再勾选，会在它的基础上添加：`type:Medical and (type:Food or stolen)`。"
+
+#: manual/item-filter.md:48
+msgid "If the box has an error when you tick, the tick edits the last filter that read, and the box is rewritten from it."
+msgstr "如果勾选时输入框里有错误，勾选会编辑上一个能读通的筛选，并据此重写输入框。"
+
+#: manual/item-filter.md:50
+msgid "The red cross empties the box."
+msgstr "红叉清空输入框。"
+
+#: manual/item-filter.md:52
+msgid "Counts"
+msgstr "数量"
+
+#: manual/item-filter.md:54
+msgid "Each tick's count is what it would find with the rest of the filter: everything in the box except its own group. With Stolen ticked, each type shows how many stolen items it has; with Medical ticked, Stolen shows how many stolen medical items there are. A ✗ tick is struck through and shows how many items it takes away (`-4`). A tick that would find nothing is dimmed but still works. The layout does not move as the counts change: types keep their places, ordered by how common they are in the whole shop."
+msgstr "每个勾选框的数量，是它和其余筛选条件一起能找到的物品数，其余条件就是输入框里除了它自己那一组以外的全部内容。勾上赃物时，每个类型显示其中有多少件赃物；勾上医疗时，赃物显示有多少件医疗类赃物。✗ 状态的勾选框带删除线，显示它排除掉了多少件（`-4`）。什么都找不到的勾选框会变暗，但仍然可以用。数量变化时布局不动：类型保持原位，按在全店的常见程度排序。"
+
+#: manual/item-filter.md:56
+msgid "Expressions"
+msgstr "表达式"
+
+#: manual/item-filter.md:58
+msgid "The box takes a small language; [Filter language](filter-language.md) defines it in full. In short:"
+msgstr "输入框接受一种小语言，[筛选语言](filter-language.md)里有完整定义。简单来说："
+
+#: manual/item-filter.md:60
+msgid "Write"
+msgstr "写法"
+
+#: manual/item-filter.md:62
+msgid "a type, by its name in your language or its identifier"
+msgstr "一个类型，用你的语言里的名字或它的标识符"
+
+#: manual/item-filter.md:63
+msgid "any of these types: a key over a group"
+msgstr "这些类型中的任意一个：键作用于一个分组"
+
+#: manual/item-filter.md:64
+msgid "stolen, contraband, yours"
+msgstr "赃物、违禁品、你自己的"
+
+#: manual/item-filter.md:65
+msgid "a tag, an item identifier, a condition"
+msgstr "标签、物品标识符、状态"
+
+#: manual/item-filter.md:66
+msgid "both"
+msgstr "两者都满足"
+
+#: manual/item-filter.md:67
+msgid "either"
+msgstr "任一满足"
+
+#: manual/item-filter.md:69
+msgid "grouping"
+msgstr "分组"
+
+#: manual/item-filter.md:71
+msgid "`not` binds tightest, then `and`, then `or`: `-stolen food | medical` is (not stolen and food) or medical. The box writes brackets wherever `and` and `or` meet, so its text never relies on this."
+msgstr "`not` 结合最紧，其次是 `and`，最后是 `or`：`-stolen food | medical` 读作（非赃物且是食物）或医疗。输入框在 `and` 和 `or` 相遇处总会写上括号，所以它写出的文本从不依赖这条规则。"
+
+#: manual/item-filter.md:73
+msgid "When you press Enter or leave the box, the text is rewritten in its regular form, as a code editor formats on save: `-stolen food` becomes `not stolen and food`. The **Short** tick beside the box writes `+`, `|` and `-` instead; both are always understood."
+msgstr "按回车或离开输入框时，文本会改写成规范形式，就像代码编辑器保存时自动格式化：`-stolen food` 变成 `not stolen and food`。勾上输入框旁的 **缩写** 后，改写成 `+`、`|` 和 `-`；两种写法始终都能识别。"
+
+#: manual/item-filter.md:75
+msgid "Examples:"
+msgstr "示例："
+
+#: manual/item-filter.md:77
+msgid "`food -stolen`: food that is not stolen."
+msgstr "`food -stolen`：不是赃物的食物。"
+
+#: manual/item-filter.md:78
+msgid "`type:(food or medical) owned`: your food and medical goods."
+msgstr "`type:(food or medical) owned`：你自己的食物和医疗物品。"
+
+#: manual/item-filter.md:79
+msgid "`contraband -owned`: contraband that is not yours."
+msgstr "`contraband -owned`：不是你的违禁品。"
+
+#: manual/item-filter.md:81
 msgid "Marking"
 msgstr "标记"
 
-#: manual/item-filter.md:20
-msgid "Tick anything and every matching item in the shop is marked until you clear the filter."
-msgstr "勾选任意一项，店里所有符合的物品都会被标出，直到你清除筛选。"
+#: manual/item-filter.md:83
+msgid "Every matching item in the shop is marked until you clear the filter."
+msgstr "店里所有匹配的物品都会被标出，直到你清除筛选。"
 
-#: manual/item-filter.md:21
-msgid "Several ticks combine as \"any of these\"."
-msgstr "勾选多项时，符合其中任意一项就会标出。"
-
-#: manual/item-filter.md:22
+#: manual/item-filter.md:84
 msgid "Type matches are drawn in cyan with the solid style. Stolen goods and contraband keep their amber and red styles."
 msgstr "按类型匹配的物品用青色实线标出。赃物和违禁品仍用琥珀色和红色样式。"
 
-#: manual/item-filter.md:23
+#: manual/item-filter.md:85
 msgid "Containers holding matches get corner brackets."
 msgstr "装着匹配物品的容器显示四角标。"
 
-#: manual/item-filter.md:24
+#: manual/item-filter.md:86
 msgid "Locks are ignored, because the filter is for sorting your own stock."
 msgstr "筛选不管上锁，因为它是用来整理你自己的库存的。"
 
-#: manual/item-filter.md:26
-msgid "Turning the filter on pauses the customer highlight, and clearing it brings the highlight back."
-msgstr "开启筛选后，顾客需求高亮暂停；清除筛选后恢复。"
+#: manual/item-filter.md:88
+msgid "Turning the filter on pauses the customer highlight, and clearing it brings the highlight back. While you type in the box, the mod's own keys do nothing."
+msgstr "开启筛选后，顾客需求高亮暂停；清除筛选后恢复。在输入框里打字时，本模组自己的按键不起作用。"
+
+#: manual/item-filter.md:90
+msgid "Texture packs"
+msgstr "材质包"
+
+#: manual/item-filter.md:92
+msgid "The ✗ can be replaced by a texture pack. Its file is named"
+msgstr "✗ 可以用材质包替换。文件名是"
+
+#: manual/item-filter.md:96
+msgid "and is the whole box with the ✗ in it, 13 by 13 pixels, the size of the game's checkbox pictures; `textures.schema.tsv` in the mod's folder lists it. Without such a file, the ✗ is found by comparing the game's checked and empty boxes and drawn into the empty one, so a pack that only redraws the checkbox gets a matching ✗ for free. The ✓ is the game's own and is replaced like any of the game's pictures."
+msgstr "内容是带 ✗ 的整个勾选框，13×13 像素，和游戏的勾选框图片一样大；模组文件夹里的 `textures.schema.tsv` 也列出了它。没有这个文件时，✗ 会通过比较游戏的已勾选框和空框得出，再画进空框里，所以只重画了勾选框的材质包也能自动得到配套的 ✗。✓ 是游戏自带的，和游戏的其他图片一样替换。"
 
 #: manual/performance.md:1
 msgid "Performance"
@@ -302,77 +824,367 @@ msgid "Work only on change"
 msgstr "只在变化时工作"
 
 #: manual/performance.md:7
-msgid "While nothing changes, the mod does not walk the shop. A walk starts when the customer or their intent changes, an item is validated, turned or has a tag changed, an item enters or leaves an inventory, or a container window opens or closes. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s. The only repeated work is a check of the customer's intent every 0.5 s."
-msgstr "没有变化时，模组不会遍历店铺。下面这些情况会触发一次遍历：顾客或其意图变了，物品被校验、旋转或标签变了，物品进出库存，容器窗口打开或关闭。提示框等其他窗口不算。变化会合并处理，两次遍历至少间隔 0.15 秒。唯一重复做的事，是每 0.5 秒检查一次顾客的意图。"
+#: manual/query-api.md:7
+msgid "![How a query travels](../attachments/query-architecture.png)"
+msgstr "![查询的流转过程](../attachments/query-architecture.png)"
 
 #: manual/performance.md:9
+msgid "The mod is three parts that only hand data to each other. The first reads what the customer at the counter wants, or what the Item Filter asks for, and writes it down as a query: a small value such as \"items the game says this customer buys, except these identifiers\". The second answers the query over the store. The third draws the answer. The second part never looks at the customer and the third never looks at the query. The Item Filter's counts and the [Query API](query-api.md) use a fourth part, a plain walk over the whole shop that evaluates a query on every item and keeps nothing; it does not touch the second or third."
+msgstr "这个模组由三个部分组成，它们之间只传递数据。第一部分读出柜台前的顾客想要什么，或者物品筛选要找什么，把它记成一个查询：一个很小的值，比如“游戏认为这位顾客会买的物品，除了这些标识符”。第二部分在商店里回答这个查询。第三部分把答案画出来。第二部分从不看顾客，第三部分从不看查询。物品筛选的计数和[查询 API](query-api.md)用的是第四个部分：对整个商店的一次简单遍历，逐件判断查询，什么都不留；它不碰第二和第三部分。"
+
+#: manual/performance.md:11
+msgid "While nothing changes, the mod does not walk the shop. A walk starts when the query changes, an item is validated, turned or has a tag changed, an item enters or leaves an inventory, or a container window opens or closes. Tooltips and other windows are ignored. Changes are batched into at most one walk every 0.15 s. The only repeated work is reading the query every 0.5 s, because the game gives no signal when a customer changes what they want, and comparing it with the last one."
+msgstr "没有变化时，模组不会遍历店铺。下面这些情况会触发一次遍历：查询变了，物品被校验、旋转或标签变了，物品进出库存，容器窗口打开或关闭。提示框等其他窗口不算。变化会合并处理，每 0.15 秒最多遍历一次。唯一重复做的事，是每 0.5 秒读一次查询并和上一次比较，因为顾客改变想要的东西时，游戏不会发出任何信号。"
+
+#: manual/performance.md:13
 msgid "One question per item"
 msgstr "每件物品只问一次"
 
-#: manual/performance.md:11
+#: manual/performance.md:15
 msgid "The game's own \"would this customer buy it\" check, run on a container, lists every item inside and checks each one again, recursively, which is quadratic in a deep store. The mod asks the game only about the item itself and rebuilds the same rule bottom-up: a container is bought when it is acceptable itself and, unless it is locked, has no window or is an advanced gun, everything inside it is bought. Each item is checked once per customer."
 msgstr "游戏自己的“顾客会不会收”判定用在容器上时，会列出里面的每件物品，再逐个递归检查，在嵌套很深的店里计算量按平方增长。模组只向游戏问物品本身，再自下而上重建同一条规则：容器本身可以收，并且里面的东西全都会收，这个容器才算会收；上锁、没有窗口或是高级枪械的容器除外，不查它里面的东西。每位顾客对每件物品只检查一次。"
 
-#: manual/performance.md:13
+#: manual/performance.md:17
 msgid "A record per item"
 msgstr "每件物品一份记录"
 
-#: manual/performance.md:15
-msgid "Each item keeps its verdict, its lock, ownership and contraband flags, and a summary of what is inside it. A change clears the changed item's record and marks only the summaries of the containers above it as stale."
-msgstr "每件物品保存自己的判定结果、锁定状态、归属和违禁标记，以及里面物品的汇总。物品变化时，只清掉它自己的记录，并把它上层各容器的汇总标为过期。"
+#: manual/performance.md:19
+msgid "Each item keeps three things, each for exactly as long as it holds:"
+msgstr "每件物品保存三样东西，每样都只在它仍然有效时保留："
 
-#: manual/performance.md:17
+#: manual/performance.md:21
+msgid "its facts (stolen, contraband, locked, yours): until the item changes;"
+msgstr "它的基本事实（是否赃物、违禁品、上锁、归你所有）：保留到物品变化为止；"
+
+#: manual/performance.md:22
+msgid "the game's answer to \"would this customer buy it\": until the item changes or the question does. The question names everything the answer depends on, the customer and what they want, so a new customer asks again and the same customer does not;"
+msgstr "游戏对“这位顾客会不会买它”的回答：保留到物品或问题变化为止。问题里写明了答案所依赖的一切，也就是顾客和他想要的东西，所以换了新顾客会重新问，同一位顾客则不会；"
+
+#: manual/performance.md:23
+msgid "its verdict on the query and, for a container, a summary of what is inside: until the query or the item changes."
+msgstr "它对查询的判定，如果是容器，还有里面物品的汇总：保留到查询或物品变化为止。"
+
+#: manual/performance.md:25
+msgid "A change to an item clears its record and marks only the summaries of the containers above it as stale. When you sell to a customer who wants variety, only the query changes (\"except this identifier\"), so every item is judged again from what it already knows, without asking the game again."
+msgstr "物品变化时，只清掉它自己的记录，并把它上层各容器的汇总标为过期。卖东西给想要多样化的顾客时，变的只有查询（“排除这个标识符”），所以每件物品都用已知的信息重新判定，不用再问游戏。"
+
+#: manual/performance.md:27
+msgid "The Item Filter window counts the whole shop by type and adds up its numbers in one walk, only while it is open, and only when the stock or the filter changed, at most every 0.5 s."
+msgstr "物品筛选窗口在一次遍历里按类型统计全店并算出统计数字，只在窗口开着、并且库存或筛选有变化时才做，最多每 0.5 秒一次。"
+
+#: manual/performance.md:29
 msgid "Only what is on screen"
 msgstr "只遍历屏幕上的内容"
 
-#: manual/performance.md:19
+#: manual/performance.md:31
 msgid "A walk visits the shop inventories and open containers. Closed containers answer from their record."
 msgstr "每次遍历只看店铺库存和打开的容器。关着的容器直接用记录回答。"
 
-#: manual/performance.md:21
+#: manual/performance.md:33
 msgid "Big jobs over several frames"
 msgstr "大任务分摊到多帧"
 
-#: manual/performance.md:23
+#: manual/performance.md:35
 msgid "A walk stops after 2.5 ms and continues on the next frame, so a new customer in a huge store does not cause one long frame. Outlines appear over a few frames instead."
 msgstr "每次遍历最多运行 2.5 毫秒，没做完的留到下一帧继续，所以大型店铺来了新顾客也不会卡一帧。框线会在几帧内陆续出现。"
 
-#: manual/performance.md:25
+#: manual/performance.md:37
 msgid "Cheap drawing"
 msgstr "低开销绘制"
 
-#: manual/performance.md:27
-msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size reuses the same texture. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed."
-msgstr "矩形物品每种样式共用一张很小的九宫格贴图，所以任意大小的框线都用同一张贴图。其他形状按实际格子生成贴图，并按形状和大小缓存。只有样式、形状或大小变了，才会重画框线。"
+#: manual/performance.md:39
+msgid "Rectangular items share one small nine-slice frame per look, so an outline of any size reuses the same texture. Other shapes get a texture drawn for their exact cells, cached by shape and size. An outline is redrawn only when its look, shape or size changed. Outlines that are not needed any more are hidden and kept for reuse; to find them, only the outlines shown last time are looked at, not every one kept."
+msgstr "矩形物品每种外观共用一个小的九宫格边框，所以任意大小的框线都复用同一张纹理。其他形状按实际占用的格子单独画一张纹理，按形状和大小缓存。只有外观、形状或大小变了，框线才会重画。不再需要的框线会隐藏起来留着复用；找这些框线时只看上次显示过的那些，而不是全部留着的框线。"
 
-#: manual/performance.md:29
+#: manual/performance.md:41
 msgid "Nothing kept after leaving the store"
 msgstr "离开店铺后不留任何东西"
 
-#: manual/performance.md:31
+#: manual/performance.md:43
 msgid "A store's items, their UI, windows and customers all point at each other, so a single reference kept after leaving the store would keep the whole store in memory. When another scene replaces the store (`SceneManager.sceneLoaded` in single mode for any scene other than `InventoryScene`, such as the main menu), the mod drops its item records, outlines, last customer and Item Filter window. The next store builds them again. The filter's choices are kept."
 msgstr "店铺里的物品、物品界面、窗口和顾客互相引用，离开店铺后只要还留着一个引用，整个店铺就会一直占着内存。一离开店铺，也就是以单场景模式加载了 `InventoryScene` 以外的场景（比如回到主菜单，对应 `SceneManager.sceneLoaded`），模组就会丢掉物品记录、框线、上一位顾客和物品筛选窗口，下次进店再重新建立。筛选的选择会保留。"
 
-#: manual/performance.md:33
+#: manual/performance.md:45
 msgid "Logging"
 msgstr "日志"
 
-#: manual/performance.md:35
-msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so you can tell whether a stutter comes from this mod."
-msgstr "刷新超过 8 毫秒时，会向游戏的 `Player.log` 写一行 `[DemandHighlight] slow refresh: ...`，记下遍历和绘制各用了多久，这样能判断卡顿是不是这个模组造成的。"
+#: manual/performance.md:47
+msgid "Any refresh over 8 ms is written to the game's `Player.log` as `[DemandHighlight] slow refresh: ...`, with the time spent walking and drawing, so you can tell whether a stutter comes from this mod. Each new query is written once, as `[DemandHighlight] query: ...`, with how many items were visited, judged, asked about and marked."
+msgstr "刷新超过 8 毫秒时，会向游戏的 `Player.log` 写一行 `[DemandHighlight] slow refresh: ...`，附上遍历和绘制各花的时间，方便你判断卡顿是不是这个模组造成的。每个新查询会写一次 `[DemandHighlight] query: ...`，附上访问过、判定过、问过游戏和标出的物品各有多少。"
 
-#: manual/performance.md:37
+#: manual/performance.md:49
 msgid "Tested logic"
 msgstr "经过测试的逻辑"
 
-#: manual/performance.md:39
-msgid "The decisions need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`. `Decide.Pure.cs` chooses each item's outline, what it passes on to the containers above it, and the Item Filter's matches. `Outline.Pure.cs` computes the outline image of each look, for any cell shape. `Style.Pure.cs` combines marks. `StoreExit.Pure.cs` decides which scene loads leave the store."
-msgstr "这些判断不需要 Unity，也不需要游戏，所以和读取游戏的代码分开，放在以 `.Pure.cs` 结尾的文件里。`Decide.Pure.cs` 决定每件物品的框线、它向上层容器传递什么，以及物品筛选的匹配。`Outline.Pure.cs` 为任意格子形状算出每种外观的框线图像。`Style.Pure.cs` 合并标记。`StoreExit.Pure.cs` 判断哪些场景加载意味着离开店铺。"
+#: manual/performance.md:51
+msgid "The decisions need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`. `Query.Pure.cs` defines queries and how an item answers them. `Intent.Pure.cs` turns a customer, or the Item Filter, into a query. The filter language is built like a small compiler, one stage per file: `Lexer.Pure.cs` turns text into tokens, `Parser.Pure.cs` tokens into a syntax tree (`Ast.Pure.cs`), `Binder.Pure.cs` the tree into a predicate; `Formatter.Pure.cs` writes a tree in the one canonical form, and `Lift.Pure.cs` turns a predicate back into a tree for it, so typed text and text made by the ticks are formatted alike; `Expr.Pure.cs` runs the stages. `Facets.Pure.cs` reads the window's ticks from a filter and edits it. `QueryApi.Pure.cs` is the public query API's contract and its host side (see [Query API](query-api.md)). `Stats.Pure.cs` adds up the Item Filter's numbers and fills in their line. `Cross.Pure.cs` draws the filter's \"exclude\" cross from the pixels of the game's check mark: its outline, fill, stroke and size. `Decide.Pure.cs` chooses each item's outline and what it passes on to the containers above it. `Outline.Pure.cs` computes the outline image of each look, for any cell shape. `Style.Pure.cs` combines marks. `StoreExit.Pure.cs` decides which scene loads leave the store."
+msgstr "这些判断既不需要 Unity 也不需要游戏，所以和读取游戏的代码分开，放在以 `.Pure.cs` 结尾的文件里。`Query.Pure.cs` 定义查询，以及一件物品如何回答它。`Intent.Pure.cs` 把顾客或物品筛选变成查询。筛选语言按一个小编译器的方式来写，每个阶段一个文件：`Lexer.Pure.cs` 把文本切成记号，`Parser.Pure.cs` 把记号变成语法树（`Ast.Pure.cs`），`Binder.Pure.cs` 把语法树变成谓词；`Formatter.Pure.cs` 把语法树写成唯一的规范形式，`Lift.Pure.cs` 把谓词变回语法树交给它，所以手打的文字和勾选生成的文字格式一致；`Expr.Pure.cs` 把这些阶段串起来。`Facets.Pure.cs` 从筛选里读出窗口的勾选，并据此修改筛选。`QueryApi.Pure.cs` 是公开查询 API 的契约和宿主一侧（见[查询 API](query-api.md)）。`Stats.Pure.cs` 汇总物品筛选的统计数字，并填进那一行。`Cross.Pure.cs` 根据游戏勾号的像素画出筛选的“排除”叉：描边、填充、笔画和大小都照它来。`Decide.Pure.cs` 决定每件物品的框线，以及它往上层容器传什么。`Outline.Pure.cs` 为任意格子形状算出每种样式的框线图。`Style.Pure.cs` 合并标记。`StoreExit.Pure.cs` 判断哪些场景加载意味着离开了商店。"
 
-#: manual/performance.md:41
-msgid "Three tests run these files outside the game, with only the C# compiler. `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter. `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed. `tests/run.sh` compiles and runs them all."
-msgstr "三个测试只用 C# 编译器，就能在游戏外运行这些文件。`tests/DecideTest.cs` 覆盖买货、卖货、盘查、上锁、禁止搜查和物品筛选。`tests/OutlineTest.cs` 覆盖形状、角落、圆角和四种外观。`tests/StoreExitTest.cs` 覆盖离开店铺。每个用例输出 ok 或 FAIL，有失败时以 1 退出。`tests/run.sh` 会编译并运行全部测试。"
+#: manual/performance.md:53
+msgid "Eleven tests run these files outside the game, with only the C# compiler. `tests/QueryTest.cs` covers queries and their answers. `tests/IntentTest.cs` covers every kind of customer and the Item Filter. `tests/LanguageTest.cs` is the filter language's specification as tests: tables for the lexer, the grammar, errors, binding and formatting, then properties checked on 2,000 random trees. `tests/ExprTest.cs` covers the filter language, stage by stage. `tests/FacetsTest.cs` covers ticks read from and written into a filter. `tests/StatsTest.cs` covers the numbers and their line. `tests/CrossTest.cs` covers the cross drawn from a check, and prints both. `tests/QueryApiTest.cs` runs the query API end to end: the client file other mods copy in, talking through real AppDomain slots to the host side, with stand-in items. `tests/DecideTest.cs` covers buying, bartering, selling, inspections, locks, blocked searches and the Item Filter. `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed. `tests/run.sh` compiles and runs them all."
+msgstr "有十一组测试在游戏之外运行这些文件，只需要 C# 编译器。`tests/QueryTest.cs` 测查询和它们的答案。`tests/IntentTest.cs` 测每一种顾客和物品筛选。`tests/LanguageTest.cs` 就是写成测试的筛选语言规格：词法、语法、错误、绑定和格式化各有一张表，再在 2,000 棵随机语法树上检查性质。`tests/ExprTest.cs` 按阶段测筛选语言。`tests/FacetsTest.cs` 测从筛选里读出勾选、以及把勾选写回筛选。`tests/StatsTest.cs` 测统计数字和那一行。`tests/CrossTest.cs` 测从勾号画出的叉，并把两者都打印出来。`tests/QueryApiTest.cs` 把查询 API 从头跑到尾：其他模组拷入的客户端文件，经由真实的 AppDomain 槽位和宿主一侧通信，物品用替身代替。`tests/DecideTest.cs` 测买、以物易物、卖、盘查、锁、阻挡搜查的容器和物品筛选。`tests/OutlineTest.cs` 测形状、转角、圆角和四种样式。`tests/StoreExitTest.cs` 测离开商店。每个测试逐条打印 ok 或 FAIL，有失败就以 1 退出。`tests/run.sh` 编译并运行全部测试。"
 
-#: manual/performance.md:43
+#: manual/performance.md:55
 msgid "Starting is all or nothing: if a method the mod hooks is missing, for example after a game update, everything already set up is taken down again, one line is written to `Player.log` and the mod stays off."
 msgstr "启动要么全部成功，要么全部撤回：如果模组要挂接的某个方法不存在（比如游戏更新后），已经装好的部分都会撤下，`Player.log` 里写一行，模组保持关闭。"
+
+#: manual/query-api.md:1
+msgid "Query API"
+msgstr "查询 API"
+
+#: manual/query-api.md:3
+msgid "Demand Highlight can answer one question for other mods: which items of the shop match an Item Filter expression. You write the expression, for example `type:(food or medical) not stolen`, and get back the matching items, without the outlines, the filter window or anything else of this mod showing up."
+msgstr "需求高亮可以替其他模组回答一个问题：店里哪些物品符合某个物品筛选表达式。你写出表达式，比如 `type:(food or medical) not stolen`，就能拿回匹配的物品，框线、筛选窗口和本模组的其他东西都不会出现。"
+
+#: manual/query-api.md:5
+msgid "You might use it to count what the player has of a kind, to find the stolen goods before an inspection, to sort or move items in your own mod, or to build a feature on the same language the Item Filter uses."
+msgstr "你可以用它统计玩家某一类东西有多少，在盘查前找出赃物，在你自己的模组里整理或移动物品，或者在物品筛选所用的同一种语言上做新功能。"
+
+#: manual/query-api.md:9
+msgid "The diagram shows where the API sits. Demand Highlight builds a query from the customer or from the filter window. The highlight (Engine, Result, Painter) is one consumer of that query. The whole-shop walk is another: it serves the filter's counts and this API. The API compiles your text with the filter language and runs it on that walk. It never touches the Engine or the Painter."
+msgstr "这张图显示了 API 所在的位置。需求高亮根据顾客或筛选窗口构建查询。高亮（Engine、Result、Painter）是这个查询的一个使用方。全店遍历是另一个：它为筛选的数量和这个 API 服务。API 用筛选语言编译你的文本，并在这次遍历上运行，从不碰 Engine 或 Painter。"
+
+#: manual/query-api.md:13
+msgid "Demand Highlight 1.2.0 or later, enabled. List it as a dependency on your Workshop page if your mod needs it; your mod still loads and runs without it."
+msgstr "需求高亮 1.2.0 或更高版本，并已启用。如果你的模组需要它，请在创意工坊页面上把它列为依赖；没有它，你的模组也照样能加载和运行。"
+
+#: manual/query-api.md:14
+msgid "One file in your mod: `api/DemandHighlightQuery.cs` from Demand Highlight's repository. Copy it into your sources. It needs no reference to Demand Highlight's assembly, which you could not use anyway: the game resolves a mod's references inside that mod's own folder only."
+msgstr "在你的模组里加一个文件：需求高亮仓库里的 `api/DemandHighlightQuery.cs`。把它复制到你的源码里。它不需要引用需求高亮的程序集，你本来也引用不了：游戏只在模组自己的文件夹里解析该模组的引用。"
+
+#: manual/query-api.md:15
+msgid "The game's assemblies, which your mod already references (`Assembly-CSharp` for `GameItem`)."
+msgstr "游戏的程序集，你的模组本来就引用了（`GameItem` 在 `Assembly-CSharp` 里）。"
+
+#: manual/query-api.md:17
+msgid "Integration"
+msgstr "集成"
+
+#: manual/query-api.md:19
+msgid "The client file reads what Demand Highlight publishes when it is enabled. You can check before you call:"
+msgstr "客户端文件读取需求高亮启用时发布的内容。调用前可以先检查一下："
+
+#: manual/query-api.md:26
+msgid "You don't have to check. Without Demand Highlight, every call returns `Status.NotInstalled` and does nothing else, so you can call whenever you like and handle that status."
+msgstr "不检查也行。没有需求高亮时，每次调用都返回 `Status.NotInstalled`，别的什么都不做，所以你随时都可以调用，处理好这个状态就行。"
+
+#: manual/query-api.md:28
+msgid "Load order does not matter. Demand Highlight publishes the API when it is enabled and takes it back when it is disabled, and the client file looks it up again on every call."
+msgstr "加载顺序无所谓。需求高亮启用时发布 API，停用时收回，客户端文件每次调用都会重新查找。"
+
+#: manual/query-api.md:30
+msgid "A basic query"
+msgstr "基本查询"
+
+#: manual/query-api.md:52
+msgid "`Run` clears your list, then adds every matching item. Pass `null` instead of a list if you only need `r.Count`."
+msgstr "`Run` 先清空你的列表，再加入每个匹配的物品。如果只需要 `r.Count`，可以传 `null` 代替列表。"
+
+#: manual/query-api.md:54
+msgid "`tools/QuerySample` in the repository is a small development mod that does exactly this each time a shop loads and writes the answers to `Player.log`. Build it with `tools/QuerySample/build.sh --install`."
+msgstr "仓库里的 `tools/QuerySample` 是一个开发用的小模组，每次店铺加载时就做上面这件事，并把结果写进 `Player.log`。用 `tools/QuerySample/build.sh --install` 构建。"
+
+#: manual/query-api.md:56
+msgid "What is searched"
+msgstr "搜索范围"
+
+#: manual/query-api.md:58
+msgid "Every item of the shop, each once: the shop inventories, the counter, the showcase, the market stall, the hidden and sold areas, and everything inside them, closed and locked containers included. An item matches on its own facts. A container matches only if the container itself matches, not because of what it holds. Items come back in the order of the walk, which is stable for an unchanged shop, but don't rely on it for anything else."
+msgstr "店里的每件物品，每件只算一次：店铺库存、柜台、展示柜、市场摊位、隐藏区和已售区，以及它们里面的所有东西，关着的和上锁的容器也包括在内。物品只按自身的事实匹配。容器只有自己匹配才算匹配，不会因为里面装的东西而匹配。物品按遍历顺序返回，店铺不变时这个顺序是稳定的，但别把它用在别的地方。"
+
+#: manual/query-api.md:60
+msgid "The expression is the Item Filter's language, described in full on [Filter language](filter-language.md): `stolen`, `contraband`, `owned`, `type:`, `tag:`, `id:`, `condition:`, groups such as `type:(a or b)`, and `and` / `+`, `or` / `|`, `not` / `-` with brackets. Type names are read in the player's language too (`type:食物`), so in code use the game's identifiers (`type:FOOD`): they work in every language."
+msgstr "表达式就是物品筛选的语言，完整说明见[筛选语言](filter-language.md)：`stolen`、`contraband`、`owned`、`type:`、`tag:`、`id:`、`condition:`，`type:(a or b)` 这样的分组，以及 `and` / `+`、`or` / `|`、`not` / `-` 和括号。类型名也会按玩家的语言来读（`type:食物`），所以在代码里请用游戏的标识符（`type:FOOD`）：它们在任何语言下都有效。"
+
+#: manual/query-api.md:62
+msgid "Building expressions"
+msgstr "构建表达式"
+
+#: manual/query-api.md:64
+msgid "There is no structured query object in this version. Expressions are text, and two helpers build terms safely:"
+msgstr "这个版本没有结构化的查询对象。表达式就是文本，有两个辅助方法可以安全地构建项："
+
+#: manual/query-api.md:72
+msgid "`Format` gives an expression back in its canonical form, the one the Item Filter writes, with `and`/`or`/`not` in words or as `+ | -`:"
+msgstr "`Format` 把表达式改写成规范形式返回，也就是物品筛选写出的那种，`and`/`or`/`not` 用单词写或写成 `+ | -`："
+
+#: manual/query-api.md:79
+msgid "Results and errors"
+msgstr "结果和错误"
+
+#: manual/query-api.md:81
+msgid "Every call returns a `DemandHighlightQuery.Result`:"
+msgstr "每次调用都返回一个 `DemandHighlightQuery.Result`："
+
+#: manual/query-api.md:83
+msgid "Field"
+msgstr "字段"
+
+#: manual/query-api.md:85
+msgid "what happened, below"
+msgstr "发生了什么，见下文"
+
+#: manual/query-api.md:87
+msgid "how many items matched (`Run`)"
+msgstr "匹配的物品数（`Run`）"
+
+#: manual/query-api.md:88
+msgid "the expression in canonical form, when it compiled"
+msgstr "编译成功时，表达式的规范形式"
+
+#: manual/query-api.md:89
+msgid "for `Invalid`: `ExpectedTerm`, `ExpectedClose`, `ExpectedValue`, `UnknownKey`, `UnknownWord`, `Unexpected` or `UnclosedQuote`"
+msgstr "`Invalid` 时：`ExpectedTerm`、`ExpectedClose`、`ExpectedValue`、`UnknownKey`、`UnknownWord`、`Unexpected` 或 `UnclosedQuote`"
+
+#: manual/query-api.md:90
+msgid "for `Invalid`: the word or character concerned"
+msgstr "`Invalid` 时：涉及的单词或字符"
+
+#: manual/query-api.md:91
+msgid "for `Invalid`: where in your text, 0-based, and how many characters"
+msgstr "`Invalid` 时：在你的文本中的位置（从 0 开始）和字符数"
+
+#: manual/query-api.md:92
+msgid "what went wrong, in English, for your log"
+msgstr "出了什么错，英文，用来写日志"
+
+#: manual/query-api.md:94
+msgid "Status"
+msgstr "状态"
+
+#: manual/query-api.md:94
+msgid "When"
+msgstr "何时"
+
+#: manual/query-api.md:96
+msgid "the query ran; zero matches is still `Ok`"
+msgstr "查询已运行；零个匹配也是 `Ok`"
+
+#: manual/query-api.md:97
+msgid "the expression does not compile: a syntax mistake, an unknown key, an unknown word"
+msgstr "表达式编译不通过：语法错误、不认识的键、不认识的单词"
+
+#: manual/query-api.md:98
+msgid "no shop is loaded (main menu, loading screen)"
+msgstr "没有加载店铺（主菜单、加载画面）"
+
+#: manual/query-api.md:99
+msgid "the expression compiled, but reading the shop failed in the game; `Message` has the exception"
+msgstr "表达式编译成功，但在游戏里读取店铺时失败；`Message` 里有异常信息"
+
+#: manual/query-api.md:100
+msgid "the expression is null or blank"
+msgstr "表达式为 null 或空白"
+
+#: manual/query-api.md:101
+msgid "not called from the game's main thread"
+msgstr "不是从游戏主线程调用的"
+
+#: manual/query-api.md:102
+msgid "Demand Highlight is not enabled, or offers no 1.x contract"
+msgstr "需求高亮未启用，或没有提供 1.x 契约"
+
+#: manual/query-api.md:104
+msgid "`Invalid` is about your text and is reported even with no shop loaded, so you can check an expression in the main menu. `Failed` is about the game at that moment. On anything but `Ok`, your list is left empty."
+msgstr "`Invalid` 针对的是你的文本，没加载店铺时也会报告，所以你可以在主菜单里检查表达式。`Failed` 针对的是游戏当时的状况。只要不是 `Ok`，你的列表就是空的。"
+
+#: manual/query-api.md:106
+msgid "Lifecycle and rules"
+msgstr "生命周期和规则"
+
+#: manual/query-api.md:108
+msgid "Call from the game's main thread, as with any game code."
+msgstr "和其他游戏代码一样，从游戏主线程调用。"
+
+#: manual/query-api.md:109
+msgid "The items belong to the shop. Use them while it is loaded and let them go when the scene changes. Keeping one keeps the whole store in memory after the player leaves it."
+msgstr "物品属于店铺。店铺加载期间使用它们，场景切换时就放掉。只要留着一件，玩家离开后整个店铺都会留在内存里。"
+
+#: manual/query-api.md:110
+msgid "Nothing is cached between calls: each `Run` walks the whole shop once. Run a query when you need an answer, not every frame."
+msgstr "调用之间不做任何缓存：每次 `Run` 都会完整遍历一次店铺。需要答案时再运行查询，不要每帧都运行。"
+
+#: manual/query-api.md:111
+msgid "Results are a snapshot. If items move afterwards, run the query again."
+msgstr "结果是一份快照。之后物品如果移动了，请重新运行查询。"
+
+#: manual/query-api.md:113
+msgid "Versions"
+msgstr "版本"
+
+#: manual/query-api.md:115
+msgid "The API has its own version, separate from the mod's. This is contract 1.0, published with Demand Highlight 1.2.0."
+msgstr "API 有自己的版本号，和模组的版本分开。当前是契约 1.0，随需求高亮 1.2.0 发布。"
+
+#: manual/query-api.md:117
+msgid "A 1.x release can only add things: new fields at the end of a result, new keys or words in the language. A client file written for 1.0 keeps working with any 1.x."
+msgstr "1.x 版本只会增加东西：结果末尾的新字段，语言里的新键或新单词。为 1.0 写的客户端文件在任何 1.x 下都能继续工作。"
+
+#: manual/query-api.md:118
+msgid "A change that would break a 1.x client gets a new major version under new names. An old client then sees `NotInstalled`, never wrong answers."
+msgstr "会破坏 1.x 客户端的改动，会换用新的名字，作为新的主版本发布。这时旧客户端看到的是 `NotInstalled`，绝不会是错误的答案。"
+
+#: manual/query-api.md:119
+msgid "`DemandHighlightQuery.Version` tells you which 1.x you are talking to."
+msgstr "`DemandHighlightQuery.Version` 告诉你对接的是哪个 1.x。"
+
+#: manual/query-api.md:121
+msgid "How it works underneath: Demand Highlight puts two delegates and a version string into slots of the AppDomain, which every mod's assembly shares, and the client file reads them. You don't need any of this unless you write your own client:"
+msgstr "底层原理：需求高亮把两个委托和一个版本字符串放进 AppDomain 的槽位里，所有模组的程序集共享同一个 AppDomain，客户端文件从中读取。除非你要自己写客户端，否则不需要了解这些："
+
+#: manual/query-api.md:123
+msgid "Slot"
+msgstr "槽位"
+
+#: manual/query-api.md:123
+msgid "Type"
+msgstr "类型"
+
+#: manual/query-api.md:129
+msgid "A result row is `object[] { int status, int count, string problem, string detail, int position, int length, string message, string text }`."
+msgstr "结果行是 `object[] { int status, int count, string problem, string detail, int position, int length, string message, string text }`。"
+
+#: manual/query-api.md:131
+msgid "Not in this version"
+msgstr "本版本不包含"
+
+#: manual/query-api.md:133
+msgid "Structured queries without text. The predicate types inside the mod are not a contract we want to freeze yet. Text plus `Field` and `Quote` covers what they would do."
+msgstr "不经过文本的结构化查询。模组内部的谓词类型还不是我们想冻结下来的契约。文本加上 `Field` 和 `Quote` 已经能做到它们能做的事。"
+
+#: manual/query-api.md:134
+msgid "Subscriptions or change notifications. Run the query again when you need a fresh answer."
+msgstr "订阅或变化通知。需要最新答案时，重新运行查询即可。"
+
+#: manual/query-api.md:135
+msgid "Your own keys or predicates in the language."
+msgstr "在语言里加入你自己的键或谓词。"
+
+#: manual/query-api.md:137
+msgid "What comes next"
+msgstr "后续计划"
+
+#: manual/query-api.md:139
+msgid "For now the API lives inside Demand Highlight. If other mods start using it and need more than this, the query part may later move into a small library of its own. That depends on what people actually build with it, so tell us what you need."
+msgstr "目前这个 API 放在需求高亮内部。如果有其他模组开始用它，并且需要更多功能，查询部分以后可能会拆成一个独立的小库。这取决于大家实际用它做了什么，所以请告诉我们你需要什么。"
+
+#~ msgid "Press the key bound to **Open item filter** in the game's options menu. The window is built from the game's own machine-panel widgets, so it looks like a machine window."
+#~ msgstr "按下你在游戏设置菜单里给 **打开物品筛选** 绑定的键。窗口用游戏自带的机器面板组件搭成，看起来和机器窗口一样。"
+
+#~ msgid "Types are grouped into Goods, Supplies, Gear, Machines, Grade and Restricted, with any other type under Other. Within a group the most common comes first. The groups are packed into columns of similar height. Hover a toggle to see what it does."
+#~ msgstr "类型分为日常商品、物资原料、装备武器、机器模组、品级和管制六组，其他类型归入“其他”。组内数量多的排在前面，各组排成高度相近的几列。鼠标悬停在开关上可以看到它的作用。"
+
+#~ msgid "The window is rebuilt only when the stock or the filter changed since it was last opened."
+#~ msgstr "只有库存或筛选条件在上次打开后变过，窗口才会重建。"
+
+#~ msgid "Several ticks combine as \"any of these\"."
+#~ msgstr "勾选多项时，符合其中任意一项就会标出。"
+
+#~ msgid "Each item keeps its verdict, its lock, ownership and contraband flags, and a summary of what is inside it. A change clears the changed item's record and marks only the summaries of the containers above it as stale."
+#~ msgstr "每件物品保存自己的判定结果、锁定状态、归属和违禁标记，以及里面物品的汇总。物品变化时，只清掉它自己的记录，并把它上层各容器的汇总标为过期。"
+
+#~ msgid "The decisions need neither Unity nor the game, so they live apart from the code that reads the game, in files ending in `.Pure.cs`. `Decide.Pure.cs` chooses each item's outline, what it passes on to the containers above it, and the Item Filter's matches. `Outline.Pure.cs` computes the outline image of each look, for any cell shape. `Style.Pure.cs` combines marks. `StoreExit.Pure.cs` decides which scene loads leave the store."
+#~ msgstr "这些判断不需要 Unity，也不需要游戏，所以和读取游戏的代码分开，放在以 `.Pure.cs` 结尾的文件里。`Decide.Pure.cs` 决定每件物品的框线、它向上层容器传递什么，以及物品筛选的匹配。`Outline.Pure.cs` 为任意格子形状算出每种外观的框线图像。`Style.Pure.cs` 合并标记。`StoreExit.Pure.cs` 判断哪些场景加载意味着离开店铺。"
+
+#~ msgid "Three tests run these files outside the game, with only the C# compiler. `tests/DecideTest.cs` covers buying, selling, inspections, locks, blocked searches and the Item Filter. `tests/OutlineTest.cs` covers shapes, corners, rounding and the four looks. `tests/StoreExitTest.cs` covers leaving the store. Each prints ok or FAIL per case and exits with 1 if anything failed. `tests/run.sh` compiles and runs them all."
+#~ msgstr "三个测试只用 C# 编译器，就能在游戏外运行这些文件。`tests/DecideTest.cs` 覆盖买货、卖货、盘查、上锁、禁止搜查和物品筛选。`tests/OutlineTest.cs` 覆盖形状、角落、圆角和四种外观。`tests/StoreExitTest.cs` 覆盖离开店铺。每个用例输出 ok 或 FAIL，有失败时以 1 退出。`tests/run.sh` 会编译并运行全部测试。"

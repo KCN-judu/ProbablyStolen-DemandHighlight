@@ -1,9 +1,13 @@
 [h1]Demand Highlight[/h1]
 See at a glance what the customer at the counter wants, and find anything in your stock by type.
 
-[h2]What's new in 1.1.2[/h2]
+[h2]What's new in 1.2.0[/h2]
+I rebuilt how the mod works out what to mark. What a customer wants, or what you ask the filter for, is now one query, and the outlines are just one thing that reads it.
 [list]
-[*]Leaving the store (back to the main menu, say) no longer keeps it in memory, so later loads in the same session don't start with the old store still loaded. Nothing changes inside the store, and your filter choices are kept.
+[*]Customers who barter get outlines. Variety buyers stop showing what they already took, and the flexi buyer shows its pick as soon as it chooses.
+[*]The Item Filter is a search box now: type [b]type:(food or medical) not stolen[/b], or tick boxes and watch the text follow. Click a tick twice to exclude.
+[*]Counts next to every tick, and a line with the matching items' worth, cells taken and worth per cell.
+[*]For mod authors: a small query API, so your mod can ask the same questions without the outlines.
 [/list]
 
 [h2]Outlines[/h2]
@@ -16,11 +20,11 @@ See at a glance what the customer at the counter wants, and find anything in you
 Outlines follow each item's grid shape, and machine storage tabs are marked too. During an inspection only stolen goods and contraband are shown. Locked containers and items behind a lock are skipped, just as the customer would see it.
 
 [h2]Item Filter[/h2]
-Open the [b]Item Filter[/b] window, built in the game's own machine-panel style, and tick any item type (Food, Tool, Luxury Item...), Stolen or Contraband. Everything matching is marked in the shop, so you can sort your stock by category. Clear the filter to return to the customer highlight.
+Open the [b]Item Filter[/b] window and tick item types (Food, Tool, Luxury Item...), Stolen or Contraband, or type what you want into its box. Everything matching is marked in the shop, so you can sort your stock by category. Clear the filter to return to the customer highlight.
 
 [h2]Performance[/h2]
 [list]
-[*]Nothing runs until something changes: the customer, an item, or a container opening or closing.
+[*]The shop is only walked when something changes: what is wanted, an item, or a container opening or closing. Between those, the mod just compares what is wanted twice a second.
 [*]Only what is on screen is walked. Closed containers answer from a small index.
 [*]An outline is redrawn only when its look, shape or size changes.
 [/list]
@@ -44,9 +48,13 @@ Bug reports and suggestions are welcome on GitHub or in the comments.
 [h1]需求高亮[/h1]
 一眼看出柜台前的顾客想要什么，还能按类型找到库存里的任何东西。
 
-[h2]1.1.2 新内容[/h2]
+[h2]1.2.0 新内容[/h2]
+这一版重写了"该标出什么"的那部分。顾客想要什么、你在筛选里要找什么，现在都先变成同一种查询，框线只是读这个查询的其中一方。
 [list]
-[*]离开商店（比如回到主菜单）后，模组不再让商店留在内存里，同一次运行中之后的读档不会再带着旧商店。商店里的表现不变，筛选选项也会保留。
+[*]以物易物的顾客也有框线了。要求种类多样的顾客，已经拿过的那类不会再被标出；灵活买家一选定需求就会显示。
+[*]物品筛选变成了搜索框：可以直接输入 [b]type:(food or medical) not stolen[/b]，也可以点勾选，文字会跟着变。勾选点两下是排除。
+[*]每个勾选旁有数量，另有一行显示匹配物品的总价值、占用格数和每格价值。
+[*]给模组作者：一个小小的查询 API，你的模组可以问同样的问题，不需要框线。
 [/list]
 
 [h2]框线[/h2]
@@ -59,11 +67,11 @@ Bug reports and suggestions are welcome on GitHub or in the comments.
 框线贴合每件物品的网格形状，机器的存储标签页也会被标出。盘查时只显示赃物和违禁品。上锁的容器和锁后面的物品会被跳过，和顾客看到的一样。
 
 [h2]物品筛选[/h2]
-打开 [b]物品筛选[/b] 窗口（样式和游戏里的机器面板一样），勾选物品类型（食物、工具、奢侈品……）、赃物或违禁品，店里符合的东西都会被标出，方便按类别整理库存。清除筛选后，顾客需求高亮恢复。
+打开 [b]物品筛选[/b] 窗口，勾选物品类型（食物、工具、奢侈品……）、赃物或违禁品，或者在输入框里直接写想找的东西，店里符合的都会被标出，方便按类别整理库存。清除筛选后，顾客需求高亮恢复。
 
 [h2]性能[/h2]
 [list]
-[*]没有变化就不工作：只有顾客、物品或容器开关发生变化时才更新。
+[*]只有需求、物品或容器开关变了才会重新检查商店；平时只是每秒两次比对一下需求有没有变。
 [*]只检查屏幕上看得见的部分，关着的容器直接查记录。
 [*]框线只在样式、形状或大小变了才重画。
 [/list]
